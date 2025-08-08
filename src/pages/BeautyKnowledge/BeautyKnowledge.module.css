@@ -1,0 +1,600 @@
+/* Beauty Knowledge Page */
+.beautyKnowledgePage {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+/* Banner Section */
+.bannerSection {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  margin-top: 80px;
+}
+
+.bannerImageWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.bannerImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.6);
+}
+
+.bannerOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.bannerOverlay h1 {
+  color: white;
+  font-size: 3rem;
+  font-weight: 300;
+  text-align: center;
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-family: "Playfair Display", serif;
+}
+
+/* Main Content */
+.mainContent {
+  padding: 80px 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Trending Section */
+.trendingSection {
+  margin-bottom: 80px;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 60px;
+  position: relative;
+}
+
+.sectionHeader h2 {
+  font-size: 2.2rem;
+  color: #333;
+  font-weight: 300;
+  margin: 0 20px;
+  text-align: center;
+  font-family: "Playfair Display", serif;
+}
+
+.headerIcon {
+  color: #8b4513;
+  display: flex;
+  align-items: center;
+}
+
+.headerIcon svg {
+  width: 28px;
+  height: 28px;
+}
+
+/* Knowledge Grid */
+.knowledgeGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 40px;
+  justify-items: center;
+}
+
+/* Knowledge Card */
+.knowledgeCard {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  max-width: 450px;
+  width: 100%;
+}
+
+.knowledgeCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.cardImage {
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+  position: relative;
+}
+
+.cardImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.knowledgeCard:hover .cardImage img {
+  transform: scale(1.05);
+}
+
+.cardContent {
+  padding: 30px;
+  text-align: left;
+}
+
+.cardContent h3 {
+  font-size: 1.8rem;
+  color: #333;
+  font-weight: 600;
+  margin: 0 0 15px 0;
+  font-family: "Playfair Display", serif;
+}
+
+.cardContent p {
+  color: #666;
+  line-height: 1.6;
+  font-size: 1rem;
+  margin: 0 0 25px 0;
+  text-align: justify;
+}
+
+.detailButton {
+  background: transparent;
+  color: #8b4513;
+  border: 2px solid #8b4513;
+  padding: 12px 25px;
+  border-radius: 25px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  font-family: inherit;
+}
+
+.detailButton:hover {
+  background: #8b4513;
+  color: white;
+  transform: translateX(5px);
+}
+
+.arrow {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.detailButton:hover .arrow {
+  transform: translateX(3px);
+}
+
+/* Additional Section */
+.additionalSection {
+  margin-bottom: 60px;
+}
+
+.additionalSection h2 {
+  font-size: 2.2rem;
+  color: #333;
+  font-weight: 300;
+  margin: 0 0 50px 0;
+  text-align: center;
+  font-family: "Playfair Display", serif;
+  position: relative;
+}
+
+.additionalSection h2::after {
+  content: "";
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: #8b4513;
+  border-radius: 2px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .bannerOverlay h1 {
+    font-size: 2.5rem;
+  }
+
+  .sectionHeader h2,
+  .additionalSection h2 {
+    font-size: 2rem;
+  }
+
+  .knowledgeGrid {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+  }
+
+  .cardImage {
+    height: 250px;
+  }
+
+  .cardContent {
+    padding: 25px;
+  }
+
+  .cardContent h3 {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .bannerSection {
+    height: 300px;
+    margin-top: 70px;
+  }
+
+  .bannerOverlay h1 {
+    font-size: 2rem;
+  }
+
+  .mainContent {
+    padding: 60px 0;
+  }
+
+  .container {
+    padding: 0 15px;
+  }
+
+  .trendingSection {
+    margin-bottom: 60px;
+  }
+
+  .sectionHeader {
+    margin-bottom: 40px;
+  }
+
+  .sectionHeader h2,
+  .additionalSection h2 {
+    font-size: 1.8rem;
+    margin: 0 15px;
+  }
+
+  .headerIcon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .knowledgeGrid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .knowledgeCard {
+    max-width: none;
+    margin: 0 10px;
+  }
+
+  .cardImage {
+    height: 220px;
+  }
+
+  .cardContent {
+    padding: 20px;
+  }
+
+  .cardContent h3 {
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+  }
+
+  .cardContent p {
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+  }
+
+  .detailButton {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .bannerSection {
+    height: 250px;
+  }
+
+  .bannerOverlay h1 {
+    font-size: 1.6rem;
+  }
+
+  .mainContent {
+    padding: 50px 0;
+  }
+
+  .sectionHeader h2,
+  .additionalSection h2 {
+    font-size: 1.6rem;
+  }
+
+  .knowledgeCard {
+    margin: 0 5px;
+    border-radius: 15px;
+  }
+
+  .cardImage {
+    height: 200px;
+  }
+
+  .cardContent {
+    padding: 18px;
+  }
+
+  .cardContent h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+  }
+
+  .cardContent p {
+    font-size: 0.9rem;
+    margin-bottom: 18px;
+    line-height: 1.5;
+  }
+
+  .detailButton {
+    padding: 9px 18px;
+    font-size: 0.85rem;
+    border-radius: 20px;
+  }
+
+  .arrow {
+    font-size: 1.1rem;
+  }
+}
+
+/* Customer Stories Section */
+.customerStoriesSection {
+  padding: 60px 20px;
+  background: #ffffff;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.storiesTitle {
+  font-size: 2.8rem;
+  font-weight: 300;
+  color: #2c3e50;
+  margin-bottom: 8px;
+  text-align: center;
+  font-family: "Playfair Display", serif;
+  letter-spacing: -0.5px;
+}
+
+.storiesSubtitle {
+  font-size: 1rem;
+  color: #7f8c8d;
+  margin-bottom: 50px;
+  font-weight: 300;
+  text-align: center;
+}
+
+.storiesContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  height: 500px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.storyCard {
+  position: relative;
+  flex: 1;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.storyCard:hover {
+  flex: 2.5;
+}
+
+.storyCard:not(:hover) {
+  flex: 0.8;
+}
+
+.storyImageWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.storyImageWrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.storyCard:hover .storyImageWrapper img {
+  transform: scale(1.05);
+}
+
+.storyOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  display: flex;
+  align-items: flex-end;
+  padding: 30px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.storyCard:hover .storyOverlay {
+  opacity: 1;
+}
+
+.storyContent {
+  color: white;
+  width: 100%;
+  transform: translateY(30px);
+  transition: transform 0.5s ease;
+}
+
+.storyCard:hover .storyContent {
+  transform: translateY(0);
+}
+
+.storyContent h3 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.storyContent p {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  opacity: 0.95;
+}
+
+.viewMoreButton {
+  background: white;
+  color: #2c3e50;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.storyCard:hover .viewMoreButton {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.2s;
+}
+
+.viewMoreButton:hover {
+  background: #f8f9fa;
+  transform: translateY(-2px);
+}
+
+/* Customer Stories Responsive */
+@media (max-width: 1024px) {
+  .storiesContainer {
+    height: 400px;
+  }
+
+  .storyContent h3 {
+    font-size: 1.4rem;
+  }
+
+  .storyContent p {
+    font-size: 0.9rem;
+  }
+
+  .storyOverlay {
+    padding: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .customerStoriesSection {
+    padding: 50px 15px;
+  }
+
+  .storiesTitle {
+    font-size: 2.2rem;
+  }
+
+  .storiesContainer {
+    flex-direction: column;
+    height: 600px;
+    gap: 6px;
+  }
+
+  .storyContent h3 {
+    font-size: 1.2rem;
+  }
+
+  .storyContent p {
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+  }
+
+  .storyOverlay {
+    padding: 20px;
+  }
+
+  .viewMoreButton {
+    padding: 8px 20px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .storiesTitle {
+    font-size: 1.8rem;
+  }
+
+  .storiesSubtitle {
+    font-size: 0.9rem;
+    margin-bottom: 30px;
+  }
+
+  .storiesContainer {
+    flex-direction: column;
+    height: 500px;
+    gap: 4px;
+  }
+
+  .storyContent h3 {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+  }
+
+  .storyContent p {
+    font-size: 0.8rem;
+    margin-bottom: 12px;
+  }
+
+  .storyOverlay {
+    padding: 15px;
+  }
+
+  .viewMoreButton {
+    padding: 6px 16px;
+    font-size: 0.75rem;
+  }
+}

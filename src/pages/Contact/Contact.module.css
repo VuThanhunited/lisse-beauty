@@ -1,0 +1,352 @@
+/* Hero Banner */
+.heroBanner {
+  height: 60vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url("../../data/banner.jpg") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.heroOverlay {
+  text-align: center;
+  color: white;
+}
+
+.heroTitle {
+  font-size: 4rem;
+  font-weight: 300;
+  margin: 0;
+  font-family: "Playfair Display", serif;
+  letter-spacing: 2px;
+}
+
+/* Main Contact Section */
+.contactPage {
+  padding: 80px 20px;
+  background: #f8f9fa;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.contactContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+}
+
+/* Left Side - Contact Info */
+.contactInfo {
+  background: linear-gradient(135deg, #2d5016, #4a7c59);
+  padding: 60px 40px;
+  color: white;
+  position: relative;
+}
+
+.contactInfo::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.1;
+  z-index: 0;
+}
+
+.contactInfo > * {
+  position: relative;
+  z-index: 1;
+}
+
+.contactTitle {
+  font-size: 2rem;
+  font-weight: 300;
+  margin-bottom: 40px;
+  text-align: center;
+  font-family: "Playfair Display", serif;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  padding-bottom: 20px;
+}
+
+.infoCard {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 30px;
+  padding: 0;
+}
+
+.infoIcon {
+  font-size: 1.5rem;
+  margin-right: 20px;
+  margin-top: 5px;
+  opacity: 0.9;
+}
+
+.infoDetails {
+  flex: 1;
+}
+
+.infoSubtitle {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin: 0 0 5px 0;
+  font-weight: 300;
+}
+
+.infoLabel {
+  font-size: 1.1rem;
+  margin: 0;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.socialSection {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.socialTitle {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  font-weight: 300;
+  opacity: 0.9;
+}
+
+.socialLinks {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.socialLink:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.socialIcon {
+  font-size: 1.2rem;
+}
+
+/* Right Side - Contact Form */
+.contactForm {
+  padding: 60px 40px;
+  background: white;
+}
+
+.formTitle {
+  font-size: 1.8rem;
+  color: #2d5016;
+  margin-bottom: 10px;
+  font-weight: 400;
+  font-family: "Playfair Display", serif;
+  text-align: center;
+}
+
+.formSubtitle {
+  color: #666;
+  margin-bottom: 40px;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.form {
+  width: 100%;
+}
+
+.formGroup {
+  margin-bottom: 25px;
+}
+
+.formInput,
+.formTextarea {
+  width: 100%;
+  padding: 15px 20px;
+  border: 2px solid #e8e8e8;
+  border-radius: 25px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  background: #f9f9f9;
+  outline: none;
+}
+
+.formInput:focus,
+.formTextarea:focus {
+  border-color: #4a7c59;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(74, 124, 89, 0.1);
+}
+
+.formTextarea {
+  resize: vertical;
+  min-height: 120px;
+  border-radius: 20px;
+  font-family: inherit;
+}
+
+.submitButton {
+  width: 100%;
+  padding: 18px 30px;
+  background: linear-gradient(135deg, #4a7c59, #2d5016);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 20px;
+}
+
+.submitButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(74, 124, 89, 0.3);
+  background: linear-gradient(135deg, #2d5016, #1a2e0c);
+}
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .contactContent {
+    gap: 40px;
+  }
+
+  .contactInfo,
+  .contactForm {
+    padding: 50px 35px;
+  }
+}
+
+@media (max-width: 768px) {
+  .heroBanner {
+    height: 40vh;
+  }
+
+  .heroTitle {
+    font-size: 3rem;
+  }
+
+  .contactPage {
+    padding: 60px 15px;
+  }
+
+  .contactContent {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .contactInfo {
+    padding: 50px 30px;
+  }
+
+  .contactForm {
+    padding: 50px 30px;
+  }
+
+  .contactTitle {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+  }
+
+  .formTitle {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroBanner {
+    height: 35vh;
+  }
+
+  .heroTitle {
+    font-size: 2.5rem;
+  }
+
+  .contactInfo,
+  .contactForm {
+    padding: 40px 25px;
+  }
+
+  .contactTitle {
+    font-size: 1.6rem;
+  }
+
+  .formTitle {
+    font-size: 1.5rem;
+  }
+
+  .infoIcon {
+    font-size: 1.3rem;
+  }
+
+  .socialLinks {
+    gap: 12px;
+  }
+
+  .socialLink {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Animation effects */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.contactContent {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.infoCard {
+  animation: fadeInUp 0.8s ease-out;
+  animation-fill-mode: both;
+}
+
+.infoCard:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.infoCard:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.infoCard:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+.socialSection {
+  animation: fadeInUp 0.8s ease-out;
+  animation-delay: 0.4s;
+  animation-fill-mode: both;
+}

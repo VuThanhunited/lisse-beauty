@@ -1,0 +1,597 @@
+/* Services Page Styles */
+
+/* Page Container */
+.servicesPage {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+/* Banner Section */
+.bannerSection {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  margin-top: 80px;
+}
+
+.bannerImageWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.bannerImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.6);
+}
+
+.bannerOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.bannerOverlay h1 {
+  color: white;
+  font-size: 3rem;
+  font-weight: 300;
+  text-align: center;
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-family: "Playfair Display", serif;
+}
+
+/* Main Content */
+.mainContent {
+  padding: 80px 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Services Section */
+.servicesSection {
+  margin-bottom: 100px;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 60px;
+  font-family: "Playfair Display", serif;
+  letter-spacing: -0.5px;
+}
+
+.servicesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.serviceCard {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease;
+  position: relative;
+}
+
+.serviceCard:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+.serviceImage {
+  position: relative;
+  height: 280px;
+  overflow: hidden;
+}
+
+.serviceImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.serviceCard:hover .serviceImage img {
+  transform: scale(1.05);
+}
+
+.serviceContent {
+  padding: 30px;
+}
+
+.serviceContent h3 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.serviceContent p {
+  color: #7f8c8d;
+  line-height: 1.6;
+  margin-bottom: 25px;
+  font-size: 1rem;
+}
+
+.detailButton {
+  background: linear-gradient(135deg, #d4a574 0%, #e8c547 100%);
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.detailButton:hover {
+  background: linear-gradient(135deg, #c19660 0%, #d4b43a 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(212, 165, 116, 0.4);
+}
+
+/* Feedback Section */
+.feedbackSection {
+  margin-top: 100px;
+  padding: 60px 0;
+  background: linear-gradient(135deg, #f8f4f0 0%, #fff5f0 100%);
+  border-radius: 30px;
+}
+
+.feedbackTitle {
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 10px;
+  font-family: "Playfair Display", serif;
+}
+
+.feedbackSubtitle {
+  text-align: center;
+  color: #7f8c8d;
+  font-size: 1rem;
+  margin-bottom: 50px;
+  font-weight: 300;
+}
+
+.feedbackContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.feedbackCard {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  position: relative;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.feedbackCard:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+.feedbackStars {
+  margin-bottom: 20px;
+}
+
+.feedbackStars span {
+  font-size: 1.2rem;
+  color: #ffd700;
+}
+
+.feedbackContent {
+  flex: 1;
+}
+
+.feedbackContent h4 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 15px;
+}
+
+.feedbackContent p {
+  color: #7f8c8d;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+}
+
+.feedbackMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 20px;
+}
+
+.feedbackMeta span {
+  font-size: 0.85rem;
+  color: #95a5a6;
+}
+
+.feedbackImage {
+  width: 100%;
+  height: 200px;
+  border-radius: 15px;
+  overflow: hidden;
+  margin-top: auto;
+}
+
+.feedbackImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.feedbackCard:hover .feedbackImage img {
+  transform: scale(1.05);
+}
+
+.feedbackNavigation {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 40px;
+}
+
+.navArrow {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid #d4a574;
+  background: white;
+  color: #d4a574;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navArrow:hover {
+  background: #d4a574;
+  color: white;
+  transform: scale(1.1);
+}
+
+/* Related Section */
+.relatedSection {
+  padding-top: 60px;
+  border-top: 2px solid #e9ecef;
+}
+
+.relatedTitle {
+  font-size: 2.2rem;
+  font-weight: 300;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 50px;
+  font-family: "Playfair Display", serif;
+}
+
+.relatedGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+}
+
+.relatedCard {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.relatedCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+}
+
+.relatedImage {
+  height: 200px;
+  overflow: hidden;
+}
+
+.relatedImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.relatedCard:hover .relatedImage img {
+  transform: scale(1.05);
+}
+
+.relatedContent {
+  padding: 25px;
+}
+
+.relatedContent h4 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.relatedContent p {
+  color: #7f8c8d;
+  line-height: 1.5;
+  margin-bottom: 15px;
+  font-size: 0.95rem;
+}
+
+.readMoreLink {
+  color: #d4a574;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.readMoreLink:hover {
+  color: #c19660;
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 20px;
+  }
+
+  .servicesGrid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .feedbackContainer {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .bannerSection {
+    height: 300px;
+  }
+
+  .bannerOverlay h1 {
+    font-size: 2.5rem;
+  }
+
+  .mainContent {
+    padding: 60px 0;
+  }
+
+  .container {
+    padding: 0 15px;
+  }
+
+  .sectionTitle {
+    font-size: 2rem;
+    margin-bottom: 40px;
+  }
+
+  .feedbackTitle {
+    font-size: 2rem;
+    margin-bottom: 8px;
+  }
+
+  .feedbackSubtitle {
+    margin-bottom: 35px;
+  }
+
+  .feedbackSection {
+    margin-top: 80px;
+    padding: 40px 0;
+  }
+
+  .serviceCard {
+    border-radius: 15px;
+  }
+
+  .serviceImage {
+    height: 220px;
+  }
+
+  .serviceContent {
+    padding: 25px;
+  }
+
+  .serviceContent h3 {
+    font-size: 1.4rem;
+  }
+
+  .feedbackCard {
+    padding: 25px;
+  }
+
+  .feedbackImage {
+    height: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bannerSection {
+    height: 250px;
+  }
+
+  .bannerOverlay h1 {
+    font-size: 2rem;
+  }
+
+  .sectionTitle {
+    font-size: 1.8rem;
+  }
+
+  .feedbackTitle {
+    font-size: 1.8rem;
+  }
+
+  .feedbackSubtitle {
+    font-size: 0.9rem;
+  }
+
+  .servicesGrid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .serviceImage {
+    height: 200px;
+  }
+
+  .serviceContent {
+    padding: 20px;
+  }
+
+  .serviceContent h3 {
+    font-size: 1.3rem;
+  }
+
+  .serviceContent p {
+    font-size: 0.95rem;
+  }
+
+  .detailButton {
+    padding: 10px 25px;
+    font-size: 0.9rem;
+  }
+
+  .feedbackContainer {
+    padding: 0 15px;
+  }
+
+  .feedbackCard {
+    padding: 20px;
+  }
+
+  .feedbackContent h4 {
+    font-size: 1.2rem;
+  }
+
+  .feedbackContent p {
+    font-size: 0.9rem;
+  }
+
+  .feedbackImage {
+    height: 160px;
+  }
+
+  /* Additional hover effects and styling */
+  .feedbackCard:hover .feedbackImage {
+    transform: scale(1.05);
+  }
+
+  .feedbackCard:hover {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  .navArrow:hover {
+    background: linear-gradient(135deg, #ff6b9d, #ff8a9b);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(255, 107, 157, 0.3);
+  }
+
+  .navArrow:active {
+    transform: translateY(0);
+  }
+
+  .starRating:hover {
+    transform: scale(1.05);
+  }
+
+  .feedbackContent p:first-of-type {
+    font-style: italic;
+    position: relative;
+    padding-left: 20px;
+    padding-right: 10px;
+  }
+
+  .feedbackContent p:first-of-type::before {
+    content: '"';
+    font-size: 2rem;
+    color: #ff6b9d;
+    position: absolute;
+    left: 0;
+    top: -10px;
+    font-family: serif;
+  }
+
+  .feedbackContent p:first-of-type::after {
+    content: '"';
+    font-size: 2rem;
+    color: #ff6b9d;
+    font-family: serif;
+  }
+
+  /* Animation for section entrance */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .feedbackSection {
+    animation: fadeInUp 0.8s ease-out;
+  }
+
+  .feedbackCard {
+    animation: fadeInUp 0.8s ease-out;
+    animation-delay: 0.2s;
+    animation-fill-mode: both;
+  }
+
+  .feedbackCard:nth-child(2) {
+    animation-delay: 0.4s;
+  }
+
+  .feedbackCard:nth-child(3) {
+    animation-delay: 0.6s;
+  }
+}
