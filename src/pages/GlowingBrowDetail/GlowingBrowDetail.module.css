@@ -1,0 +1,567 @@
+/* Glowing Brow Detail Page */
+.glowingBrowDetailPage {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+/* Hero Section */
+.heroSection {
+  padding: 100px 0 60px;
+  background: white;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.heroContent {
+  display: flex;
+  gap: 60px;
+  align-items: flex-start;
+  background: white;
+  border-radius: 30px;
+  padding: 40px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.heroImage {
+  flex-shrink: 0;
+  width: 350px;
+  height: 300px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.heroImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.heroInfo {
+  flex: 1;
+  background: #7c9885;
+  border-radius: 20px;
+  padding: 40px;
+  color: white;
+  position: relative;
+}
+
+.serviceTag {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  display: inline-block;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.heroInfo h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin: 0 0 30px 0;
+  color: white;
+  font-family: "Playfair Display", serif;
+}
+
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contactItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 1rem;
+}
+
+.icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+/* Main Content */
+.mainContent {
+  padding: 60px 0;
+}
+
+.introSection {
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
+  margin-bottom: 40px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.introSection h2 {
+  font-size: 1.8rem;
+  color: #333;
+  font-weight: 600;
+  margin: 0 0 25px 0;
+  line-height: 1.4;
+}
+
+.introSection h3 {
+  font-size: 1.3rem;
+  color: #8b4513;
+  font-weight: 600;
+  margin: 30px 0 15px 0;
+}
+
+.introSection p {
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 20px;
+  font-size: 1rem;
+  text-align: justify;
+}
+
+.highlight {
+  background: #f0f8f0;
+  border-left: 4px solid #7c9885;
+  padding: 20px;
+  margin: 25px 0;
+  border-radius: 0 10px 10px 0;
+  font-style: italic;
+  color: #333;
+}
+
+/* Benefits Section */
+.benefitsSection {
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
+  margin-bottom: 40px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.benefitsSection h3 {
+  font-size: 1.5rem;
+  color: #333;
+  font-weight: 600;
+  margin: 0 0 25px 0;
+}
+
+.benefitsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.benefitsList li {
+  padding: 12px 0;
+  color: #555;
+  line-height: 1.6;
+  border-bottom: 1px solid #f0f0f0;
+  position: relative;
+  padding-left: 25px;
+}
+
+.benefitsList li:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #7c9885;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.benefitsList li:last-child {
+  border-bottom: none;
+}
+
+/* Advantages Section */
+.advantagesSection {
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
+  margin-bottom: 40px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.advantagesSection h3 {
+  font-size: 1.5rem;
+  color: #333;
+  font-weight: 600;
+  margin: 0 0 25px 0;
+}
+
+.advantageGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.advantageItem {
+  text-align: center;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 15px;
+}
+
+.advantageItem h4 {
+  color: #8b4513;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* FAQ Section */
+.faqSection {
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
+  margin-bottom: 40px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.faqSection h3 {
+  font-size: 1.5rem;
+  color: #333;
+  font-weight: 600;
+  margin: 0 0 25px 0;
+}
+
+.faqList {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.faqItem {
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.faqQuestion {
+  width: 100%;
+  background: #f8f9fa;
+  border: none;
+  padding: 20px;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+  transition: background-color 0.3s ease;
+}
+
+.faqQuestion:hover {
+  background: #e9ecef;
+}
+
+.faqIcon {
+  transition: transform 0.3s ease;
+  color: #8b4513;
+  font-size: 0.8rem;
+}
+
+.faqIcon.expanded {
+  transform: rotate(180deg);
+}
+
+.faqAnswer {
+  padding: 20px;
+  background: white;
+  border-top: 1px solid #e0e0e0;
+}
+
+.faqAnswer p {
+  margin: 0;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Why Choose Section */
+.whyChooseSection {
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
+  margin-bottom: 40px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.whyChooseSection h3 {
+  font-size: 1.5rem;
+  color: #333;
+  font-weight: 600;
+  margin: 0 0 20px 0;
+}
+
+.whyChooseSection p {
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+.reasonsList {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 0 0;
+}
+
+.reasonsList li {
+  padding: 10px 0;
+  color: #555;
+  line-height: 1.6;
+  position: relative;
+  padding-left: 25px;
+}
+
+.reasonsList li:before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #8b4513;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* Related Section */
+.relatedSection {
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.relatedSection h3 {
+  font-size: 1.5rem;
+  color: #333;
+  font-weight: 600;
+  margin: 0 0 25px 0;
+}
+
+.relatedGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.relatedCard {
+  background: #f8f9fa;
+  border-radius: 15px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.relatedCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.relatedImage {
+  width: 100%;
+  height: 150px;
+  overflow: hidden;
+}
+
+.relatedImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.relatedCard:hover .relatedImage img {
+  transform: scale(1.05);
+}
+
+.relatedContent {
+  padding: 20px;
+  text-align: center;
+}
+
+.relatedContent h4 {
+  margin: 0;
+  color: #333;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .heroContent {
+    gap: 40px;
+    padding: 30px;
+  }
+
+  .heroImage {
+    width: 300px;
+    height: 250px;
+  }
+
+  .heroInfo {
+    padding: 30px;
+  }
+
+  .heroInfo h1 {
+    font-size: 2.2rem;
+  }
+
+  .advantageGrid {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 15px;
+  }
+
+  .heroSection {
+    padding: 80px 0 40px;
+  }
+
+  .heroContent {
+    flex-direction: column;
+    gap: 30px;
+    padding: 25px;
+  }
+
+  .heroImage {
+    width: 100%;
+    height: 250px;
+    align-self: center;
+    max-width: 350px;
+  }
+
+  .heroInfo {
+    padding: 25px;
+  }
+
+  .heroInfo h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+
+  .contactInfo {
+    gap: 12px;
+  }
+
+  .contactItem {
+    font-size: 0.95rem;
+  }
+
+  .mainContent {
+    padding: 40px 0;
+  }
+
+  .introSection,
+  .benefitsSection,
+  .advantagesSection,
+  .faqSection,
+  .whyChooseSection,
+  .relatedSection {
+    padding: 25px;
+    margin-bottom: 25px;
+  }
+
+  .introSection h2 {
+    font-size: 1.5rem;
+  }
+
+  .advantageGrid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .faqQuestion {
+    padding: 15px;
+    font-size: 0.95rem;
+  }
+
+  .faqAnswer {
+    padding: 15px;
+  }
+
+  .relatedGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroSection {
+    padding: 70px 0 30px;
+  }
+
+  .heroContent {
+    padding: 20px;
+  }
+
+  .heroInfo {
+    padding: 20px;
+  }
+
+  .heroInfo h1 {
+    font-size: 1.8rem;
+  }
+
+  .serviceTag {
+    padding: 6px 15px;
+    font-size: 0.8rem;
+    margin-bottom: 15px;
+  }
+
+  .contactItem {
+    font-size: 0.9rem;
+  }
+
+  .introSection,
+  .benefitsSection,
+  .advantagesSection,
+  .faqSection,
+  .whyChooseSection,
+  .relatedSection {
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
+  .introSection h2 {
+    font-size: 1.3rem;
+    line-height: 1.3;
+  }
+
+  .introSection h3,
+  .benefitsSection h3,
+  .advantagesSection h3,
+  .faqSection h3,
+  .whyChooseSection h3,
+  .relatedSection h3 {
+    font-size: 1.2rem;
+  }
+
+  .faqQuestion {
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+
+  .faqAnswer {
+    padding: 12px;
+  }
+
+  .relatedImage {
+    height: 120px;
+  }
+
+  .relatedContent {
+    padding: 15px;
+  }
+
+  .relatedContent h4 {
+    font-size: 1rem;
+  }
+}
