@@ -1,11 +1,14 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
+import BookingModal from "../../components/BookingModal/BookingModal";
 import styles from "./Navbar.module.css";
 import axios from "axios";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [logoUrl, setLogoUrl] = useState("");
+  const [isBookingOpen, setIsBookingOpen] = useState(false);
+
   const headers = useMemo(
     () => ({
       Authorization: "TOKEN 2AuVTwbx241MuVxjqnlzUh73SEBPtuzk",
@@ -61,9 +64,18 @@ const Navbar = () => {
           <Link to="/contact" className={styles.navLink}>
             Liên hệ
           </Link>
-          <Link to="/booking" className={styles.navBtn}>
+          <button
+            className={styles.navBtn}
+            onClick={() => setIsBookingOpen(true)}
+          >
             ĐẶT LỊCH NGAY
-          </Link>
+          </button>
+          {isBookingOpen && (
+            <BookingModal
+              isOpen={isBookingOpen}
+              onClose={() => setIsBookingOpen(false)}
+            />
+          )}
         </div>
 
         {/* Mobile Menu Toggle */}
@@ -108,9 +120,15 @@ const Navbar = () => {
           >
             Liên hệ
           </Link>
-          <Link to="/booking" className={styles.mobileBtn} onClick={toggleMenu}>
+          <button
+            className={styles.mobileBtn}
+            onClick={() => {
+              setIsBookingOpen(true);
+              setIsMenuOpen(false);
+            }}
+          >
             ĐẶT LỊCH NGAY
-          </Link>
+          </button>
         </div>
       </div>
     </nav>
