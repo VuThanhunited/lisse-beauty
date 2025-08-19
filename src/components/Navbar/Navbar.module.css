@@ -9,6 +9,7 @@
   z-index: 1000;
   padding: 15px 0;
   transition: all 0.3s ease;
+  border-top: 20px solid rgb(87, 114, 87);
 }
 
 .navContainer {
@@ -29,10 +30,11 @@
 }
 
 .navLink {
-  color: #f1405d;
+  color: black;
+  font-family: sans-serif;
   text-decoration: none;
-  font-weight: 500;
-  font-size: 15px;
+  font-weight: 400;
+  font-size: 17px;
   padding: 10px 0;
   position: relative;
   transition: all 0.3s ease;
@@ -69,7 +71,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: white;
   padding: 10px 15px;
   border-radius: 25px;
   box-shadow: 0 3px 20px rgba(124, 152, 133, 0.15);

@@ -1,4 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import classes from "./Header.module.css";
 
@@ -59,15 +61,15 @@ const Header = () => {
 
           {/* Service Info Card */}
           <div className={classes.serviceCard}>
-            <h4 className={classes.serviceTitle}>Danh giá dịch vụ</h4>
+            <h4 className={classes.serviceTitle}>Đánh giá dịch vụ</h4>
             <p className={classes.serviceDesc}>
               Chúng tôi muốn nghe từ bạn nhiều hơn để có thể hiển hiện dịch vụ
               của chúng tôi
             </p>
             <div className={classes.serviceIcons}>
-              <span>👍</span>
-              <span>👍</span>
-              <span>👍</span>
+              <FontAwesomeIcon icon={faThumbsUp} />
+              <FontAwesomeIcon icon={faThumbsUp} />
+              <FontAwesomeIcon icon={faThumbsUp} />
             </div>
           </div>
 

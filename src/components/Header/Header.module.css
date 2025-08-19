@@ -33,7 +33,7 @@
   z-index: 4;
   display: flex;
   justify-content: center;
-  height: 220px;
+  height: 250px;
 }
 
 .cardsContainer {
@@ -45,31 +45,32 @@
 
 .bookingCard {
   background: rgba(255, 255, 255, 0.95);
-  padding: 20px;
+  padding: 10px;
   border-radius: 12px;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.3);
-  width: 280px;
+  width: 400px;
 }
 
 .cardTitle {
-  font-size: 1rem;
-  color: #2c5530;
-  margin-bottom: 15px;
-  font-weight: 600;
+  font-size: 25px;
+  color: black;
+  font-weight: lighter;
+  margin-bottom: 10px;
   text-align: center;
+  font-family: sans-serif;
 }
 
 .formGroup {
-  margin-bottom: 12px;
+  margin-bottom: 23px;
 }
 
 .formInput {
   width: 100%;
-  padding: 10px 12px;
-  border: 2px solid rgba(255, 255, 255, 0.8);
-  border-radius: 6px;
+  padding: 10px 12px 10px;
+  border: 1px solid black;
+  border-radius: 20px;
   font-size: 0.9rem;
   transition: all 0.3s ease;
   box-sizing: border-box;
@@ -85,7 +86,7 @@
 
 .submitBtn {
   width: 100%;
-  background: #e8667e;
+  background: rgb(87, 114, 87);
   color: white;
   border: none;
   padding: 10px 16px;
@@ -104,45 +105,45 @@
 
 .serviceCard {
   background: rgba(255, 255, 255, 0.95);
-  padding: 18px;
   border-radius: 12px;
   text-align: center;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.3);
-  width: 240px;
+  width: 400px;
 }
 
 .serviceTitle {
-  font-size: 0.95rem;
-  color: #2c5530;
-  margin-bottom: 8px;
-  font-weight: 600;
+  font-size: 25px;
+  color: black;
+  font-weight: lighter;
 }
 
 .serviceDesc {
-  font-size: 0.8rem;
-  color: #666;
+  font-size: 18px;
+  color: black;
   line-height: 1.3;
-  margin-bottom: 8px;
+  margin-bottom: 30px;
+  font-weight: sans-serif;
 }
 
 .serviceIcons {
   display: flex;
   justify-content: center;
   gap: 6px;
-  font-size: 0.9rem;
+  color: #5a6b5d;
+  font-size: 25px;
 }
 
 .gentleCard {
-  background: #e8667e;
+  background: #5a6b5d;
   padding: 25px 20px;
   border-radius: 12px;
   text-align: center;
-  box-shadow: 0 8px 25px #e8667e;
+  box-shadow: 0 8px 25px #5a6b5d;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  width: 160px;
+  width: 400px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -150,9 +151,8 @@
 
 .gentleText {
   color: white;
-  font-size: 30px;
-  font-weight: 600;
-  font-family: "Playfair Display", "Georgia", "Times New Roman", serif;
+  font-size: 40px;
+  font-family: sans-serif;
   letter-spacing: 0.5px;
   text-align: center;
   position: relative;

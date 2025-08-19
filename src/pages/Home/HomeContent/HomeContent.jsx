@@ -4,11 +4,18 @@ import axios from "axios";
 import facility1 from "../../../data/cơ sở vật chất-1.jpg";
 import Footer from "../../../components/Footer/Footer";
 
-// Before/After Slider Component
-const BeforeAfterSlider = ({ beforeImage, afterImage, title }) => {
+// Before/After Slider Component (kept minimal and self-contained)
+const BeforeAfterSlider = ({
+  beforeImage,
+  afterImage,
+  title,
+  showTitle = true,
+}) => {
   const [sliderPosition, setSliderPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
   const containerRef = useRef(null);
+  const labelRef = useRef(null);
+  const [labelLeft, setLabelLeft] = useState(null);
 
   const handleMouseDown = (e) => {
     setIsDragging(true);
@@ -18,7 +25,6 @@ const BeforeAfterSlider = ({ beforeImage, afterImage, title }) => {
   const handleMouseMove = useCallback(
     (e) => {
       if (!isDragging || !containerRef.current) return;
-
       const rect = containerRef.current.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const percentage = (x / rect.width) * 100;
@@ -27,9 +33,7 @@ const BeforeAfterSlider = ({ beforeImage, afterImage, title }) => {
     [isDragging]
   );
 
-  const handleMouseUp = useCallback(() => {
-    setIsDragging(false);
-  }, []);
+  const handleMouseUp = useCallback(() => setIsDragging(false), []);
 
   const handleLocalMouseMove = (e) => {
     if (!isDragging) return;
@@ -37,15 +41,48 @@ const BeforeAfterSlider = ({ beforeImage, afterImage, title }) => {
   };
 
   useEffect(() => {
-    if (isDragging) {
-      document.addEventListener("mousemove", handleMouseMove);
-      document.addEventListener("mouseup", handleMouseUp);
-      return () => {
-        document.removeEventListener("mousemove", handleMouseMove);
-        document.removeEventListener("mouseup", handleMouseUp);
-      };
-    }
+    if (!isDragging) return;
+    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mouseup", handleMouseUp);
+    return () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseup", handleMouseUp);
+    };
   }, [isDragging, handleMouseMove, handleMouseUp]);
+
+  // Compute label position: stick to center until handle passes center, then follow handle
+  const computeLabelLeft = useCallback(() => {
+    const container = containerRef.current;
+    if (!container) return;
+    const rect = container.getBoundingClientRect();
+    const width = rect.width;
+    const handleX = (sliderPosition / 100) * width;
+    const centerX = width / 2;
+    const offset = 10; // px gap from handle
+    const labelWidth = labelRef.current?.offsetWidth || 0;
+
+    let desired = Math.max(centerX, handleX + offset);
+    // Keep inside right bound
+    const rightMargin = 12;
+    if (desired + labelWidth > width - rightMargin) {
+      desired = Math.max(centerX, width - rightMargin - labelWidth);
+    }
+    // Keep inside left bound
+    const leftMargin = 12;
+    if (desired < leftMargin) desired = leftMargin;
+
+    setLabelLeft(desired);
+  }, [sliderPosition]);
+
+  useEffect(() => {
+    computeLabelLeft();
+  }, [computeLabelLeft]);
+
+  useEffect(() => {
+    const onResize = () => computeLabelLeft();
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, [computeLabelLeft]);
 
   return (
     <div className={styles.beforeAfterContainer}>
@@ -55,13 +92,10 @@ const BeforeAfterSlider = ({ beforeImage, afterImage, title }) => {
         onMouseMove={handleLocalMouseMove}
         onMouseDown={handleMouseDown}
       >
-        {/* Before Image */}
         <div className={styles.beforeImage}>
           <img src={beforeImage} alt={`${title} - Trước`} />
           <div className={styles.imageLabel}>TRƯỚC</div>
         </div>
-
-        {/* After Image */}
         <div
           className={styles.afterImage}
           style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
@@ -69,8 +103,6 @@ const BeforeAfterSlider = ({ beforeImage, afterImage, title }) => {
           <img src={afterImage} alt={`${title} - Sau`} />
           <div className={styles.imageLabel}>SAU</div>
         </div>
-
-        {/* Slider Handle */}
         <div
           className={styles.sliderHandle}
           style={{ left: `${sliderPosition}%` }}
@@ -81,31 +113,58 @@ const BeforeAfterSlider = ({ beforeImage, afterImage, title }) => {
             <span>›</span>
           </div>
         </div>
+        {/* Service name follows the divider position */}
+        <div
+          ref={labelRef}
+          className={styles.afterServiceName}
+          style={
+            labelLeft == null
+              ? { left: "50%", transform: "translateX(-50%)" }
+              : { left: `${labelLeft}px` }
+          }
+        >
+          {title}
+        </div>
       </div>
-
-      <div className={styles.beforeAfterTitle}>
-        <h3>{title}</h3>
-      </div>
+      {showTitle && (
+        <div className={styles.beforeAfterTitle}>
+          <h3>{title}</h3>
+        </div>
+      )}
     </div>
   );
 };
 
 const HomeContent = () => {
-  // State cho feedback
-  const [feedback, setFeedback] = useState({ results: [] });
-  const [currentSlide, setCurrentSlide] = useState(1); // Start from 1 (first real slide)
-  const [isAutoPlay, setIsAutoPlay] = useState(true);
-  const [slideWidth, setSlideWidth] = useState(33.333);
-  const [isTransitioning, setIsTransitioning] = useState(true);
+  // Data state
   const [services, setServices] = useState([]);
+  const [feedback, setFeedback] = useState({ results: [] });
+
+  // Hero banner (static) – no carousel state needed
+
+  // Facilities state
+  const [selectedFacilityIndex, setSelectedFacilityIndex] = useState(0);
+  const [selectedFacilityLocation, setSelectedFacilityLocation] = useState(0);
+  const [facilityAutoPlay, setFacilityAutoPlay] = useState(true);
+
+  // Services slideshow state (discrete with infinite loop)
+  const [visibleCount, setVisibleCount] = useState(
+    typeof window !== "undefined" && window.innerWidth <= 768 ? 1 : 3
+  );
+  const clonesCount = Math.max(1, visibleCount - 1);
+  const [svcIndex, setSvcIndex] = useState(clonesCount);
+  const [svcIsTransitioning, setSvcIsTransitioning] = useState(true);
+  const svcTrackRef = useRef(null);
+  const [svcStepPx, setSvcStepPx] = useState(0);
+  const [svcAuto] = useState(true);
+
+  // Axios headers
   const headers = useMemo(
-    () => ({
-      Authorization: "TOKEN 2AuVTwbx241MuVxjqnlzUh73SEBPtuzk",
-    }),
+    () => ({ Authorization: "TOKEN 2AuVTwbx241MuVxjqnlzUh73SEBPtuzk" }),
     []
   );
 
-  // Lấy service
+  // Fetch services
   useEffect(() => {
     const fetchServiceData = async () => {
       try {
@@ -114,7 +173,6 @@ const HomeContent = () => {
           { headers }
         );
         setServices(response.data.results || []);
-        console.log("Service data fetched:", response.data.results);
       } catch (error) {
         console.error("Error fetching service data:", error);
       }
@@ -122,7 +180,7 @@ const HomeContent = () => {
     fetchServiceData();
   }, [headers]);
 
-  // Lấy feedback
+  // Fetch feedback
   useEffect(() => {
     const fetchFeedbackData = async () => {
       try {
@@ -130,178 +188,314 @@ const HomeContent = () => {
           "https://api.baserow.io/api/database/rows/table/644174/?user_field_names=true",
           { headers }
         );
-        setFeedback(response.data);
-        console.log("Feedback data fetched:", response.data);
+        setFeedback(response.data || { results: [] });
       } catch (error) {
         console.error("Error fetching feedback data:", error);
       }
     };
     fetchFeedbackData();
   }, [headers]);
-  // Create infinite loop by duplicating first and last slides
-  // Chỉ lấy 4 service đầu tiên
-  const displayedServices = services.slice(0, 4);
-  // Tạo infinite loop nếu cần
-  const extendedServices =
-    displayedServices.length > 0
-      ? [
-          displayedServices[displayedServices.length - 1],
-          ...displayedServices,
-          displayedServices[0],
-        ]
-      : [];
 
-  const nextSlide = () => {
-    setCurrentSlide((prev) => prev + 1);
-  };
+  // Prepare slides (shared for hero/services)
+  const displayedServices = useMemo(() => services.slice(0, 4), [services]);
+  const extendedServices = useMemo(() => {
+    const n = displayedServices.length;
+    if (n === 0) return [];
+    const cc = Math.max(1, Math.min(clonesCount, n));
+    const head = displayedServices.slice(0, cc);
+    const tail = displayedServices.slice(-cc);
+    return [...tail, ...displayedServices, ...head];
+  }, [displayedServices, clonesCount]);
 
-  const prevSlide = () => {
-    setCurrentSlide((prev) => prev - 1);
-  };
+  // (removed carousel autoplay and snapping)
 
-  // Handle responsive slide width
+  // Services responsive visible count and step measurement
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth <= 768) {
-        setSlideWidth(100);
-      } else {
-        setSlideWidth(33.333);
-      }
+      setVisibleCount(window.innerWidth <= 768 ? 1 : 3);
     };
 
+    const measureStep = () => {
+      const track = svcTrackRef.current;
+      if (!track) return;
+      const firstSlide = track.querySelector(`.${styles.slideItem}`);
+      if (!firstSlide) return;
+      const slideW = firstSlide.getBoundingClientRect().width;
+      const stylesComp = window.getComputedStyle(track);
+      const gapStr = stylesComp.columnGap || stylesComp.gap || "0px";
+      const gap = parseFloat(gapStr) || 0;
+      setSvcStepPx(slideW + gap);
+    };
     handleResize();
+    measureStep();
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+    window.addEventListener("resize", measureStep);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("resize", measureStep);
+    };
+  }, [displayedServices.length]);
 
-  // Handle infinite loop transitions
+  // Reset index when data or clonesCount change
   useEffect(() => {
-    if (currentSlide === 0) {
-      // If at the duplicate last slide, jump to real last slide
-      setTimeout(() => {
-        setIsTransitioning(false);
-        setCurrentSlide(services.length);
-        requestAnimationFrame(() => {
-          setIsTransitioning(true);
-        });
-      }, 600);
-    } else if (currentSlide === extendedServices.length - 1) {
-      // If at the duplicate first slide, jump to real first slide
-      setTimeout(() => {
-        setIsTransitioning(false);
-        setCurrentSlide(1);
-        requestAnimationFrame(() => {
-          setIsTransitioning(true);
-        });
-      }, 600);
+    setSvcIsTransitioning(false);
+    setSvcIndex(Math.max(1, clonesCount));
+    const id = requestAnimationFrame(() =>
+      requestAnimationFrame(() => setSvcIsTransitioning(true))
+    );
+    return () => cancelAnimationFrame(id);
+  }, [clonesCount, displayedServices.length]);
+
+  // Services autoplay
+  useEffect(() => {
+    if (!svcAuto || svcStepPx <= 0 || displayedServices.length === 0) return;
+    const id = setInterval(() => setSvcIndex((p) => p + 1), 3000);
+    return () => clearInterval(id);
+  }, [svcAuto, svcStepPx, displayedServices.length]);
+
+  // Services snapping
+  const handleSvcTransitionEnd = useCallback(() => {
+    if (extendedServices.length === 0) return;
+    const n = displayedServices.length;
+    const firstReal = clonesCount;
+    const lastReal = clonesCount + n - 1;
+    if (svcIndex < firstReal) {
+      // Stepped into left clones -> snap to last real
+      setSvcIsTransitioning(false);
+      setSvcIndex(lastReal);
+      requestAnimationFrame(() =>
+        requestAnimationFrame(() => setSvcIsTransitioning(true))
+      );
+    } else if (svcIndex > lastReal) {
+      // Stepped into right clones -> snap to first real
+      setSvcIsTransitioning(false);
+      setSvcIndex(firstReal);
+      requestAnimationFrame(() =>
+        requestAnimationFrame(() => setSvcIsTransitioning(true))
+      );
     }
-  }, [currentSlide, services.length, extendedServices.length]);
+  }, [
+    svcIndex,
+    displayedServices.length,
+    extendedServices.length,
+    clonesCount,
+  ]);
 
-  // Auto-play functionality
+  // Facilities: derived images for selected location
+  const facilityImages = useMemo(() => {
+    const svc =
+      services[selectedFacilityLocation] &&
+      services[selectedFacilityLocation].facilityImg &&
+      services[selectedFacilityLocation].facilityImg.length > 0
+        ? services[selectedFacilityLocation]
+        : services[0];
+    return svc && svc.facilityImg ? svc.facilityImg : [];
+  }, [services, selectedFacilityLocation]);
+
+  // Keep facility index in range
   useEffect(() => {
-    if (!isAutoPlay) return;
+    if (selectedFacilityIndex >= facilityImages.length) {
+      setSelectedFacilityIndex(0);
+    }
+  }, [facilityImages.length, selectedFacilityIndex]);
 
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => prev + 1);
-    }, 4000); // Change slide every 4 seconds
-
-    return () => clearInterval(interval);
-  }, [isAutoPlay]);
-
-  // Pause auto-play on hover
-  const handleMouseEnter = () => setIsAutoPlay(false);
-  const handleMouseLeave = () => setIsAutoPlay(true);
+  // Facilities autoplay
+  useEffect(() => {
+    if (!facilityAutoPlay || facilityImages.length <= 1) return;
+    const id = setInterval(() => {
+      setSelectedFacilityIndex((prev) =>
+        facilityImages.length > 0 ? (prev + 1) % facilityImages.length : 0
+      );
+    }, 3000);
+    return () => clearInterval(id);
+  }, [facilityAutoPlay, facilityImages.length]);
 
   return (
     <div className={styles.homeContent}>
+      {/* Services - Slideshow */}
       <div className={styles.servicesSection} id="services">
-        <h2 className={styles.sectionTitle}>Các dịch vụ làm đẹp</h2>
-        <div
-          className={styles.carousel}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-        >
-          <button className={styles.prevBtn} onClick={prevSlide}>
-            &#8249;
-          </button>
-
+        <div className={styles.sectionHeader}>
+          <h2 className={styles.sectionHeading}>Các dịch vụ làm đẹp</h2>
+          <div className={styles.sectionUnderline}></div>
+        </div>
+        <div className={styles.carousel}>
           <div className={styles.carouselContainer}>
+            <button
+              className={styles.prevBtn}
+              aria-label="Dịch chuyển dịch vụ trước"
+              onClick={() => setSvcIndex((p) => p - 1)}
+            >
+              &#8249;
+            </button>
             <div
               className={styles.carouselTrack}
+              ref={svcTrackRef}
               style={{
-                transform: `translateX(-${currentSlide * slideWidth}%)`,
-                transition: isTransitioning
-                  ? "transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1)"
+                transform: `translate3d(-${svcIndex * svcStepPx}px, 0, 0)`,
+                transition: svcIsTransitioning
+                  ? "transform 500ms ease"
                   : "none",
               }}
+              onTransitionEnd={handleSvcTransitionEnd}
             >
-              {extendedServices.map((service, index) => (
-                <div
-                  key={`${service.id}-${index}`}
-                  className={styles.slideItem + " " + styles.customSlide}
-                >
+              {extendedServices.map((service, index) => {
+                const n = displayedServices.length;
+                const firstReal = clonesCount;
+                const lastReal = clonesCount + n - 1;
+                // Determine center index among visible slides
+                const centerOffset = Math.floor(visibleCount / 2);
+                const centerIdx = svcIndex + centerOffset;
+                const isCenter =
+                  index === centerIdx &&
+                  index >= firstReal &&
+                  index <= lastReal;
+                return (
                   <div
-                    className={
-                      styles.slideImage + " " + styles.customSlideImage
-                    }
+                    key={`${service.id}-${index}`}
+                    className={`${styles.slideItem} ${styles.customSlide} ${
+                      isCenter ? styles.centerActive : ""
+                    }`}
                   >
-                    <img
-                      src={
-                        service.serviceImage && service.serviceImage.length > 0
-                          ? service.serviceImage[0].url
-                          : ""
-                      }
-                      alt={service.title}
-                      className={styles.slideImgRounded}
-                    />
                     <div
                       className={
-                        styles.slideOverlay + " " + styles.customSlideOverlay
+                        styles.slideImage + " " + styles.customSlideImage
                       }
                     >
-                      <h3 className={styles.slideTitle}>{service.title}</h3>
-                      <p className={styles.slideDescription}>
-                        {service.description}
-                      </p>
+                      <img
+                        src={
+                          service.serviceImage &&
+                          service.serviceImage.length > 0
+                            ? service.serviceImage[0].url
+                            : ""
+                        }
+                        alt={service.title}
+                        className={styles.slideImgRounded}
+                      />
+                      <div
+                        className={`${styles.slideOverlay} ${styles.customSlideOverlay}`}
+                      >
+                        <div className={styles.slideTextWrap}>
+                          <h3 className={styles.slideTitle}>{service.title}</h3>
+                          {service.description ? (
+                            <p className={styles.slideSubtitle}>
+                              {service.description}
+                            </p>
+                          ) : null}
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
+            <button
+              className={styles.nextBtn}
+              aria-label="Dịch chuyển dịch vụ tiếp theo"
+              onClick={() => setSvcIndex((p) => p + 1)}
+            >
+              &#8250;
+            </button>
           </div>
-
-          <button className={styles.nextBtn} onClick={nextSlide}>
-            &#8250;
-          </button>
         </div>
       </div>
 
+      {/* Facilities */}
       <div className={styles.lisseBeautyFacilitiesSection}>
-        <h2 className={styles.sectionTitle}>Cơ sở vật chất tại Lisse Beauty</h2>
-        <div className={styles.kimlyFacilitiesContainer}>
-          {/* Hiển thị ảnh facility từ API, lấy từ service đầu tiên có facilityImg */}
-          {services[0] &&
-          services[0].facilityImg &&
-          services[0].facilityImg.length > 0 ? (
-            <>
-              <div className={styles.mainFacilityImage}>
-                <img
-                  src={services[0].facilityImg[0].url}
-                  alt="Phòng điều trị chính Lisse Beauty"
-                />
-              </div>
-              <div className={styles.facilityThumbnails}>
-                {services[0].facilityImg.slice(1, 5).map((img, idx) => (
-                  <div className={styles.thumbnailItem} key={idx}>
-                    <img src={img.url} alt={`Cơ sở vật chất ${idx + 2}`} />
+        <div className={styles.facilitiesHeader}>
+          <h2 className={styles.facilitiesHeading}>Cơ sở vật chất tại KIMLY</h2>
+          <div className={styles.facilitiesHeadingBar}></div>
+          <div className={styles.facilityTabs}>
+            {[
+              "343 Nguyễn Khang",
+              "146 Trưng Phụng",
+              "58 Lê Thị Riêng",
+              "137 Lê Thị Riêng",
+              "Vạn Phúc",
+            ].map((label, idx) => (
+              <button
+                key={idx}
+                className={`${styles.facilityTab} ${
+                  selectedFacilityLocation === idx
+                    ? styles.activeFacilityTab
+                    : ""
+                }`}
+                onClick={() => {
+                  setSelectedFacilityLocation(idx);
+                  setSelectedFacilityIndex(0);
+                }}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+        </div>
+        <div
+          className={styles.kimlyFacilitiesContainer}
+          onMouseEnter={() => setFacilityAutoPlay(false)}
+          onMouseLeave={() => setFacilityAutoPlay(true)}
+        >
+          {(() => {
+            const svc =
+              services[selectedFacilityLocation] &&
+              services[selectedFacilityLocation].facilityImg &&
+              services[selectedFacilityLocation].facilityImg.length > 0
+                ? services[selectedFacilityLocation]
+                : services[0];
+            if (!svc || !svc.facilityImg || svc.facilityImg.length === 0)
+              return null;
+            const images = svc.facilityImg;
+            return (
+              <>
+                <div className={styles.mainFacilityImage}>
+                  <img
+                    key={selectedFacilityIndex}
+                    src={
+                      images[selectedFacilityIndex]
+                        ? images[selectedFacilityIndex].url
+                        : images[0].url
+                    }
+                    alt="Phòng điều trị chính Lisse Beauty"
+                    className={styles.mainFacilityPhoto}
+                  />
+                </div>
+                {/* Marquee-style infinite thumbnails row */}
+                <div className={styles.facilityThumbsMarquee}>
+                  <div className={styles.facilityThumbsTrack}>
+                    {[...images, ...images].map((img, mapIdx) => {
+                      const realIdx = mapIdx % images.length;
+                      const isActive = realIdx === selectedFacilityIndex;
+                      return (
+                        <div
+                          className={`${styles.facilityThumbItem} ${
+                            isActive ? styles.activeThumbnail : ""
+                          }`}
+                          key={`thumb-${mapIdx}`}
+                          onClick={() => setSelectedFacilityIndex(realIdx)}
+                          role="button"
+                          aria-label={`Xem ảnh cơ sở vật chất ${realIdx + 1}`}
+                          tabIndex={0}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter" || e.key === " ") {
+                              setSelectedFacilityIndex(realIdx);
+                            }
+                          }}
+                        >
+                          <img
+                            src={img.url}
+                            alt={`Cơ sở vật chất ${realIdx + 1}`}
+                          />
+                        </div>
+                      );
+                    })}
                   </div>
-                ))}
-              </div>
-            </>
-          ) : null}
+                </div>
+              </>
+            );
+          })()}
         </div>
       </div>
-      {/* Câu chuyện khách hàng */}
+
+      {/* Customer Stories */}
       <div className={styles.customerStoriesSection}>
         <h2 className={styles.storiesTitle}>Câu chuyện khách hàng</h2>
         <p className={styles.storiesSubtitle}>
@@ -357,7 +551,7 @@ const HomeContent = () => {
         </div>
       </div>
 
-      {/* Hero Section with Before/After Slider */}
+      {/* Hero Banner */}
       <div className={styles.heroSection}>
         <div className={styles.heroOverlay}>
           <h1 className={styles.heroTitle}>
@@ -365,105 +559,107 @@ const HomeContent = () => {
             <span className={styles.scriptText}>đại sứ thương hiệu</span>
           </h1>
         </div>
+      </div>
 
-        <div
-          className={styles.heroCarousel}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-        >
-          <button className={styles.heroPrevBtn} onClick={prevSlide}>
-            &#8249;
-          </button>
-
-          <div className={styles.heroCarouselContainer}>
-            <div
-              className={styles.heroCarouselTrack}
-              style={{
-                transform: `translateX(-${currentSlide * slideWidth}%)`,
-                transition: isTransitioning
-                  ? "transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1)"
-                  : "none",
-              }}
-            >
-              {extendedServices.map((service, index) => (
-                <div
-                  key={`${service.id}-${index}`}
-                  className={styles.heroSlideItem}
-                >
-                  <BeforeAfterSlider
-                    beforeImage={
-                      service.beforeImg && service.beforeImg.length > 0
-                        ? service.beforeImg[0].url
-                        : ""
-                    }
-                    afterImage={
-                      service.afterImg && service.afterImg.length > 0
-                        ? service.afterImg[0].url
-                        : ""
-                    }
-                    title={service.title}
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <button className={styles.heroNextBtn} onClick={nextSlide}>
-            &#8250;
-          </button>
-
-          {/* Dots indicator */}
-          <div className={styles.dotsContainer}>
-            {services.map((_, index) => (
-              <button
-                key={index}
-                className={`${styles.dot} ${
-                  currentSlide === index + 1 ? styles.activeDot : ""
-                }`}
-                onClick={() => setCurrentSlide(index + 1)}
-              />
-            ))}
-          </div>
+      {/* Ambassador three-up before/after gallery (no carousel) */}
+      <div className={styles.ambassadorSection}>
+        <div className={styles.ambassadorGrid}>
+          {displayedServices.slice(0, 3).map((service, index) => (
+            <BeforeAfterSlider
+              key={`ambassador-${service.id}-${index}`}
+              beforeImage={
+                service.beforeImg && service.beforeImg.length > 0
+                  ? service.beforeImg[0].url
+                  : ""
+              }
+              afterImage={
+                service.afterImg && service.afterImg.length > 0
+                  ? service.afterImg[0].url
+                  : ""
+              }
+              title={service.title}
+              showTitle={false}
+            />
+          ))}
         </div>
       </div>
 
-      {/* Feedback Section */}
+      {/* Feedback */}
       <div className={styles.feedbackSection}>
-        <h2 className={styles.sectionTitle}>Feedback khách hàng</h2>
-        <p className={styles.sectionSubtitle}>
-          Chúng tôi tự hào về đánh giá từ khách hàng - 4.8★ trên 5 sao
-        </p>
-        <div className={styles.feedbackGrid}>
-          {feedback &&
-            feedback.results &&
-            feedback.results.map((fb, idx) => (
-              <div className={styles.feedbackCard} key={idx}>
-                <div className={styles.feedbackHeader}>
-                  <div className={styles.customerInfo}>
-                    <img
-                      src={
-                        fb.userImg && fb.userImg.length > 0
-                          ? fb.userImg[0].url
-                          : ""
-                      }
-                      alt={fb.username}
-                      className={styles.customerAvatar}
-                    />
-                    <div>
-                      <h4>{fb.username}</h4>
-                      <div className={styles.starRating}>
-                        <span>★★★★★</span>
-                      </div>
+        <div className={styles.feedbackHeaderRow}>
+          <div className={styles.feedbackHeaderLeft}>
+            <h2 className={styles.feedbackTitle}>Feedback khách hàng</h2>
+            <p className={styles.feedbackSubtitle}>
+              Chúng tôi đạt đánh giá từ khách hàng - <strong>4.9</strong> - trên
+              5
+            </p>
+            <div className={styles.feedbackUnderline} />
+          </div>
+          <div className={styles.feedbackHeaderControls}>
+            <button
+              className={styles.feedbackHeaderArrow}
+              aria-label="Xem thêm phản hồi"
+              onClick={() => {
+                const el = document.querySelector(
+                  `.${styles.feedbackViewport}`
+                );
+                if (!el) return;
+                el.scrollBy({ left: el.clientWidth * 0.8, behavior: "smooth" });
+              }}
+            >
+              ↗
+            </button>
+          </div>
+        </div>
+
+        <div className={styles.feedbackViewport}>
+          <div className={styles.feedbackTrack}>
+            {feedback?.results?.map((fb, idx) => {
+              const bg =
+                fb?.userImg && fb.userImg.length > 0 ? fb.userImg[0].url : "";
+              return (
+                <div
+                  className={styles.feedbackCardVisual}
+                  key={idx}
+                  style={{ backgroundImage: `url(${bg})` }}
+                >
+                  <div className={styles.feedbackCardOverlay}>
+                    <div className={styles.feedbackStars}>★★★★★</div>
+                    <div className={styles.feedbackContent}>
+                      <h4 className={styles.feedbackName}>{fb?.username}</h4>
+                      <p className={styles.feedbackComment}>“{fb?.comment}”</p>
                     </div>
                   </div>
                 </div>
-                <p className={styles.feedbackText}>{fb.comment}</p>
-              </div>
-            ))}
+              );
+            })}
+          </div>
+          <button
+            className={`${styles.feedbackArrow} ${styles.feedbackArrowLeft}`}
+            aria-label="Lùi lại"
+            onClick={() => {
+              const el = document.querySelector(`.${styles.feedbackViewport}`);
+              if (!el) return;
+              el.scrollBy({ left: -el.clientWidth * 0.8, behavior: "smooth" });
+            }}
+          >
+            ‹
+          </button>
+          <button
+            className={`${styles.feedbackArrow} ${styles.feedbackArrowRight}`}
+            aria-label="Xem thêm"
+            onClick={() => {
+              const el = document.querySelector(`.${styles.feedbackViewport}`);
+              if (!el) return;
+              el.scrollBy({ left: el.clientWidth * 0.8, behavior: "smooth" });
+            }}
+          >
+            ›
+          </button>
         </div>
       </div>
 
-      {/* Booking Appointment Section */}
+      {/* Booking */}
       <div className={styles.bookingSection}>
         <div className={styles.bookingContainer}>
           <div className={styles.bookingImageSection}>
@@ -511,8 +707,10 @@ const HomeContent = () => {
           </div>
         </div>
       </div>
+
       <Footer />
     </div>
   );
 };
+
 export default HomeContent;
