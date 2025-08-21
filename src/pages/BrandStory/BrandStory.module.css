@@ -394,6 +394,8 @@
   margin: 0 0 80px 0;
   text-align: center;
   position: relative;
+  max-width: 1200px;
+  padding: 0 20px;
 }
 
 .historySection h2::after {
@@ -411,6 +413,8 @@
 .timelineContainer {
   max-width: 1200px;
   position: relative;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 /* Central Timeline Line */

@@ -3,6 +3,7 @@ import { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import axios from "axios";
 import facility1 from "../../../data/cơ sở vật chất-1.jpg";
 import Footer from "../../../components/Footer/Footer";
+import Facility from "../../../components/Facility/Facility";
 
 // Before/After Slider Component (kept minimal and self-contained)
 const BeforeAfterSlider = ({
@@ -142,11 +143,6 @@ const HomeContent = () => {
 
   // Hero banner (static) – no carousel state needed
 
-  // Facilities state
-  const [selectedFacilityIndex, setSelectedFacilityIndex] = useState(0);
-  const [selectedFacilityLocation, setSelectedFacilityLocation] = useState(0);
-  const [facilityAutoPlay, setFacilityAutoPlay] = useState(true);
-
   // Services slideshow state (discrete with infinite loop)
   const [visibleCount, setVisibleCount] = useState(
     typeof window !== "undefined" && window.innerWidth <= 768 ? 1 : 3
@@ -280,44 +276,42 @@ const HomeContent = () => {
     extendedServices.length,
     clonesCount,
   ]);
-
-  // Facilities: derived images for selected location
-  const facilityImages = useMemo(() => {
-    const svc =
-      services[selectedFacilityLocation] &&
-      services[selectedFacilityLocation].facilityImg &&
-      services[selectedFacilityLocation].facilityImg.length > 0
-        ? services[selectedFacilityLocation]
-        : services[0];
-    return svc && svc.facilityImg ? svc.facilityImg : [];
-  }, [services, selectedFacilityLocation]);
-
-  // Keep facility index in range
-  useEffect(() => {
-    if (selectedFacilityIndex >= facilityImages.length) {
-      setSelectedFacilityIndex(0);
+  // Scroll to top when clicking the header arrow button
+  const scrollToTop = useCallback(() => {
+    if (typeof window !== "undefined") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
-  }, [facilityImages.length, selectedFacilityIndex]);
-
-  // Facilities autoplay
-  useEffect(() => {
-    if (!facilityAutoPlay || facilityImages.length <= 1) return;
-    const id = setInterval(() => {
-      setSelectedFacilityIndex((prev) =>
-        facilityImages.length > 0 ? (prev + 1) % facilityImages.length : 0
-      );
-    }, 3000);
-    return () => clearInterval(id);
-  }, [facilityAutoPlay, facilityImages.length]);
+  }, []);
 
   return (
     <div className={styles.homeContent}>
       {/* Services - Slideshow */}
       <div className={styles.servicesSection} id="services">
         <div className={styles.sectionHeader}>
-          <h2 className={styles.sectionHeading}>Các dịch vụ làm đẹp</h2>
-          <div className={styles.sectionUnderline}></div>
+          <div className={styles.headerRowSpaceBetween}>
+            <div className={styles.sectionTitleWrap}>
+              <div className={styles.titleRow}>
+                <h2 className={styles.sectionHeading}>Các dịch vụ làm đẹp</h2>
+              </div>
+            </div>
+            <button
+              className={`${styles.titleArrowBtn} ${styles.titleArrowBtnRight}`}
+              aria-label="Lên đầu trang"
+              onClick={scrollToTop}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  scrollToTop();
+                }
+              }}
+            >
+              <span className={`${styles.arrowIcon} ${styles.arrowSlanted}`}>↗</span>
+              <span className={`${styles.arrowIcon} ${styles.arrowRight}`}>→</span>
+            </button>
+            <div className={`${styles.sectionUnderline} ${styles.sectionUnderlineFull}`}></div>
+          </div>
         </div>
+
         <div className={styles.carousel}>
           <div className={styles.carouselContainer}>
             <button
@@ -400,104 +394,33 @@ const HomeContent = () => {
       </div>
 
       {/* Facilities */}
-      <div className={styles.lisseBeautyFacilitiesSection}>
-        <div className={styles.facilitiesHeader}>
-          <h2 className={styles.facilitiesHeading}>Cơ sở vật chất tại KIMLY</h2>
-          <div className={styles.facilitiesHeadingBar}></div>
-          <div className={styles.facilityTabs}>
-            {[
-              "343 Nguyễn Khang",
-              "146 Trưng Phụng",
-              "58 Lê Thị Riêng",
-              "137 Lê Thị Riêng",
-              "Vạn Phúc",
-            ].map((label, idx) => (
-              <button
-                key={idx}
-                className={`${styles.facilityTab} ${
-                  selectedFacilityLocation === idx
-                    ? styles.activeFacilityTab
-                    : ""
-                }`}
-                onClick={() => {
-                  setSelectedFacilityLocation(idx);
-                  setSelectedFacilityIndex(0);
-                }}
-              >
-                {label}
-              </button>
-            ))}
-          </div>
-        </div>
-        <div
-          className={styles.kimlyFacilitiesContainer}
-          onMouseEnter={() => setFacilityAutoPlay(false)}
-          onMouseLeave={() => setFacilityAutoPlay(true)}
-        >
-          {(() => {
-            const svc =
-              services[selectedFacilityLocation] &&
-              services[selectedFacilityLocation].facilityImg &&
-              services[selectedFacilityLocation].facilityImg.length > 0
-                ? services[selectedFacilityLocation]
-                : services[0];
-            if (!svc || !svc.facilityImg || svc.facilityImg.length === 0)
-              return null;
-            const images = svc.facilityImg;
-            return (
-              <>
-                <div className={styles.mainFacilityImage}>
-                  <img
-                    key={selectedFacilityIndex}
-                    src={
-                      images[selectedFacilityIndex]
-                        ? images[selectedFacilityIndex].url
-                        : images[0].url
-                    }
-                    alt="Phòng điều trị chính Lisse Beauty"
-                    className={styles.mainFacilityPhoto}
-                  />
-                </div>
-                {/* Marquee-style infinite thumbnails row */}
-                <div className={styles.facilityThumbsMarquee}>
-                  <div className={styles.facilityThumbsTrack}>
-                    {[...images, ...images].map((img, mapIdx) => {
-                      const realIdx = mapIdx % images.length;
-                      const isActive = realIdx === selectedFacilityIndex;
-                      return (
-                        <div
-                          className={`${styles.facilityThumbItem} ${
-                            isActive ? styles.activeThumbnail : ""
-                          }`}
-                          key={`thumb-${mapIdx}`}
-                          onClick={() => setSelectedFacilityIndex(realIdx)}
-                          role="button"
-                          aria-label={`Xem ảnh cơ sở vật chất ${realIdx + 1}`}
-                          tabIndex={0}
-                          onKeyDown={(e) => {
-                            if (e.key === "Enter" || e.key === " ") {
-                              setSelectedFacilityIndex(realIdx);
-                            }
-                          }}
-                        >
-                          <img
-                            src={img.url}
-                            alt={`Cơ sở vật chất ${realIdx + 1}`}
-                          />
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              </>
-            );
-          })()}
-        </div>
-      </div>
+      <Facility />
 
       {/* Customer Stories */}
       <div className={styles.customerStoriesSection}>
-        <h2 className={styles.storiesTitle}>Câu chuyện khách hàng</h2>
+        <div className={styles.sectionHeader}>
+          <div className={styles.headerRowSpaceBetween}>
+            <div className={styles.sectionTitleWrap}>
+              <div className={styles.titleRow}>
+                <h2 className={styles.storiesTitle}>Câu chuyện khách hàng</h2>
+              </div>
+            </div>
+            <button
+              className={`${styles.titleArrowBtn} ${styles.titleArrowBtnRight}`}
+              aria-label="Lên đầu trang"
+              onClick={scrollToTop}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  scrollToTop();
+                }
+              }}
+            >
+              <span className={`${styles.arrowIcon} ${styles.arrowSlanted}`}>↗</span>
+              <span className={`${styles.arrowIcon} ${styles.arrowRight}`}>→</span>
+            </button>
+          </div>
+        </div>
         <p className={styles.storiesSubtitle}>
           Cùng chúng tôi kể lên câu chuyện của chính mình
         </p>
@@ -586,77 +509,100 @@ const HomeContent = () => {
 
       {/* Feedback */}
       <div className={styles.feedbackSection}>
-        <div className={styles.feedbackHeaderRow}>
-          <div className={styles.feedbackHeaderLeft}>
-            <h2 className={styles.feedbackTitle}>Feedback khách hàng</h2>
+        <div className={styles.feedbackInner}>
+          <div className={styles.feedbackHeader}>
+            <div className={styles.headerRowSpaceBetween}>
+              <div className={styles.sectionTitleWrap}>
+                <div className={styles.titleRow}>
+                  <h2 className={styles.feedbackTitle}>Feedback khách hàng</h2>
+                </div>
+              </div>
+              <button
+                className={`${styles.titleArrowBtn} ${styles.titleArrowBtnRight}`}
+                aria-label="Lên đầu trang"
+                onClick={scrollToTop}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    scrollToTop();
+                  }
+                }}
+              >
+                <span className={`${styles.arrowIcon} ${styles.arrowSlanted}`}>↗</span>
+                <span className={`${styles.arrowIcon} ${styles.arrowRight}`}>→</span>
+              </button>
+              <div className={`${styles.sectionUnderline} ${styles.sectionUnderlineFull}`}></div>
+            </div>
             <p className={styles.feedbackSubtitle}>
-              Chúng tôi đạt đánh giá từ khách hàng - <strong>4.9</strong> - trên
-              5
+              Chúng tôi đạt đánh giá từ khách hàng - <strong>4.9</strong> - trên <strong>5</strong>
             </p>
-            <div className={styles.feedbackUnderline} />
           </div>
-          <div className={styles.feedbackHeaderControls}>
+
+          <div className={styles.feedbackCarousel}>
+            <div className={styles.feedbackContainer}>
             <button
-              className={styles.feedbackHeaderArrow}
-              aria-label="Xem thêm phản hồi"
+              className={`${styles.feedbackArrow} ${styles.feedbackArrowLeft}`}
+              aria-label="Lùi lại"
               onClick={() => {
-                const el = document.querySelector(
-                  `.${styles.feedbackViewport}`
-                );
-                if (!el) return;
-                el.scrollBy({ left: el.clientWidth * 0.8, behavior: "smooth" });
+                const container = document.querySelector(`.${styles.feedbackTrack}`);
+                if (!container) return;
+                const cardWidth = container.querySelector(`.${styles.feedbackCard}`)?.offsetWidth || 0;
+                const gap = 24;
+                container.scrollBy({ left: -(cardWidth + gap), behavior: "smooth" });
               }}
             >
-              ↗
+              ‹
+            </button>
+            
+            <div className={styles.feedbackTrack}>
+              {feedback?.results?.map((fb, idx) => {
+                const bg = fb?.userImg && fb.userImg.length > 0 ? fb.userImg[0].url : "";
+                return (
+                  <div
+                    className={styles.feedbackCard}
+                    key={idx}
+                    style={{ backgroundImage: `url(${bg})` }}
+                  >
+                    <div className={styles.feedbackCardOverlay}>
+                      <div className={styles.feedbackStars}>★★★★★</div>
+                      <div className={styles.feedbackContent}>
+                        <h4 className={styles.feedbackName}>{fb?.username || "Nguyễn Thúy Tiên"}</h4>
+                        <p className={styles.feedbackComment}>
+                          {fb?.comment || "Dịch vụ tốt, quá trình làm không đau, không bị xưng, màu môi chị Thoa làm cho em rất là ưng ý, tuyệt vời! ❤"}
+                        </p>
+                      </div>
+                    </div>
+                    <div className={styles.feedbackMeta}>
+                      <span className={styles.feedbackMetaItem}>{fb?.date || "4 - Tháng 6"}</span>
+                      <span className={styles.feedbackMetaDot}>•</span>
+                      <span className={styles.feedbackMetaItem}>{fb?.service || "Sử dụng dịch vụ Hairstroke"}</span>
+                    </div>
+                    {idx === 1 && (
+                      <div className={styles.playButton}>
+                        <div className={styles.playIcon}>▶</div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+
+            <button
+              className={`${styles.feedbackArrow} ${styles.feedbackArrowRight}`}
+              aria-label="Xem thêm"
+              onClick={() => {
+                const container = document.querySelector(`.${styles.feedbackTrack}`);
+                if (!container) return;
+                const cardWidth = container.querySelector(`.${styles.feedbackCard}`)?.offsetWidth || 0;
+                const gap = 24;
+                container.scrollBy({ left: cardWidth + gap, behavior: "smooth" });
+              }}
+            >
+              ›
             </button>
           </div>
         </div>
-
-        <div className={styles.feedbackViewport}>
-          <div className={styles.feedbackTrack}>
-            {feedback?.results?.map((fb, idx) => {
-              const bg =
-                fb?.userImg && fb.userImg.length > 0 ? fb.userImg[0].url : "";
-              return (
-                <div
-                  className={styles.feedbackCardVisual}
-                  key={idx}
-                  style={{ backgroundImage: `url(${bg})` }}
-                >
-                  <div className={styles.feedbackCardOverlay}>
-                    <div className={styles.feedbackStars}>★★★★★</div>
-                    <div className={styles.feedbackContent}>
-                      <h4 className={styles.feedbackName}>{fb?.username}</h4>
-                      <p className={styles.feedbackComment}>“{fb?.comment}”</p>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-          <button
-            className={`${styles.feedbackArrow} ${styles.feedbackArrowLeft}`}
-            aria-label="Lùi lại"
-            onClick={() => {
-              const el = document.querySelector(`.${styles.feedbackViewport}`);
-              if (!el) return;
-              el.scrollBy({ left: -el.clientWidth * 0.8, behavior: "smooth" });
-            }}
-          >
-            ‹
-          </button>
-          <button
-            className={`${styles.feedbackArrow} ${styles.feedbackArrowRight}`}
-            aria-label="Xem thêm"
-            onClick={() => {
-              const el = document.querySelector(`.${styles.feedbackViewport}`);
-              if (!el) return;
-              el.scrollBy({ left: el.clientWidth * 0.8, behavior: "smooth" });
-            }}
-          >
-            ›
-          </button>
-        </div>
+      </div>
       </div>
 
       {/* Booking */}

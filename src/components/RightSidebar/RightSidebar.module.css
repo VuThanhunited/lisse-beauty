@@ -6,19 +6,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border-radius: 25px;
-  box-shadow: -5px 0 25px rgba(0, 0, 0, 0.15);
-  padding: 20px 10px;
-  transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  gap: 32px; /* bigger spacing like sample */
+  background: #eef4ee; /* softer light green */
+  border: 1px solid #d8e5d8;
+  border-radius: 28px; /* more rounded corners */
+  box-shadow: -6px 10px 28px rgba(44, 85, 48, 0.12);
+  padding: 24px 14px;
+  transition: right 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   z-index: 1000;
-  border: 2px solid rgba(232, 102, 126, 0.2);
 }
 
 .rightSidebar.visible {
-  right: 10px;
+  right: -5px;
 }
 
 .iconItem {
@@ -30,29 +29,28 @@
 }
 
 .iconButton {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #e8667e, #d94570);
+  width: 52px;
+  height: 52px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(232, 102, 126, 0.3);
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  transition: transform 0.2s ease;
 }
 
 .iconButton:hover {
-  transform: scale(1.1);
-  box-shadow: 0 6px 20px rgba(232, 102, 126, 0.4);
-  background: linear-gradient(135deg, #d94570, #c73e63);
+  transform: translateY(-1px) scale(1.05);
 }
 
 .icon {
-  width: 24px;
-  height: 24px;
-  color: white;
-  stroke-width: 2;
+  width: 28px;
+  height: 28px;
+  color: #5a6f5c;
+  stroke-width: 2.25;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.iconButton:hover .icon {
+  color: #2c5530;
 }
 
 .tooltip {
@@ -89,59 +87,28 @@
   transform: translateX(0);
 }
 
-/* Special styling for different icons */
-.iconItem:nth-child(1) .iconButton {
-  background: linear-gradient(135deg, #4caf50, #45a049);
-}
-
-.iconItem:nth-child(1) .iconButton:hover {
-  background: linear-gradient(135deg, #45a049, #3d8b40);
-}
-
-.iconItem:nth-child(2) .iconButton {
-  background: linear-gradient(135deg, #2196f3, #1976d2);
-}
-
-.iconItem:nth-child(2) .iconButton:hover {
-  background: linear-gradient(135deg, #1976d2, #1565c0);
-}
-
-.iconItem:nth-child(3) .iconButton {
-  background: linear-gradient(135deg, #ff9800, #f57c00);
-}
-
-.iconItem:nth-child(3) .iconButton:hover {
-  background: linear-gradient(135deg, #f57c00, #e65100);
-}
-
-.iconItem:nth-child(4) .iconButton {
-  background: linear-gradient(135deg, #9c27b0, #7b1fa2);
-}
-
-.iconItem:nth-child(4) .iconButton:hover {
-  background: linear-gradient(135deg, #7b1fa2, #6a1b9a);
-}
+/* Remove per-icon gradients; unified style to match sample */
 
 /* Responsive Design */
 @media (max-width: 768px) {
   .rightSidebar {
     right: -70px;
-    padding: 15px 8px;
-    gap: 12px;
+    padding: 14px 10px;
+    gap: 20px;
   }
 
   .rightSidebar.visible {
-    right: 5px;
+    right: 6px;
   }
 
   .iconButton {
-    width: 45px;
-    height: 45px;
+    width: 46px;
+    height: 46px;
   }
 
   .icon {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
   }
 
   .tooltip {
@@ -153,9 +120,9 @@
 
 @media (max-width: 480px) {
   .rightSidebar {
-    right: -60px;
-    padding: 12px 6px;
-    gap: 10px;
+    right: -62px;
+    padding: 12px 8px;
+    gap: 16px;
   }
 
   .iconButton {
@@ -164,8 +131,8 @@
   }
 
   .icon {
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
   }
 
   .tooltip {

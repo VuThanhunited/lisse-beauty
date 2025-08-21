@@ -3,7 +3,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import RightSidebar from "../../components/RightSidebar/RightSidebar";
 import styles from "./BrandStory.module.css";
-
+import Facility from "../../components/Facility/Facility";
 // Import images
 import bannerImg from "../../data/banner.jpg";
 import ceoImg from "../../data/518342647_122120769032891459_4219618419434067516_n.jpg";
@@ -11,9 +11,6 @@ import coreValuesImg from "../../data/518375107_122120771042891459_3218480619733
 import expertImg1 from "../../data/518600115_122120764574891459_5021028668652265494_n.jpg";
 import expertImg2 from "../../data/519421760_122120777714891459_5490134016365387672_n.jpg";
 import expertImg3 from "../../data/520240366_122120843918891459_7638784159492956398_n.jpg";
-import facilityImg1 from "../../data/520382423_122120854712891459_6189393590492377467_n.jpg";
-import facilityImg2 from "../../data/523400147_122123835236891459_4245426327108376588_n.jpg";
-import facilityImg3 from "../../data/513989997_122116927598891459_2881096560627137313_n.jpg";
 
 const BrandStory = () => {
   const [expandedVision, setExpandedVision] = useState(true);
@@ -537,38 +534,7 @@ const BrandStory = () => {
       </div>
 
       {/* Facilities Section - Cơ sở vật chất */}
-      <div className={styles.facilitiesSection}>
-        <div className={styles.container}>
-          <h2>Cơ sở vật chất</h2>
-          <p className={styles.facilitiesSubtitle}>
-            Không gian sang trọng và hiện đại được thiết kế để mang lại trải
-            nghiệm thư giãn tuyệt vời
-          </p>
-
-          <div className={styles.facilitiesContainer}>
-            {/* Main large image */}
-            <div className={styles.mainFacilityImage}>
-              <img src={facilityImg1} alt="Phòng điều trị chính Lisse Beauty" />
-            </div>
-
-            {/* Small thumbnail images */}
-            <div className={styles.facilityThumbnails}>
-              <div className={styles.thumbnailItem}>
-                <img src={facilityImg2} alt="Khu vực chờ sang trọng" />
-              </div>
-              <div className={styles.thumbnailItem}>
-                <img src={facilityImg3} alt="Phòng tư vấn riêng tư" />
-              </div>
-              <div className={styles.thumbnailItem}>
-                <img src={facilityImg1} alt="Thiết bị hiện đại" />
-              </div>
-              <div className={styles.thumbnailItem}>
-                <img src={facilityImg2} alt="Không gian thư giãn" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+     <Facility />
 
       <Footer />
     </div>
