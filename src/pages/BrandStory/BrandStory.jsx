@@ -4,13 +4,11 @@ import Footer from "../../components/Footer/Footer";
 import RightSidebar from "../../components/RightSidebar/RightSidebar";
 import styles from "./BrandStory.module.css";
 import Facility from "../../components/Facility/Facility";
+import ExpertSection from "../../components/ExpertSection/ExpertSection";
 // Import images
 import bannerImg from "../../data/banner.jpg";
 import ceoImg from "../../data/518342647_122120769032891459_4219618419434067516_n.jpg";
 import coreValuesImg from "../../data/518375107_122120771042891459_3218480619733617655_n.jpg";
-import expertImg1 from "../../data/518600115_122120764574891459_5021028668652265494_n.jpg";
-import expertImg2 from "../../data/519421760_122120777714891459_5490134016365387672_n.jpg";
-import expertImg3 from "../../data/520240366_122120843918891459_7638784159492956398_n.jpg";
 
 const BrandStory = () => {
   const [expandedVision, setExpandedVision] = useState(true);
@@ -21,39 +19,6 @@ const BrandStory = () => {
     tinhthancautien: false,
     phongcachsong: false,
   });
-  const [currentExpert, setCurrentExpert] = useState(0);
-
-  const experts = [
-    {
-      id: 1,
-      name: "Trang Nhung",
-      image: expertImg1,
-      description:
-        "Thạc sĩ đoàn viên bản ở đây, khởi tạo và ở về bản để tây chính nơi đáng, phòng cách phòng chú và màu sắc của đoàn văn của bạn.",
-    },
-    {
-      id: 2,
-      name: "Mai Linh",
-      image: expertImg2,
-      description:
-        "Chuyên gia về chăm sóc da với hơn 8 năm kinh nghiệm trong ngành làm đẹp và thẩm mỹ.",
-    },
-    {
-      id: 3,
-      name: "Thu Hà",
-      image: expertImg3,
-      description:
-        "Bác sĩ thẩm mỹ hàng đầu với nhiều chứng chỉ quốc tế về các phương pháp làm đẹp hiện đại.",
-    },
-  ];
-
-  const nextExpert = () => {
-    setCurrentExpert((prev) => (prev + 1) % experts.length);
-  };
-
-  const prevExpert = () => {
-    setCurrentExpert((prev) => (prev - 1 + experts.length) % experts.length);
-  };
 
   const toggleVision = () => {
     if (!expandedVision) {
@@ -469,73 +434,11 @@ const BrandStory = () => {
             </div>
           </div>
         </div>
-
         {/* Expert Team Section */}
-        <div className={styles.expertSection}>
-          <div className={styles.container}>
-            <h2>Đội ngũ chuyên gia</h2>
-            <div className={styles.expertCarousel}>
-              <button className={styles.carouselBtn} onClick={prevExpert}>
-                ‹
-              </button>
-
-              <div className={styles.expertCards}>
-                {experts.map((expert, index) => (
-                  <div
-                    key={expert.id}
-                    className={`${styles.expertCard} ${
-                      index === currentExpert ? styles.active : ""
-                    } ${
-                      index ===
-                      (currentExpert - 1 + experts.length) % experts.length
-                        ? styles.prev
-                        : ""
-                    } ${
-                      index === (currentExpert + 1) % experts.length
-                        ? styles.next
-                        : ""
-                    }`}
-                  >
-                    <div className={styles.expertInfo}>
-                      <div className={styles.expertImage}>
-                        <img src={expert.image} alt={expert.name} />
-                      </div>
-                      <div className={styles.expertContent}>
-                        <h3>{expert.name}</h3>
-                        <p>{expert.description}</p>
-                        <button className={styles.expertBtn}>
-                          Sản phẩm chuyên gia
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <button className={styles.carouselBtn} onClick={nextExpert}>
-                ›
-              </button>
-            </div>
-
-            {/* Carousel indicators */}
-            <div className={styles.carouselIndicators}>
-              {experts.map((_, index) => (
-                <button
-                  key={index}
-                  className={`${styles.indicator} ${
-                    index === currentExpert ? styles.active : ""
-                  }`}
-                  onClick={() => setCurrentExpert(index)}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
+        <ExpertSection />
       </div>
-
       {/* Facilities Section - Cơ sở vật chất */}
-     <Facility />
-
+      <Facility />
       <Footer />
     </div>
   );

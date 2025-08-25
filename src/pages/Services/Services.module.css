@@ -1,58 +1,41 @@
-/* Services Page Styles */
-
-/* Page Container */
-.servicesPage {
+/* Service Page */
+.servicePage {
   min-height: 100vh;
-  background-color: #f8f9fa;
+  background-color: #ffffff;
 }
 
 /* Banner Section */
 .bannerSection {
-  position: relative;
-  width: 100%;
   height: 400px;
-  overflow: hidden;
-  margin-top: 80px;
-}
-
-.bannerImageWrapper {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.bannerImage {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(0.6);
-}
-
-.bannerOverlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  background-image: url("../../data/banner.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.2);
+  position: relative;
+  margin-top: 120px;
+}
+
+.bannerOverlay {
+  text-align: center;
+  color: white;
+  z-index: 2;
 }
 
 .bannerOverlay h1 {
-  color: white;
-  font-size: 3rem;
+  font-size: 3.5rem;
   font-weight: 300;
-  text-align: center;
   margin: 0;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   font-family: "Playfair Display", serif;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 /* Main Content */
 .mainContent {
-  padding: 80px 0;
+  padding: 40px 0 80px 0;
 }
 
 .container {
@@ -61,342 +44,379 @@
   padding: 0 20px;
 }
 
-/* Services Section */
-.servicesSection {
-  margin-bottom: 100px;
+/* Service Section */
+.serviceSection {
+  margin-bottom: 80px;
 }
 
-.sectionTitle {
-  font-size: 2.5rem;
+.sectionHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  position: relative;
+  width: 100%;
+}
+
+.sectionHeader h2 {
+  font-size: 2.8rem;
+  color: black;
   font-weight: 300;
-  color: #2c3e50;
-  text-align: center;
-  margin-bottom: 60px;
+  margin: 0;
+  text-align: left;
   font-family: "Playfair Display", serif;
   letter-spacing: -0.5px;
-}
-
-.servicesGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-  gap: 40px;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-.serviceCard {
-  background: white;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-  transition: all 0.4s ease;
-  position: relative;
-}
-
-.serviceCard:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-}
-
-.serviceImage {
-  position: relative;
-  height: 280px;
-  overflow: hidden;
-}
-
-.serviceImage img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s ease;
-}
-
-.serviceCard:hover .serviceImage img {
-  transform: scale(1.05);
-}
-
-.serviceContent {
-  padding: 30px;
-}
-
-.serviceContent h3 {
-  font-size: 1.6rem;
-  font-weight: 600;
-  color: #2c3e50;
-  margin-bottom: 15px;
-  line-height: 1.3;
-}
-
-.serviceContent p {
-  color: #7f8c8d;
-  line-height: 1.6;
-  margin-bottom: 25px;
-  font-size: 1rem;
-}
-
-.detailButton {
-  background: linear-gradient(135deg, #d4a574 0%, #e8c547 100%);
-  color: white;
-  border: none;
-  padding: 12px 30px;
-  border-radius: 25px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.detailButton:hover {
-  background: linear-gradient(135deg, #c19660 0%, #d4b43a 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(212, 165, 116, 0.4);
-}
-
-/* Feedback Section */
-.feedbackSection {
-  margin-top: 100px;
-  padding: 60px 0;
-  background: linear-gradient(135deg, #f8f4f0 0%, #fff5f0 100%);
-  border-radius: 30px;
-}
-
-.feedbackTitle {
-  font-size: 2.5rem;
-  font-weight: 300;
-  color: #2c3e50;
-  text-align: center;
-  margin-bottom: 10px;
-  font-family: "Playfair Display", serif;
-}
-
-.feedbackSubtitle {
-  text-align: center;
-  color: #7f8c8d;
-  font-size: 1rem;
-  margin-bottom: 50px;
-  font-weight: 300;
-}
-
-.feedbackContainer {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-.feedbackCard {
-  background: white;
-  border-radius: 20px;
-  padding: 30px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-  position: relative;
-  transition: all 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-.feedbackCard:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-}
-
-.feedbackStars {
-  margin-bottom: 20px;
-}
-
-.feedbackStars span {
-  font-size: 1.2rem;
-  color: #ffd700;
-}
-
-.feedbackContent {
   flex: 1;
 }
 
-.feedbackContent h4 {
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: #2c3e50;
-  margin-bottom: 15px;
-}
-
-.feedbackContent p {
-  color: #7f8c8d;
-  line-height: 1.6;
-  margin-bottom: 20px;
-  font-size: 0.95rem;
-}
-
-.feedbackMeta {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  margin-bottom: 20px;
-}
-
-.feedbackMeta span {
-  font-size: 0.85rem;
-  color: #95a5a6;
-}
-
-.feedbackImage {
+.sectionUnderline {
+  position: absolute;
+  left: 0;
+  bottom: -15px;
   width: 100%;
-  height: 200px;
-  border-radius: 15px;
-  overflow: hidden;
-  margin-top: auto;
+  height: 2px;
+  background: #000000;
 }
 
-.feedbackImage img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
-.feedbackCard:hover .feedbackImage img {
-  transform: scale(1.05);
-}
-
-.feedbackNavigation {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 40px;
-}
-
-.navArrow {
-  width: 50px;
-  height: 50px;
+.scrollToTopBtn {
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  border: 2px solid #d4a574;
   background: white;
-  color: #d4a574;
-  font-size: 1.5rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  border: 1px solid black;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.navArrow:hover {
-  background: #d4a574;
-  color: white;
-  transform: scale(1.1);
-}
-
-/* Related Section */
-.relatedSection {
-  padding-top: 60px;
-  border-top: 2px solid #e9ecef;
-}
-
-.relatedTitle {
-  font-size: 2.2rem;
-  font-weight: 300;
-  color: #2c3e50;
-  text-align: center;
-  margin-bottom: 50px;
-  font-family: "Playfair Display", serif;
-}
-
-.relatedGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 30px;
-}
-
-.relatedCard {
-  background: white;
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
   transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 8px;
 }
 
-.relatedCard:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+.scrollToTopBtn:hover {
+  background: #f9fafb;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.relatedImage {
-  height: 200px;
+.arrowIcon {
+  font-size: 35px;
+  color: #374151;
+  transition: transform 0.2s ease;
+  display: inline-block;
+}
+
+.scrollToTopBtn:hover .arrowIcon {
+  transform: rotate(45deg);
+}
+
+/* Service Grid */
+.serviceGrid {
+  display: flex;
+  justify-content: flex-start;
+  gap: 40px;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Service Card */
+.serviceCard {
+  background: white;
+  border-radius: 16px;
   overflow: hidden;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  width: 25%;
+  max-width: 100%;
 }
 
-.relatedImage img {
+.serviceCard:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.cardImage {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  position: relative;
+}
+
+.cardImage img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.3s ease;
 }
 
-.relatedCard:hover .relatedImage img {
-  transform: scale(1.05);
+.navArrowLeft {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background: rgb(184, 182, 182);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 35px;
+  color: #f5efef;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 2;
 }
 
-.relatedContent {
-  padding: 25px;
+.cardContent {
+  padding: 24px;
+  text-align: center;
 }
 
-.relatedContent h4 {
-  font-size: 1.3rem;
+.cardContent h3 {
+  font-size: 1.5rem;
+  color: #1f2937;
   font-weight: 600;
-  color: #2c3e50;
-  margin-bottom: 12px;
+  margin: 0 0 12px 0;
   line-height: 1.3;
+  text-align: left;
 }
 
-.relatedContent p {
-  color: #7f8c8d;
+.cardContent p {
+  color: #6b7280;
   line-height: 1.5;
-  margin-bottom: 15px;
   font-size: 0.95rem;
+  margin: 0 0 20px 0;
+  text-align: left;
 }
 
-.readMoreLink {
-  color: #d4a574;
-  text-decoration: none;
-  font-weight: 500;
+.detailButton {
+  background: white;
+  color: #374151;
+  border: 1px solid #d1d5db;
+  padding: 10px 20px;
+  border-radius: 20px;
   font-size: 0.9rem;
-  transition: color 0.3s ease;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  font-family: inherit;
 }
 
-.readMoreLink:hover {
-  color: #c19660;
-  text-decoration: underline;
+.detailButton:hover {
+  background: black;
+  border-color: #9ca3af;
+  color: white;
+}
+
+.arrow {
+  font-size: 0.9rem;
+  transition: transform 0.3s ease;
+}
+
+.detailButton:hover .arrow {
+  transform: translateX(2px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .bannerSection {
+    height: 300px;
+    margin-top: 80px;
+  }
+
+  .bannerOverlay h1 {
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+  }
+
+  .contentWrapper {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .rightSidebar {
+    width: 100%;
+    position: static;
+    order: -1;
+    margin-bottom: 20px;
+  }
+
+  .sidebarContent {
+    flex-direction: row;
+    justify-content: center;
+    gap: 30px;
+  }
+
+  .contactInfo {
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  .sectionHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .sectionHeader h2 {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+  }
+
+  .scrollToTopBtn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 40px;
+    height: 40px;
+  }
+
+  .arrowIcon {
+    font-size: 16px;
+  }
+
+  .sectionUnderline {
+    width: 150px;
+    bottom: -10px;
+  }
+
+  .serviceGrid {
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+  }
+
+  .serviceCard {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .cardImage {
+    height: 250px;
+  }
+
+  .cardContent {
+    padding: 20px;
+  }
+
+  .cardContent h3 {
+    font-size: 1.3rem;
+  }
+
+  .cardContent p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .sectionHeader h2 {
+    font-size: 1.8rem;
+  }
+
+  .scrollToTopBtn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .arrowIcon {
+    font-size: 14px;
+  }
+
+  .sectionUnderline {
+    width: 120px;
+  }
+
+  .serviceCard {
+    max-width: 100%;
+  }
+
+  .cardImage {
+    height: 220px;
+  }
+
+  .cardContent {
+    padding: 16px;
+  }
+
+  .cardContent h3 {
+    font-size: 1.2rem;
+  }
+
+  .detailButton {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+  }
+}
+
+/* Additional Section */
+.additionalSection {
+  margin-bottom: 60px;
+}
+
+.additionalSection h2 {
+  font-size: 2.2rem;
+  color: #333;
+  font-weight: 300;
+  margin: 0 0 50px 0;
+  text-align: center;
+  font-family: "Playfair Display", serif;
+  position: relative;
+}
+
+.additionalSection h2::after {
+  content: "";
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: #8b4513;
+  border-radius: 2px;
 }
 
 /* Responsive Design */
 @media (max-width: 1024px) {
-  .container {
-    padding: 0 20px;
+  .bannerOverlay h1 {
+    font-size: 2.5rem;
   }
 
-  .servicesGrid {
-    grid-template-columns: 1fr;
+  .sectionHeader h2,
+  .additionalSection h2 {
+    font-size: 2rem;
+  }
+
+  .serviceGrid {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 30px;
   }
 
-  .feedbackContainer {
-    grid-template-columns: 1fr;
-    gap: 25px;
+  .cardImage {
+    height: 250px;
+  }
+
+  .cardContent {
+    padding: 25px;
+  }
+
+  .cardContent h3 {
+    font-size: 1.6rem;
   }
 }
 
 @media (max-width: 768px) {
   .bannerSection {
     height: 300px;
+    margin-top: 70px;
   }
 
   .bannerOverlay h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
 
   .mainContent {
@@ -407,47 +427,56 @@
     padding: 0 15px;
   }
 
-  .sectionTitle {
-    font-size: 2rem;
+  .serviceSection {
+    margin-bottom: 60px;
+  }
+
+  .sectionHeader {
     margin-bottom: 40px;
   }
 
-  .feedbackTitle {
-    font-size: 2rem;
-    margin-bottom: 8px;
+  .sectionHeader h2,
+  .additionalSection h2 {
+    font-size: 1.8rem;
+    margin: 0 15px;
   }
 
-  .feedbackSubtitle {
-    margin-bottom: 35px;
+  .headerIcon svg {
+    width: 24px;
+    height: 24px;
   }
 
-  .feedbackSection {
-    margin-top: 80px;
-    padding: 40px 0;
+  .serviceGrid {
+    grid-template-columns: 1fr;
+    gap: 25px;
   }
 
   .serviceCard {
-    border-radius: 15px;
+    max-width: none;
+    margin: 0 10px;
   }
 
-  .serviceImage {
+  .cardImage {
     height: 220px;
   }
 
-  .serviceContent {
-    padding: 25px;
+  .cardContent {
+    padding: 20px;
   }
 
-  .serviceContent h3 {
-    font-size: 1.4rem;
+  .cardContent h3 {
+    font-size: 1.5rem;
+    margin-bottom: 12px;
   }
 
-  .feedbackCard {
-    padding: 25px;
+  .cardContent p {
+    font-size: 0.95rem;
+    margin-bottom: 20px;
   }
 
-  .feedbackImage {
-    height: 180px;
+  .detailButton {
+    padding: 10px 20px;
+    font-size: 0.9rem;
   }
 }
 
@@ -457,141 +486,790 @@
   }
 
   .bannerOverlay h1 {
-    font-size: 2rem;
+    font-size: 1.6rem;
   }
 
-  .sectionTitle {
-    font-size: 1.8rem;
+  .mainContent {
+    padding: 50px 0;
   }
 
-  .feedbackTitle {
-    font-size: 1.8rem;
+  .sectionHeader h2,
+  .additionalSection h2 {
+    font-size: 1.6rem;
   }
 
-  .feedbackSubtitle {
-    font-size: 0.9rem;
+  .serviceCard {
+    margin: 0 5px;
+    border-radius: 15px;
   }
 
-  .servicesGrid {
-    grid-template-columns: 1fr;
-    gap: 25px;
-  }
-
-  .serviceImage {
+  .cardImage {
     height: 200px;
   }
 
-  .serviceContent {
-    padding: 20px;
+  .cardContent {
+    padding: 18px;
   }
 
-  .serviceContent h3 {
+  .cardContent h3 {
     font-size: 1.3rem;
+    margin-bottom: 10px;
   }
 
-  .serviceContent p {
-    font-size: 0.95rem;
+  .cardContent p {
+    font-size: 0.9rem;
+    margin-bottom: 18px;
+    line-height: 1.5;
   }
 
   .detailButton {
-    padding: 10px 25px;
+    padding: 9px 18px;
+    font-size: 0.85rem;
+    border-radius: 20px;
+  }
+
+  .arrow {
+    font-size: 1.1rem;
+  }
+}
+
+/* Customer Stories Section */
+.customerStoriesSection {
+  padding: 60px 20px;
+  background: #ffffff;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.storiesTitle {
+  font-size: 2.8rem;
+  font-weight: 300;
+  color: #2c3e50;
+  margin-bottom: 8px;
+  text-align: center;
+  font-family: "Playfair Display", serif;
+  letter-spacing: -0.5px;
+}
+
+.storiesSubtitle {
+  font-size: 1rem;
+  color: #7f8c8d;
+  margin-bottom: 50px;
+  font-weight: 300;
+  text-align: center;
+}
+
+.storiesContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  height: 500px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.storyCard {
+  position: relative;
+  flex: 1;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.storyCard:hover {
+  flex: 2.5;
+}
+
+.storyCard:not(:hover) {
+  flex: 0.8;
+}
+
+.storyImageWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.storyImageWrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.storyCard:hover .storyImageWrapper img {
+  transform: scale(1.05);
+}
+
+.storyOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  display: flex;
+  align-items: flex-end;
+  padding: 30px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.storyCard:hover .storyOverlay {
+  opacity: 1;
+}
+
+.storyContent {
+  color: white;
+  width: 100%;
+  transform: translateY(30px);
+  transition: transform 0.5s ease;
+}
+
+.storyCard:hover .storyContent {
+  transform: translateY(0);
+}
+
+.storyContent h3 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.storyContent p {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  opacity: 0.95;
+}
+
+.viewMoreButton {
+  background: white;
+  color: #2c3e50;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.storyCard:hover .viewMoreButton {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.2s;
+}
+
+.viewMoreButton:hover {
+  background: #f8f9fa;
+  transform: translateY(-2px);
+}
+
+/* Customer Stories Responsive */
+@media (max-width: 1024px) {
+  .storiesContainer {
+    height: 400px;
+  }
+
+  .storyContent h3 {
+    font-size: 1.4rem;
+  }
+
+  .storyContent p {
     font-size: 0.9rem;
   }
 
-  .feedbackContainer {
-    padding: 0 15px;
+  .storyOverlay {
+    padding: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .customerStoriesSection {
+    padding: 50px 15px;
   }
 
-  .feedbackCard {
-    padding: 20px;
+  .storiesTitle {
+    font-size: 2.2rem;
   }
 
-  .feedbackContent h4 {
+  .storiesContainer {
+    flex-direction: column;
+    height: 600px;
+    gap: 6px;
+  }
+
+  .storyContent h3 {
     font-size: 1.2rem;
   }
 
-  .feedbackContent p {
+  .storyContent p {
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+  }
+
+  .storyOverlay {
+    padding: 20px;
+  }
+
+  .viewMoreButton {
+    padding: 8px 20px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .storiesTitle {
+    font-size: 1.8rem;
+  }
+
+  .storiesSubtitle {
+    font-size: 0.9rem;
+    margin-bottom: 30px;
+  }
+
+  .storiesContainer {
+    flex-direction: column;
+    height: 500px;
+    gap: 4px;
+  }
+
+  .storyContent h3 {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+  }
+
+  .storyContent p {
+    font-size: 0.8rem;
+    margin-bottom: 12px;
+  }
+
+  .storyOverlay {
+    padding: 15px;
+  }
+
+  .viewMoreButton {
+    padding: 6px 16px;
+    font-size: 0.75rem;
+  }
+}
+
+/* Customer Stories Section */
+.customerStoriesSection {
+  padding: 60px 20px;
+  background: #ffffff;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.storiesTitle {
+  font-size: 2.8rem;
+  font-weight: 300;
+  color: #2c3e50;
+  margin-bottom: 8px;
+  text-align: left;
+  font-family: "Playfair Display", serif;
+  letter-spacing: -0.5px;
+}
+
+.storiesSubtitle {
+  font-size: 1rem;
+  color: #7f8c8d;
+  margin-bottom: 20px;
+  font-weight: 300;
+  text-align: left;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.storiesContainer {
+  display: flex;
+  gap: 14px;
+  height: 420px;
+  border-radius: 28px;
+}
+
+.storyCard {
+  position: relative;
+  flex: 1 1 0;
+  transition: flex 0.45s ease, box-shadow 0.35s ease, transform 0.35s ease;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 28px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+}
+
+/* Keep the card static on hover – only image zooms and overlay/text appear */
+.storyCard:hover {
+  transform: none;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+}
+
+/* Expand hovered item; slightly shrink siblings */
+.storiesContainer:hover .storyCard {
+  flex: 0.9 1 0;
+}
+.storiesContainer .storyCard:hover {
+  flex: 1.6 1 0;
+}
+
+.storyImageWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 28px;
+}
+
+.storyImageWrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: brightness(1.05) contrast(1.1) saturate(1.15);
+  will-change: transform;
+  transform-origin: center center;
+}
+
+.storyCard:hover .storyImageWrapper img {
+  transform: scale(1.1);
+  filter: brightness(1.1) contrast(1.2) saturate(1.25);
+}
+
+.storyOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  /* Combined: uniform soft tint + stronger bottom gradient for readability */
+  background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.02) 0%,
+      rgba(0, 0, 0, 0.28) 45%,
+      rgba(0, 0, 0, 0.74) 100%
+    ),
+    rgba(0, 0, 0, 0.32);
+  display: flex;
+  align-items: flex-end;
+  padding: 28px;
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(2px);
+  pointer-events: none;
+}
+
+.storyCard:hover .storyOverlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.storyContent {
+  color: #ffffff;
+  width: auto;
+  max-width: 60%;
+  text-align: left;
+  transform: translateY(24px);
+  transition: transform 0.5s ease;
+}
+
+.storyCard:hover .storyContent {
+  transform: translateY(0);
+}
+
+.storyContent h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 1.6rem;
+  font-weight: 500;
+  margin-bottom: 12px;
+  line-height: 1.3;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  color: #ffffff;
+}
+
+.storyContent p {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  opacity: 0.95;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+}
+
+.viewMoreButton {
+  background: #ffffff;
+  color: #2c3e50;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 24px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.storyCard:hover .viewMoreButton {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.2s;
+}
+
+.viewMoreButton:hover {
+  background: #f5f6f7;
+}
+
+/* Customer Stories Responsive */
+@media (max-width: 1024px) {
+  .storiesContainer {
+    height: 400px;
+  }
+
+  .storyContent h3 {
+    font-size: 1.4rem;
+  }
+
+  .storyContent p {
     font-size: 0.9rem;
   }
 
-  .feedbackImage {
-    height: 160px;
+  .storyOverlay {
+    padding: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .customerStoriesSection {
+    padding: 50px 15px;
   }
 
-  /* Additional hover effects and styling */
-  .feedbackCard:hover .feedbackImage {
-    transform: scale(1.05);
+  .storiesTitle {
+    font-size: 2.2rem;
   }
 
-  .feedbackCard:hover {
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  .storiesContainer {
+    flex-direction: column;
+    height: 600px;
+    gap: 6px;
   }
 
-  .navArrow:hover {
-    background: linear-gradient(135deg, #ff6b9d, #ff8a9b);
-    transform: translateY(-1px);
-    box-shadow: 0 6px 20px rgba(255, 107, 157, 0.3);
+  .storyContent h3 {
+    font-size: 1.2rem;
   }
 
-  .navArrow:active {
-    transform: translateY(0);
+  .storyContent p {
+    font-size: 0.85rem;
+    margin-bottom: 15px;
   }
 
-  .starRating:hover {
-    transform: scale(1.05);
+  .storyOverlay {
+    padding: 20px;
   }
 
-  .feedbackContent p:first-of-type {
-    font-style: italic;
-    position: relative;
-    padding-left: 20px;
-    padding-right: 10px;
+  .viewMoreButton {
+    padding: 8px 20px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .storiesTitle {
+    font-size: 1.8rem;
   }
 
-  .feedbackContent p:first-of-type::before {
-    content: '"';
-    font-size: 2rem;
-    color: #ff6b9d;
-    position: absolute;
-    left: 0;
-    top: -10px;
-    font-family: serif;
+  .storiesSubtitle {
+    font-size: 0.9rem;
+    margin-bottom: 30px;
   }
 
-  .feedbackContent p:first-of-type::after {
-    content: '"';
-    font-size: 2rem;
-    color: #ff6b9d;
-    font-family: serif;
+  .storiesContainer {
+    flex-direction: column;
+    height: 500px;
+    gap: 4px;
   }
 
-  /* Animation for section entrance */
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  .storyContent h3 {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
   }
 
-  .feedbackSection {
-    animation: fadeInUp 0.8s ease-out;
+  .storyContent p {
+    font-size: 0.8rem;
+    margin-bottom: 12px;
   }
 
-  .feedbackCard {
-    animation: fadeInUp 0.8s ease-out;
-    animation-delay: 0.2s;
-    animation-fill-mode: both;
+  .storyOverlay {
+    padding: 15px;
   }
 
-  .feedbackCard:nth-child(2) {
-    animation-delay: 0.4s;
+  .viewMoreButton {
+    padding: 6px 16px;
+    font-size: 0.75rem;
+  }
+}
+/* Responsive Design for new sections */
+@media (max-width: 768px) {
+  .lisseBeautyFacilitiesSection,
+  .customerStoriesSection {
+    margin-top: 60px;
   }
 
-  .feedbackCard:nth-child(3) {
-    animation-delay: 0.6s;
+  .mainFacilityImage {
+    height: 320px; /* tăng theo mẫu mobile */
+  }
+
+  .facilityThumbnails {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .thumbnailItem {
+    height: 120px;
+    border-radius: 16px;
+  }
+
+  .storiesGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .storyImage {
+    height: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .lisseBeautyFacilitiesSection,
+  .customerStoriesSection {
+    margin-top: 40px;
+  }
+
+  .mainFacilityImage {
+    height: 220px;
+    border-radius: 15px;
+  }
+
+  .facilityThumbnails {
+    gap: 10px;
+  }
+
+  .thumbnailItem {
+    height: 80px;
+    border-radius: 10px;
+  }
+
+  .storyImage {
+    height: 200px;
+  }
+}
+
+/* History Timeline Section */
+.historySection {
+  margin-bottom: 80px;
+}
+
+.historyTimeline {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.timelineItem {
+  margin-bottom: 80px;
+  position: relative;
+}
+
+.timelineContent {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.timelineImage {
+  flex: 0 0 400px;
+  height: 300px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.timelineImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.timelineText {
+  flex: 1;
+  padding: 20px 0;
+}
+
+.timelineYear {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #2c3e50;
+  margin-bottom: 16px;
+}
+
+.yearDot {
+  width: 12px;
+  height: 12px;
+  background-color: #27ae60;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.timelineText h3 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 16px;
+  line-height: 1.3;
+  font-family: "Playfair Display", serif;
+}
+
+.timelineText p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #5a6c7d;
+  text-align: justify;
+}
+
+/* Reverse layout for alternating items */
+.timelineItemReverse .timelineContent {
+  flex-direction: row-reverse;
+}
+
+.timelineItemReverse .timelineYear {
+  flex-direction: row-reverse;
+}
+
+.timelineItemReverse .timelineText {
+  text-align: right;
+}
+
+.timelineItemReverse .timelineText p {
+  text-align: justify;
+}
+
+/* Responsive Design for History Timeline */
+@media (max-width: 1024px) {
+  .timelineContent {
+    gap: 40px;
+  }
+
+  .timelineImage {
+    flex: 0 0 350px;
+    height: 250px;
+  }
+
+  .timelineText h3 {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .historyTimeline {
+    padding: 0 15px;
+  }
+
+  .timelineItem {
+    margin-bottom: 60px;
+  }
+
+  .timelineContent {
+    flex-direction: column !important;
+    gap: 30px;
+    text-align: center;
+  }
+
+  .timelineItemReverse .timelineContent {
+    flex-direction: column !important;
+  }
+
+  .timelineImage {
+    flex: none;
+    width: 100%;
+    max-width: 400px;
+    height: 250px;
+    margin: 0 auto;
+  }
+
+  .timelineText {
+    text-align: center !important;
+  }
+
+  .timelineItemReverse .timelineText {
+    text-align: center !important;
+  }
+
+  .timelineYear {
+    justify-content: center;
+    flex-direction: row !important;
+  }
+
+  .timelineItemReverse .timelineYear {
+    flex-direction: row !important;
+  }
+
+  .timelineText h3 {
+    font-size: 1.5rem;
+  }
+
+  .timelineText p {
+    font-size: 0.95rem;
+    text-align: center !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .timelineItem {
+    margin-bottom: 50px;
+  }
+
+  .timelineContent {
+    gap: 25px;
+  }
+
+  .timelineImage {
+    height: 200px;
+    border-radius: 15px;
+  }
+
+  .timelineText h3 {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+  }
+
+  .timelineText p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .timelineYear {
+    font-size: 1rem;
+    margin-bottom: 12px;
+  }
+
+  .yearDot {
+    width: 10px;
+    height: 10px;
   }
 }

@@ -4,6 +4,7 @@ import axios from "axios";
 import facility1 from "../../../data/cơ sở vật chất-1.jpg";
 import Footer from "../../../components/Footer/Footer";
 import Facility from "../../../components/Facility/Facility";
+import FeedbackContent from "../../../components/Feedback/Feedback";
 
 // Before/After Slider Component (kept minimal and self-contained)
 const BeforeAfterSlider = ({
@@ -139,20 +140,17 @@ const BeforeAfterSlider = ({
 const HomeContent = () => {
   // Data state
   const [services, setServices] = useState([]);
-  const [feedback, setFeedback] = useState({ results: [] });
-
-  // Hero banner (static) – no carousel state needed
 
   // Services slideshow state (discrete with infinite loop)
   const [visibleCount, setVisibleCount] = useState(
-    typeof window !== "undefined" && window.innerWidth <= 768 ? 1 : 3
+    typeof window !== "undefined" && window.innerWidth <= 768 ? 1 : 2
   );
-  const clonesCount = Math.max(1, visibleCount - 1);
+  const clonesCount = Math.max(1, visibleCount);
   const [svcIndex, setSvcIndex] = useState(clonesCount);
   const [svcIsTransitioning, setSvcIsTransitioning] = useState(true);
   const svcTrackRef = useRef(null);
   const [svcStepPx, setSvcStepPx] = useState(0);
-  const [svcAuto] = useState(true);
+  const [svcAuto] = useState(false);
 
   // Axios headers
   const headers = useMemo(
@@ -176,22 +174,6 @@ const HomeContent = () => {
     fetchServiceData();
   }, [headers]);
 
-  // Fetch feedback
-  useEffect(() => {
-    const fetchFeedbackData = async () => {
-      try {
-        const response = await axios.get(
-          "https://api.baserow.io/api/database/rows/table/644174/?user_field_names=true",
-          { headers }
-        );
-        setFeedback(response.data || { results: [] });
-      } catch (error) {
-        console.error("Error fetching feedback data:", error);
-      }
-    };
-    fetchFeedbackData();
-  }, [headers]);
-
   // Prepare slides (shared for hero/services)
   const displayedServices = useMemo(() => services.slice(0, 4), [services]);
   const extendedServices = useMemo(() => {
@@ -208,7 +190,7 @@ const HomeContent = () => {
   // Services responsive visible count and step measurement
   useEffect(() => {
     const handleResize = () => {
-      setVisibleCount(window.innerWidth <= 768 ? 1 : 3);
+      setVisibleCount(window.innerWidth <= 768 ? 1 : 2);
     };
 
     const measureStep = () => {
@@ -276,6 +258,7 @@ const HomeContent = () => {
     extendedServices.length,
     clonesCount,
   ]);
+
   // Scroll to top when clicking the header arrow button
   const scrollToTop = useCallback(() => {
     if (typeof window !== "undefined") {
@@ -305,10 +288,16 @@ const HomeContent = () => {
                 }
               }}
             >
-              <span className={`${styles.arrowIcon} ${styles.arrowSlanted}`}>↗</span>
-              <span className={`${styles.arrowIcon} ${styles.arrowRight}`}>→</span>
+              <span className={`${styles.arrowIcon} ${styles.arrowSlanted}`}>
+                ↗
+              </span>
+              <span className={`${styles.arrowIcon} ${styles.arrowRight}`}>
+                →
+              </span>
             </button>
-            <div className={`${styles.sectionUnderline} ${styles.sectionUnderlineFull}`}></div>
+            <div
+              className={`${styles.sectionUnderline} ${styles.sectionUnderlineFull}`}
+            ></div>
           </div>
         </div>
 
@@ -333,22 +322,10 @@ const HomeContent = () => {
               onTransitionEnd={handleSvcTransitionEnd}
             >
               {extendedServices.map((service, index) => {
-                const n = displayedServices.length;
-                const firstReal = clonesCount;
-                const lastReal = clonesCount + n - 1;
-                // Determine center index among visible slides
-                const centerOffset = Math.floor(visibleCount / 2);
-                const centerIdx = svcIndex + centerOffset;
-                const isCenter =
-                  index === centerIdx &&
-                  index >= firstReal &&
-                  index <= lastReal;
                 return (
                   <div
                     key={`${service.id}-${index}`}
-                    className={`${styles.slideItem} ${styles.customSlide} ${
-                      isCenter ? styles.centerActive : ""
-                    }`}
+                    className={`${styles.slideItem} ${styles.customSlide}`}
                   >
                     <div
                       className={
@@ -416,8 +393,12 @@ const HomeContent = () => {
                 }
               }}
             >
-              <span className={`${styles.arrowIcon} ${styles.arrowSlanted}`}>↗</span>
-              <span className={`${styles.arrowIcon} ${styles.arrowRight}`}>→</span>
+              <span className={`${styles.arrowIcon} ${styles.arrowSlanted}`}>
+                ↗
+              </span>
+              <span className={`${styles.arrowIcon} ${styles.arrowRight}`}>
+                →
+              </span>
             </button>
           </div>
         </div>
@@ -506,105 +487,7 @@ const HomeContent = () => {
           ))}
         </div>
       </div>
-
-      {/* Feedback */}
-      <div className={styles.feedbackSection}>
-        <div className={styles.feedbackInner}>
-          <div className={styles.feedbackHeader}>
-            <div className={styles.headerRowSpaceBetween}>
-              <div className={styles.sectionTitleWrap}>
-                <div className={styles.titleRow}>
-                  <h2 className={styles.feedbackTitle}>Feedback khách hàng</h2>
-                </div>
-              </div>
-              <button
-                className={`${styles.titleArrowBtn} ${styles.titleArrowBtnRight}`}
-                aria-label="Lên đầu trang"
-                onClick={scrollToTop}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault();
-                    scrollToTop();
-                  }
-                }}
-              >
-                <span className={`${styles.arrowIcon} ${styles.arrowSlanted}`}>↗</span>
-                <span className={`${styles.arrowIcon} ${styles.arrowRight}`}>→</span>
-              </button>
-              <div className={`${styles.sectionUnderline} ${styles.sectionUnderlineFull}`}></div>
-            </div>
-            <p className={styles.feedbackSubtitle}>
-              Chúng tôi đạt đánh giá từ khách hàng - <strong>4.9</strong> - trên <strong>5</strong>
-            </p>
-          </div>
-
-          <div className={styles.feedbackCarousel}>
-            <div className={styles.feedbackContainer}>
-            <button
-              className={`${styles.feedbackArrow} ${styles.feedbackArrowLeft}`}
-              aria-label="Lùi lại"
-              onClick={() => {
-                const container = document.querySelector(`.${styles.feedbackTrack}`);
-                if (!container) return;
-                const cardWidth = container.querySelector(`.${styles.feedbackCard}`)?.offsetWidth || 0;
-                const gap = 24;
-                container.scrollBy({ left: -(cardWidth + gap), behavior: "smooth" });
-              }}
-            >
-              ‹
-            </button>
-            
-            <div className={styles.feedbackTrack}>
-              {feedback?.results?.map((fb, idx) => {
-                const bg = fb?.userImg && fb.userImg.length > 0 ? fb.userImg[0].url : "";
-                return (
-                  <div
-                    className={styles.feedbackCard}
-                    key={idx}
-                    style={{ backgroundImage: `url(${bg})` }}
-                  >
-                    <div className={styles.feedbackCardOverlay}>
-                      <div className={styles.feedbackStars}>★★★★★</div>
-                      <div className={styles.feedbackContent}>
-                        <h4 className={styles.feedbackName}>{fb?.username || "Nguyễn Thúy Tiên"}</h4>
-                        <p className={styles.feedbackComment}>
-                          {fb?.comment || "Dịch vụ tốt, quá trình làm không đau, không bị xưng, màu môi chị Thoa làm cho em rất là ưng ý, tuyệt vời! ❤"}
-                        </p>
-                      </div>
-                    </div>
-                    <div className={styles.feedbackMeta}>
-                      <span className={styles.feedbackMetaItem}>{fb?.date || "4 - Tháng 6"}</span>
-                      <span className={styles.feedbackMetaDot}>•</span>
-                      <span className={styles.feedbackMetaItem}>{fb?.service || "Sử dụng dịch vụ Hairstroke"}</span>
-                    </div>
-                    {idx === 1 && (
-                      <div className={styles.playButton}>
-                        <div className={styles.playIcon}>▶</div>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-
-            <button
-              className={`${styles.feedbackArrow} ${styles.feedbackArrowRight}`}
-              aria-label="Xem thêm"
-              onClick={() => {
-                const container = document.querySelector(`.${styles.feedbackTrack}`);
-                if (!container) return;
-                const cardWidth = container.querySelector(`.${styles.feedbackCard}`)?.offsetWidth || 0;
-                const gap = 24;
-                container.scrollBy({ left: cardWidth + gap, behavior: "smooth" });
-              }}
-            >
-              ›
-            </button>
-          </div>
-        </div>
-      </div>
-      </div>
-
+      <FeedbackContent />
       {/* Booking */}
       <div className={styles.bookingSection}>
         <div className={styles.bookingContainer}>

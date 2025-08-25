@@ -529,17 +529,41 @@
 }
 
 @keyframes slanted-seq {
-  0% { transform: translateY(0); opacity: 1; }
-  40% { transform: translateY(6px); opacity: 0; }
-  60% { transform: translateY(6px); opacity: 0; }
-  100% { transform: translateY(0); opacity: 1; } /* return to original */
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  40% {
+    transform: translateY(6px);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(6px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  } /* return to original */
 }
 
 @keyframes right-seq {
-  0% { transform: translateX(-8px); opacity: 0; }
-  30% { transform: translateX(0); opacity: 1; }
-  60% { transform: translateX(10px); opacity: 0.4; }
-  100% { transform: translateX(16px); opacity: 0; } /* move out and disappear */
+  0% {
+    transform: translateX(-8px);
+    opacity: 0;
+  }
+  30% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  60% {
+    transform: translateX(10px);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateX(16px);
+    opacity: 0;
+  } /* move out and disappear */
 }
 
 .sectionTitle {
@@ -808,7 +832,6 @@
 }
 
 /* Facilities Section */
-
 
 /* Customer Stories Section */
 .customerStoriesSection {
@@ -1118,336 +1141,6 @@
 
   .storyImage {
     height: 200px;
-  }
-}
-
-/* Feedback Section */
-.feedbackSection {
-  margin: 100px 0 0 0;
-  width: 100vw; /* full-bleed background */
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw; /* stretch to full viewport width */
-  margin-right: -50vw;
-  background: #F3F8F2; /* light pastel green background */
-  padding: 60px 0; /* vertical padding only; inner handles horizontal */
-}
-
-.feedbackInner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 40px; /* keep horizontal padding inside the centered container */
-}
-
-.feedbackHeader {
-  text-align: left;
-  margin-bottom: 50px;
-}
-
-.feedbackTitle {
-  font-family: "Playfair Display", serif;
-  font-weight: 400;
-  font-size: clamp(32px, 4vw, 48px);
-  color: #333;
-  margin: 0 0 16px 0;
-}
-
-.feedbackSubtitle {
-  margin: 0;
-  color: #666;
-  font-size: clamp(16px, 1.8vw, 20px);
-  font-weight: 400;
-}
-
-.feedbackSubtitle strong {
-  font-weight: 700;
-}
-
-.feedbackCarousel {
-  position: relative;
-}
-
-.feedbackContainer {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.feedbackTrack {
-  display: flex;
-  gap: 24px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  padding: 0 10px;
-}
-
-.feedbackTrack::-webkit-scrollbar {
-  display: none;
-}
-
-.feedbackCard {
-  position: relative;
-  min-width: 320px;
-  height: 460px;
-  border-radius: 24px;
-  background-size: cover;
-  background-position: center;
-  overflow: hidden;
-  scroll-snap-align: start;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
-  flex-shrink: 0;
-}
-
-/* Blur the background image for each feedback card */
-.feedbackCard::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  background: rgba(0, 0, 0, 0.15); /* subtle darken to improve contrast */
-  z-index: 1;
-}
-
-.feedbackCard::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.5) 0%,
-    rgba(0, 0, 0, 0.35) 40%,
-    rgba(0, 0, 0, 0.6) 100%
-  );
-  z-index: 1;
-}
-
-.feedbackCardOverlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start; /* place all content at the top */
-  align-items: flex-start;
-  gap: 6px;
-  padding: 12px 18px 20px;
-  z-index: 2;
-}
-
-/* Bottom meta row: date (left) • service (right) */
-.feedbackMeta {
-  position: absolute;
-  left: 20px;
-  right: 20px;
-  bottom: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 14px;
-  z-index: 2;
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 0.9rem;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
-}
-
-.feedbackMetaItem {
-  opacity: 0.95;
-}
-
-.feedbackMetaDot {
-  margin: 0;
-  opacity: 0.8;
-}
-
-/* Constrain text width like reference so text sits left and readable */
-.feedbackContent {
-  max-width: 70%;
-}
-.feedbackComment {
-  max-width: 100%;
-}
-
-.feedbackStars {
-  color: #FFD700;
-  font-size: 24px;
-  letter-spacing: 3px;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-  align-self: flex-start;
-}
-
-.feedbackContent {
-  color: #ffffff;
-  text-align: left;
-}
-
-.feedbackName {
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin: 0 0 12px 0;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
-  color: #ffffff;
-}
-
-.feedbackComment {
-  margin: 0;
-  font-size: 1rem;
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.9);
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
-  text-align: left;
-}
-
-.playButton {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 60px;
-  height: 60px;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 3;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-}
-
-.playIcon {
-  color: #333;
-  font-size: 20px;
-  margin-left: 3px;
-}
-
-.feedbackArrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.9);
-  border: none;
-  color: #333;
-  font-size: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-  cursor: pointer;
-  z-index: 4;
-  transition: all 0.3s ease;
-}
-
-.feedbackArrow:hover {
-  background: #ffffff;
-  transform: translateY(-50%) scale(1.1);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-}
-
-.feedbackArrowLeft {
-  left: -22px;
-}
-
-.feedbackArrowRight {
-  right: -22px;
-}
-
-/* Responsive Design */
-@media (max-width: 1024px) {
-  .feedbackCard {
-    min-width: 280px;
-  }
-  
-  .feedbackTrack {
-    gap: 20px;
-  }
-}
-
-@media (max-width: 768px) {
-  .feedbackSection {
-    padding: 40px 0;
-  }
-  .feedbackInner {
-    padding: 0 20px;
-  }
-  
-  .feedbackCard {
-    min-width: 250px;
-    height: 350px;
-  }
-  
-  .feedbackTrack {
-    gap: 16px;
-  }
-  
-  .feedbackArrowLeft {
-    left: -20px;
-  }
-  
-  .feedbackArrowRight {
-    right: -20px;
-  }
-}
-
-@media (max-width: 480px) {
-  .feedbackSection {
-    padding: 30px 0;
-    margin-top: 60px;
-  }
-  .feedbackInner {
-    padding: 0 15px;
-  }
-  
-  .feedbackTitle {
-    font-size: 28px;
-  }
-  
-  .feedbackSubtitle {
-    font-size: 16px;
-  }
-  
-  .feedbackCard {
-    min-width: calc(100vw - 80px);
-    height: 320px;
-  }
-  
-  .feedbackContainer {
-    gap: 10px;
-  }
-  
-  .feedbackTrack {
-    gap: 12px;
-    padding: 0 5px;
-  }
-  
-  .feedbackArrow {
-    width: 36px;
-    height: 36px;
-    font-size: 20px;
-  }
-  
-  .feedbackArrowLeft {
-    left: -18px;
-  }
-  
-  .feedbackArrowRight {
-    right: -18px;
-  }
-  
-  .playButton {
-    width: 50px;
-    height: 50px;
-  }
-  
-  .playIcon {
-    font-size: 16px;
   }
 }
 

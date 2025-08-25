@@ -172,12 +172,7 @@ const BeautyKnowledge = () => {
                 </div>
               </div>
             </div>
-
-            {/* Câu chuyện khách hàng */}
-            
           </div>
-
-
           <div className={styles.customerStoriesSection}>
         <h2 className={styles.storiesTitle}>Câu chuyện khách hàng</h2>
         <p className={styles.storiesSubtitle}>

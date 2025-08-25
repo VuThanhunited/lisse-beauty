@@ -1,0 +1,573 @@
+/* Feedback Section */
+.feedbackContent {
+  padding: 0;
+  max-width: 100%;
+  margin: 0 auto;
+}
+.feedbackSection {
+  margin: 100px 0 0 0;
+  width: 100vw; /* full-bleed background */
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw; /* stretch to full viewport width */
+  margin-right: -50vw;
+  background: #f3f8f2; /* light pastel green background */
+  padding: 60px 0; /* vertical padding only; inner handles horizontal */
+}
+.feedbackInner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px; /* keep horizontal padding inside the centered container */
+}
+
+.feedbackHeader {
+  text-align: left;
+  margin-bottom: 50px;
+}
+
+.feedbackTitleContainer {
+  margin-bottom: 16px;
+}
+
+.feedbackTitle {
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  font-size: clamp(32px, 4vw, 48px);
+  color: #000000; /* màu đen */
+  margin: 0;
+  line-height: 1.2;
+}
+
+.feedbackSubtitle {
+  margin: 0 0 20px 0;
+  color: #000000; /* màu đen */
+  font-size: clamp(16px, 1.8vw, 20px);
+  font-weight: 400;
+}
+
+.feedbackDivider {
+  width: 100%; /* Kéo dài đến chiều rộng của nội dung */
+  height: 2px;
+  background: #000000; /* màu đen */
+  margin: 0;
+}
+
+.feedbackSubtitle strong {
+  font-weight: 700;
+}
+
+.feedbackCarousel {
+  position: relative;
+}
+
+.feedbackSlideshow {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.feedbackContainer {
+  flex: 1;
+  overflow: hidden;
+  border-radius: 20px;
+  position: relative;
+  margin: 0 60px; /* Add margin to prevent cards from covering arrows */
+}
+
+.feedbackTrack {
+  display: flex;
+  gap: 30px;
+  padding: 0;
+  /* Infinite carousel with cloned cards: original 4 + 2 clones = 6 total */
+  width: calc((320px + 30px) * 6); /* Width for 6 cards (4 real + 2 clones) */
+  /* Transform và transition được điều khiển bởi inline style */
+  will-change: transform;
+}
+
+/* Responsive track width */
+@media (max-width: 1024px) {
+  .feedbackTrack {
+    width: calc((280px + 25px) * 6);
+  }
+}
+
+@media (max-width: 768px) {
+  .feedbackTrack {
+    width: calc((250px + 20px) * 6);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .feedbackTrack {
+    width: calc((100vw - 80px + 15px) * 6);
+    gap: 15px;
+  }
+}
+
+.feedbackTrack::-webkit-scrollbar {
+  display: none;
+}
+
+.feedbackCard {
+  position: relative;
+  min-width: 320px;
+  width: 320px;
+  height: 520px; /* Tăng chiều cao từ 460px lên 520px */
+  border-radius: 20px;
+  overflow: hidden;
+  scroll-snap-align: start;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+  background: white;
+  transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1), box-shadow 0.4s ease;
+  will-change: transform;
+}
+
+.feedbackCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.feedbackCardBg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+
+/* Blur the background image for each feedback card */
+.feedbackCard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  background: rgba(0, 0, 0, 0.15); /* subtle darken to improve contrast */
+  z-index: 1;
+}
+
+.feedbackCard::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 0.35) 40%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+  z-index: 1;
+}
+
+.feedbackCardOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 30px;
+  z-index: 3;
+}
+
+/* Bottom meta row: date (left) • service (right) */
+.feedbackMeta {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 14px;
+  z-index: 2;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.9rem;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+.feedbackMetaItem {
+  opacity: 0.95;
+}
+
+.feedbackMetaDot {
+  margin: 0;
+  opacity: 0.8;
+}
+
+/* Constrain text width like reference so text sits left and readable */
+.feedbackContent {
+  max-width: 70%;
+}
+.feedbackComment {
+  max-width: 100%;
+}
+
+.feedbackStars {
+  color: #ffd700;
+  font-size: 24px;
+  letter-spacing: 3px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  align-self: flex-start;
+}
+
+.feedbackContent {
+  color: #ffffff;
+  text-align: left;
+}
+
+.feedbackName {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0 0 12px 0;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+}
+
+.feedbackComment {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  text-align: left;
+}
+
+.feedbackCardVideo .feedbackCardOverlay {
+  display: none; /* Ẩn text overlay cho video card */
+}
+
+.playButton {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.playButton:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.playIcon {
+  color: #333;
+  font-size: 24px;
+  margin-left: 4px;
+}
+
+.feedbackArrow {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  color: #333;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  z-index: 4;
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+  will-change: transform;
+}
+
+.feedbackArrowLeft {
+  position: absolute;
+  left: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.feedbackArrowRight {
+  position: absolute;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.feedbackArrow:hover {
+  background: #a8d5ba;
+  color: white;
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.feedbackArrowLeft:hover {
+  transform: translateY(-50%) scale(1.1);
+}
+
+.feedbackArrowRight:hover {
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* Carousel Indicators */
+.feedbackIndicators {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.feedbackDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+  will-change: transform;
+}
+
+.feedbackDot:hover {
+  background: rgba(0, 0, 0, 0.5);
+  transform: scale(1.2);
+}
+
+.feedbackDotActive {
+  background: #000000;
+  transform: scale(1.3);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .feedbackCard {
+    min-width: 280px;
+    width: 280px;
+    height: 480px; /* Tăng chiều cao cho tablet */
+  }
+
+  .feedbackTrack {
+    gap: 25px;
+  }
+
+  .feedbackSlideshow {
+    gap: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .feedbackSection {
+    padding: 40px 0;
+  }
+  .feedbackInner {
+    padding: 0 20px;
+  }
+
+  .feedbackContainer {
+    margin: 0 50px;
+  }
+
+  .feedbackCard {
+    min-width: 250px;
+    width: 250px;
+    height: 420px; /* Tăng chiều cao cho mobile */
+  }
+
+  .feedbackTrack {
+    width: calc((250px + 20px) * 6);
+    gap: 20px;
+  }
+
+  .feedbackSlideshow {
+    gap: 10px;
+  }
+
+  .feedbackArrowLeft {
+    left: -50px;
+  }
+
+  .feedbackArrowRight {
+    right: -50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .feedbackSection {
+    padding: 30px 0;
+    margin-top: 60px;
+  }
+  .feedbackInner {
+    padding: 0 15px;
+  }
+
+  .feedbackContainer {
+    margin: 0 45px;
+  }
+
+  .feedbackTitle {
+    font-size: 28px;
+  }
+
+  .feedbackSubtitle {
+    font-size: 16px;
+  }
+
+  .feedbackCard {
+    min-width: calc(100vw - 80px);
+    width: calc(100vw - 80px);
+    height: 380px; /* Tăng chiều cao cho mobile nhỏ */
+  }
+
+  .feedbackSlideshow {
+    gap: 5px;
+  }
+
+  .feedbackTrack {
+    gap: 15px;
+    padding: 0;
+  }
+
+  .feedbackArrow {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .feedbackArrowLeft {
+    left: -45px;
+  }
+
+  .feedbackArrowRight {
+    right: -45px;
+  }
+
+  .playButton {
+    width: 50px;
+    height: 50px;
+  }
+
+  .playIcon {
+    font-size: 16px;
+  }
+}
+
+/* Flex row to split title (left) and arrow (right) */
+.headerRowSpaceBetween {
+  display: grid;
+  grid-template-columns: auto 1fr auto; /* title | spacer | arrow */
+  align-items: end;
+  width: 100%;
+  column-gap: 16px;
+  row-gap: 8px;
+}
+
+/* Arrow-in-circle placed outside to the right of the title */
+.titleArrowBtn {
+  position: absolute;
+  left: calc(100% + 12px); /* sit just outside the title */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  background: #fff;
+  color: #000;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* hide moving arrows */
+  border: 1px solid #000;
+  opacity: 1; /* Show the arrow button */
+  pointer-events: auto;
+}
+
+/* When used on the far-right of the header row, reset absolute positioning */
+.titleArrowBtnRight {
+  position: static;
+  transform: none;
+  grid-column: 3;
+}
+
+.arrowIcon {
+  position: absolute;
+  font-size: 30px;
+  line-height: 1;
+  transition: transform 280ms ease, opacity 240ms ease;
+  will-change: transform, opacity;
+}
+
+/* default state: slanted arrow visible, right arrow hidden to the left */
+.arrowSlanted {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.arrowRight {
+  opacity: 0;
+  transform: translateX(-8px);
+}
+
+/* Hover sequence: slanted arrow goes down and fades out, right arrow appears then slides to the right and fades */
+.titleArrowBtn:hover .arrowSlanted {
+  animation: slanted-seq 700ms ease forwards;
+}
+
+.titleArrowBtn:hover .arrowRight {
+  animation: right-seq 700ms ease forwards;
+}
+@keyframes slanted-seq {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  40% {
+    transform: translateY(6px);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(6px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  } /* return to original */
+}
+
+@keyframes right-seq {
+  0% {
+    transform: translateX(-8px);
+    opacity: 0;
+  }
+  30% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  60% {
+    transform: translateX(10px);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateX(16px);
+    opacity: 0;
+  } /* move out and disappear */
+}
