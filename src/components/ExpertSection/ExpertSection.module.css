@@ -39,18 +39,22 @@
 .expertCarouselContainer {
   width: 100%;
   overflow: hidden;
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 .expertTrack {
+  display: flex;
+  transition: transform 600ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
   width: 100%;
-  display: grid;
-  grid-auto-flow: column;
-  gap: 30px;
-  grid-auto-columns: calc((100% - 30px) / 2); /* 2 visible on desktop */
 }
 
 .expertSlideItem {
-  width: 100%;
+  flex: 0 0 50%;
+  width: 50%;
+  padding: 0 15px;
+  box-sizing: border-box;
 }
 
 /* Direction-aware transitions */
@@ -150,7 +154,7 @@
 }
 
 .expertCardV2 {
-  background: #7c9885; /* green container */
+  background: #7c9885;
   border-radius: 36px;
   padding: 36px;
   display: grid;
@@ -159,6 +163,8 @@
   gap: 24px;
   color: #fff;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  transition: all 400ms ease;
+  transform: scale(1);
 }
 
 .expertText h3 {
@@ -182,12 +188,19 @@
   background: transparent;
   color: #fff;
   border: 2px solid #fff;
-  padding: 14px 26px;
+  padding: 12px 20px;
   border-radius: 999px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.25s ease;
   position: relative;
+  font-size: 14px;
+  min-width: 180px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
 .expertOutlineBtn:hover {
@@ -216,20 +229,20 @@
 .expertPhotoWrap {
   height: 320px;
   border-radius: 28px;
-  background: #ece9ef; /* light neutral similar to mock */
+  background: #ece9ef;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0), 0 10px 30px rgba(0, 0, 0, 0.12);
-  padding: 20px; /* space around portrait like mock */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  padding: 20px;
 }
 
 .expertPhotoWrap img {
   width: 86%;
   height: auto;
   max-height: 100%;
-  object-fit: contain; /* show margins similar to mock */
+  object-fit: contain;
 }
 
 .carouselBtn {
@@ -260,11 +273,29 @@
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
+.carouselBtn:active {
+  transform: translateY(-50%) scale(1.05);
+  transition: all 0.1s ease;
+}
+
+.carouselBtn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.carouselBtn.disabled:hover {
+  background: white;
+  color: #7c9885;
+  transform: translateY(-50%) scale(1);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
 .carouselBtn:first-of-type {
-  left: -40px;
+  left: 40px;
 }
 .carouselBtn:last-of-type {
-  right: -40px;
+  right: 40px;
 }
 
 .expertCards {
@@ -444,4 +475,87 @@
   background: #7c9885;
   transform: scale(1.3);
   box-shadow: 0 0 0 3px rgba(124, 152, 133, 0.3);
+}
+
+/* Mobile responsive styles */
+@media (max-width: 768px) {
+  .expertCarousel {
+    padding: 0 60px;
+  }
+  
+  .expertSlideItem {
+    flex: 0 0 100%;
+    width: 100%;
+  }
+  
+  .expertCardV2 {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 20px;
+    padding: 24px;
+  }
+  
+  .expertText {
+    text-align: center;
+  }
+  
+  .expertPhotoWrap {
+    height: 280px;
+    order: -1;
+  }
+  
+  .expertText h3 {
+    font-size: 24px;
+  }
+  
+  .carouselBtn {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+  }
+  
+  .carouselBtn:first-of-type {
+    left: 20px;
+  }
+  .carouselBtn:last-of-type {
+    right: 20px;
+  }
+  
+  .expertSection {
+    padding: 60px 0;
+  }
+  
+  .expertSection h2 {
+    font-size: 2rem;
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .expertCarousel {
+    padding: 0 50px;
+  }
+  
+  .expertCardV2 {
+    padding: 20px;
+    border-radius: 24px;
+  }
+  
+  .expertPhotoWrap {
+    height: 240px;
+    border-radius: 20px;
+  }
+  
+  .carouselBtn {
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+  }
+  
+  .carouselBtn:first-of-type {
+    left: 10px;
+  }
+  .carouselBtn:last-of-type {
+    right: 10px;
+  }
 }

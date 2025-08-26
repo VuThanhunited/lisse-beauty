@@ -12,17 +12,12 @@ import expertImg2 from "../../data/519421760_122120777714891459_5490134016365387
 import expertImg3 from "../../data/520240366_122120843918891459_7638784159492956398_n.jpg";
 
 const ExpertSection = () => {
-  const [currentExpert, setCurrentExpert] = useState(0);
-  
-  // Services-like carousel state for Expert section
-  const [visibleCount, setVisibleCount] = useState(
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const expTrackRef = useRef(null);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [visibleCards, setVisibleCards] = useState(
     typeof window !== "undefined" && window.innerWidth <= 768 ? 1 : 2
   );
-  const clonesCount = Math.max(1, visibleCount);
-  const expTrackRef = useRef(null);
-  const [expIndex, setExpIndex] = useState(clonesCount);
-  const [expIsTransitioning, setExpIsTransitioning] = useState(true);
-  const [expStepPx, setExpStepPx] = useState(0);
 
   const experts = useMemo(
     () => [
@@ -51,105 +46,60 @@ const ExpertSection = () => {
     []
   );
 
-  const nextExpert = () => {
-    setExpIndex((p) => p + 1);
-  };
+  const maxSlides = Math.max(0, experts.length - visibleCards + 1);
 
-  const prevExpert = () => {
-    setExpIndex((p) => p - 1);
-  };
+  const nextExpert = useCallback(() => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setCurrentSlide((prev) => (prev + 1) % maxSlides);
+    
+    setTimeout(() => setIsTransitioning(false), 600);
+  }, [maxSlides, isTransitioning]);
 
-  // Prepare extended experts with clones (like services)
-  const displayedExperts = useMemo(() => experts, [experts]);
+  const prevExpert = useCallback(() => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setCurrentSlide((prev) => (prev - 1 + maxSlides) % maxSlides);
+    
+    setTimeout(() => setIsTransitioning(false), 600);
+  }, [maxSlides, isTransitioning]);
 
   // Smart navigation to specific slide
   const goToSlide = useCallback(
     (targetIndex) => {
-      const n = displayedExperts.length;
-      if (n === 0) return;
+      if (isTransitioning || targetIndex === currentSlide) return;
       
-      // Direct jump to target slide (considering clones)
-      const targetExpIndex = clonesCount + targetIndex;
-      setExpIndex(targetExpIndex);
+      setIsTransitioning(true);
+      setCurrentSlide(targetIndex);
+      
+      setTimeout(() => setIsTransitioning(false), 600);
     },
-    [displayedExperts.length, clonesCount]
+    [currentSlide, isTransitioning]
   );
 
-  const extendedExperts = useMemo(() => {
-    const n = displayedExperts.length;
-    if (n === 0) return [];
-    const cc = Math.max(1, Math.min(clonesCount, n));
-    const head = displayedExperts.slice(0, cc);
-    const tail = displayedExperts.slice(-cc);
-    return [...tail, ...displayedExperts, ...head];
-  }, [displayedExperts, clonesCount]);
-
-  // Measure slide width + gap
-  useEffect(() => {
-    const measureStep = () => {
-      const track = expTrackRef.current;
-      if (!track) return;
-      const firstSlide = track.querySelector(`.${styles.expertSlideItem}`);
-      if (!firstSlide) return;
-      const slideW = firstSlide.getBoundingClientRect().width;
-      const stylesComp = window.getComputedStyle(track);
-      const gapStr = stylesComp.columnGap || stylesComp.gap || "0px";
-      const gap = parseFloat(gapStr) || 0;
-      setExpStepPx(slideW + gap);
-    };
-    measureStep();
-    window.addEventListener("resize", measureStep);
-    return () => window.removeEventListener("resize", measureStep);
-  }, [displayedExperts.length, visibleCount]);
-
-  // Responsive visible count
+  // Handle responsive visible cards
   useEffect(() => {
     const handleResize = () => {
-      setVisibleCount(window.innerWidth <= 768 ? 1 : 2);
+      const newVisibleCards = window.innerWidth <= 768 ? 1 : 2;
+      setVisibleCards(newVisibleCards);
+      setCurrentSlide(0); // Reset to first slide on resize
     };
+    
     handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Reset index when clonesCount or data change
+  // Auto-rotation effect (optional)
   useEffect(() => {
-    setExpIsTransitioning(false);
-    setExpIndex(Math.max(1, clonesCount));
-    const id = requestAnimationFrame(() =>
-      requestAnimationFrame(() => setExpIsTransitioning(true))
-    );
-    return () => cancelAnimationFrame(id);
-  }, [clonesCount, displayedExperts.length]);
-
-  // Snap when reaching clones
-  const handleExpTransitionEnd = useCallback(() => {
-    const n = displayedExperts.length;
-    if (n === 0) return;
-    const firstReal = clonesCount;
-    const lastReal = clonesCount + n - 1;
-    if (expIndex < firstReal) {
-      setExpIsTransitioning(false);
-      setExpIndex(lastReal);
-      requestAnimationFrame(() =>
-        requestAnimationFrame(() => setExpIsTransitioning(true))
-      );
-    } else if (expIndex > lastReal) {
-      setExpIsTransitioning(false);
-      setExpIndex(firstReal);
-      requestAnimationFrame(() =>
-        requestAnimationFrame(() => setExpIsTransitioning(true))
-      );
-    }
-  }, [expIndex, displayedExperts.length, clonesCount]);
-
-  // Sync currentExpert from expIndex
-  useEffect(() => {
-    const n = displayedExperts.length;
-    if (n === 0) return;
-    const current = (((expIndex - clonesCount) % n) + n) % n;
-    setCurrentExpert(current);
-  }, [expIndex, displayedExperts.length, clonesCount]);
+    const interval = setInterval(() => {
+      if (!isTransitioning) {
+        nextExpert();
+      }
+    }, 4000); // Auto-rotate every 4 seconds
+    
+    return () => clearInterval(interval);
+  }, [nextExpert, isTransitioning]);
 
   return (
     <div className={styles.brandStoryPage}>
@@ -160,26 +110,26 @@ const ExpertSection = () => {
           <div className={styles.container}>
             <h2>Đội ngũ chuyên gia</h2>
             <div className={styles.expertCarousel}>
-              <button className={styles.carouselBtn} onClick={prevExpert}>
+              <button 
+                className={`${styles.carouselBtn} ${isTransitioning ? styles.disabled : ''}`} 
+                onClick={prevExpert}
+                disabled={isTransitioning}
+              >
                 ‹
               </button>
 
-              {/* Services-like track with clones */}
+              {/* Horizontal Slideshow Container */}
               <div className={styles.expertCarouselContainer}>
                 <div
                   className={styles.expertTrack}
                   ref={expTrackRef}
                   style={{
-                    transform: `translate3d(-${expIndex * expStepPx}px, 0, 0)`,
-                    transition: expIsTransitioning
-                      ? "transform 500ms ease"
-                      : "none",
+                    transform: `translateX(-${currentSlide * (100 / visibleCards)}%)`,
                   }}
-                  onTransitionEnd={handleExpTransitionEnd}
                 >
-                  {extendedExperts.map((expert, index) => (
+                  {experts.map((expert, index) => (
                     <div
-                      key={`${expert.id}-${index}`}
+                      key={expert.id}
                       className={styles.expertSlideItem}
                     >
                       <div className={styles.expertCardV2}>
@@ -204,18 +154,22 @@ const ExpertSection = () => {
                 </div>
               </div>
 
-              <button className={styles.carouselBtn} onClick={nextExpert}>
+              <button 
+                className={`${styles.carouselBtn} ${isTransitioning ? styles.disabled : ''}`} 
+                onClick={nextExpert}
+                disabled={isTransitioning}
+              >
                 ›
               </button>
             </div>
 
             {/* Carousel indicators */}
             <div className={styles.carouselIndicators}>
-              {experts.map((_, index) => (
+              {Array.from({ length: maxSlides }).map((_, index) => (
                 <button
                   key={index}
                   className={`${styles.indicator} ${
-                    index === currentExpert ? styles.active : ""
+                    index === currentSlide ? styles.active : ""
                   }`}
                   onClick={() => goToSlide(index)}
                 />

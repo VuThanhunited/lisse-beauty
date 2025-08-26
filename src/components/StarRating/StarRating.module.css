@@ -1,0 +1,30 @@
+.starRating {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+}
+
+.star {
+  color: var(--star-color, #ffd700);
+  transition: all 0.2s ease;
+}
+
+.star.small {
+  font-size: 0.8rem;
+}
+
+.star.medium {
+  font-size: 1rem;
+}
+
+.star.large {
+  font-size: 1.2rem;
+}
+
+.star.filled {
+  opacity: 1;
+}
+
+.star.empty {
+  opacity: 0.3;
+}

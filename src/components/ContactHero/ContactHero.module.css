@@ -1,0 +1,44 @@
+.heroSection {
+  height: 60vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("https://images.unsplash.com/photo-1611660336035-d1bb2ae64b45?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTAwNDR8MHwxfHNlYXJjaHwyfHxzcGElMjBiZWF1dHklMjBza2luY2FyZSUyMHdvbWFuJTIwbmF0dXJhbCUyMHNvZnQlMjBsaWdodGluZ3xlbnwwfDB8fHwxNzU2MjIwNzUyfDA&ixlib=rb-4.1.0&q=85") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.heroOverlay {
+  text-align: center;
+  color: white;
+  z-index: 2;
+}
+
+.heroTitle {
+  font-size: 4rem;
+  font-weight: 300;
+  margin: 0;
+  font-family: "Playfair Display", serif;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+  .heroSection {
+    height: 40vh;
+  }
+  
+  .heroTitle {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroSection {
+    height: 35vh;
+  }
+  
+  .heroTitle {
+    font-size: 2.5rem;
+  }
+}

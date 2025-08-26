@@ -4,6 +4,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import styles from "./Services.module.css";
 import RightSidebar from "../../components/RightSidebar/RightSidebar";
+import FeedbackContent from "../../components/Feedback/Feedback";
 import axios from "axios";
 // Import images
 import glowingBrowImg from "../../data/518600115_122120764574891459_5021028668652265494_n.jpg";
@@ -113,7 +114,7 @@ const Service = () => {
           </div>
         </div>
       </div>
-
+      <FeedbackContent />
       <Footer />
     </div>
   );

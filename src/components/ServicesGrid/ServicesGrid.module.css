@@ -1,0 +1,139 @@
+.servicesSection {
+  padding: 80px 20px;
+  background: #f8f9fa;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 60px;
+  position: relative;
+  width: 100%;
+}
+
+.sectionHeader h2 {
+  font-size: 2.8rem;
+  color: var(--heading);
+  font-weight: 300;
+  margin: 0;
+  text-align: left;
+  font-family: "Playfair Display", serif;
+  letter-spacing: -0.5px;
+  flex: 1;
+}
+
+.sectionUnderline {
+  position: absolute;
+  left: 0;
+  bottom: -15px;
+  width: 100%;
+  height: 2px;
+  background: var(--heading);
+}
+
+.scrollToTopBtn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: white;
+  border: 2px solid var(--secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(124, 152, 133, 0.2);
+  margin-top: 8px;
+}
+
+.scrollToTopBtn:hover {
+  background: var(--secondary);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(124, 152, 133, 0.3);
+}
+
+.arrowIcon {
+  font-size: 20px;
+  color: var(--secondary);
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.scrollToTopBtn:hover .arrowIcon {
+  color: white;
+  transform: rotate(45deg);
+}
+
+.serviceGrid {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .servicesSection {
+    padding: 60px 15px;
+  }
+  
+  .sectionHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 40px;
+  }
+  
+  .sectionHeader h2 {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+  }
+  
+  .scrollToTopBtn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 40px;
+    height: 40px;
+  }
+  
+  .arrowIcon {
+    font-size: 16px;
+  }
+  
+  .sectionUnderline {
+    width: 200px;
+    bottom: -10px;
+  }
+  
+  .serviceGrid {
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .sectionHeader h2 {
+    font-size: 1.8rem;
+  }
+  
+  .scrollToTopBtn {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .arrowIcon {
+    font-size: 14px;
+  }
+  
+  .sectionUnderline {
+    width: 150px;
+  }
+}
