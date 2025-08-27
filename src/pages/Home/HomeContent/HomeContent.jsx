@@ -1,7 +1,7 @@
 import styles from "./HomeContent.module.css";
 import { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import axios from "axios";
-import facility1 from "../../../data/cơ sở vật chất-1.jpg";
+import facility1 from "../../../data/KimlyIMG/Ban-sao-Lax56484Kim-Ly-scaled-e1751540571892.webp";
 import Footer from "../../../components/Footer/Footer";
 import Facility from "../../../components/Facility/Facility";
 import FeedbackContent from "../../../components/Feedback/Feedback";

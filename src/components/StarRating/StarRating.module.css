@@ -1,30 +1,72 @@
 .starRating {
   display: flex;
-  gap: 2px;
+  gap: 3px;
   align-items: center;
 }
 
 .star {
-  color: var(--star-color, #ffd700);
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: scale(1);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 }
 
-.star.small {
-  font-size: 0.8rem;
+.star:hover {
+  transform: scale(1.1);
 }
 
-.star.medium {
-  font-size: 1rem;
+.star.small svg {
+  width: 14px;
+  height: 14px;
 }
 
-.star.large {
-  font-size: 1.2rem;
+.star.medium svg {
+  width: 16px;
+  height: 16px;
+}
+
+.star.large svg {
+  width: 20px;
+  height: 20px;
 }
 
 .star.filled {
+  color: #ffd700;
   opacity: 1;
+  animation: starGlow 2s ease-in-out infinite alternate;
 }
 
 .star.empty {
-  opacity: 0.3;
+  color: rgba(255, 255, 255, 0.4);
+  opacity: 0.6;
+}
+
+@keyframes starGlow {
+  0% {
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  }
+  100% {
+    filter: drop-shadow(0 2px 8px rgba(255, 215, 0, 0.4));
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .starRating {
+    gap: 2px;
+  }
+  
+  .star.small svg {
+    width: 12px;
+    height: 12px;
+  }
+  
+  .star.medium svg {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .star.large svg {
+    width: 16px;
+    height: 16px;
+  }
 }

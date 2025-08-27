@@ -64,18 +64,6 @@ const ExpertSection = () => {
     setTimeout(() => setIsTransitioning(false), 600);
   }, [maxSlides, isTransitioning]);
 
-  // Smart navigation to specific slide
-  const goToSlide = useCallback(
-    (targetIndex) => {
-      if (isTransitioning || targetIndex === currentSlide) return;
-      
-      setIsTransitioning(true);
-      setCurrentSlide(targetIndex);
-      
-      setTimeout(() => setIsTransitioning(false), 600);
-    },
-    [currentSlide, isTransitioning]
-  );
 
   // Handle responsive visible cards
   useEffect(() => {
@@ -161,19 +149,6 @@ const ExpertSection = () => {
               >
                 ›
               </button>
-            </div>
-
-            {/* Carousel indicators */}
-            <div className={styles.carouselIndicators}>
-              {Array.from({ length: maxSlides }).map((_, index) => (
-                <button
-                  key={index}
-                  className={`${styles.indicator} ${
-                    index === currentSlide ? styles.active : ""
-                  }`}
-                  onClick={() => goToSlide(index)}
-                />
-              ))}
             </div>
           </div>
         </div>

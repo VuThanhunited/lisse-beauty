@@ -426,14 +426,15 @@ const BrandStory = () => {
           </div>
         </div>
 
-        {/* Brand Ambassador Section */}
-        <div className={styles.ambassadorSection}>
-          <div className={styles.container}>
-            <div className={styles.ambassadorContent}>
-              <h2>Mỗi khách hàng đều là đại sứ thương hiệu</h2>
-            </div>
-          </div>
+        {/* Hero Banner */}
+      <div className={styles.heroSection}>
+        <div className={styles.heroOverlay}>
+          <h1 className={styles.heroTitle}>
+            Mỗi khách hàng đều là{" "}
+            <span className={styles.scriptText}>đại sứ thương hiệu</span>
+          </h1>
         </div>
+      </div>
         {/* Expert Team Section */}
         <ExpertSection />
       </div>

@@ -1,0 +1,294 @@
+.bookingSection {
+  background: #f8f9fa;
+  padding: 60px 20px;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.bookingContent {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  background: white;
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.imageSection {
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+}
+
+.bookingImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.imageOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(124, 152, 133, 0.8) 0%,
+    rgba(44, 85, 48, 0.9) 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.imageSection:hover .imageOverlay {
+  opacity: 1;
+}
+
+.imageSection:hover .bookingImage {
+  transform: scale(1.05);
+}
+
+.overlayContent {
+  text-align: center;
+  color: white;
+  padding: 20px;
+}
+
+.overlayTitle {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  font-family: "Playfair Display", serif;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.overlayText {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  margin: 0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.formSection {
+  padding: 40px;
+}
+
+.formHeader {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.formTitle {
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: 600;
+  color: var(--heading);
+  margin-bottom: 15px;
+  font-family: "Playfair Display", serif;
+}
+
+.formSubtitle {
+  font-size: 1.1rem;
+  color: var(--text);
+  margin: 0;
+  opacity: 0.8;
+}
+
+.bookingForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.formInput {
+  padding: 18px 25px;
+  border: 2px solid #e8e8e8;
+  border-radius: 25px;
+  font-size: 1rem;
+  background: #f9f9f9;
+  color: var(--text);
+  transition: all 0.3s ease;
+  outline: none;
+  font-family: inherit;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.formInput:focus {
+  border-color: var(--secondary);
+  background: white;
+  box-shadow: 0 0 0 3px rgba(124, 152, 133, 0.1);
+}
+
+.formInput::placeholder {
+  color: #999;
+}
+
+.formInput option {
+  padding: 10px;
+  background: white;
+  color: var(--text);
+}
+
+.submitButton {
+  padding: 20px 30px;
+  background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 8px 25px rgba(124, 152, 133, 0.3);
+}
+
+.submitButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(124, 152, 133, 0.4);
+  background: linear-gradient(135deg, var(--secondary-dark), #5a7361);
+}
+
+/* Tablet and Desktop */
+@media (min-width: 768px) {
+  .bookingContent {
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+  
+  .imageSection {
+    height: auto;
+    min-height: 500px;
+  }
+  
+  .formSection {
+    padding: 60px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .formRow {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1024px) {
+  .bookingSection {
+    padding: 80px 20px;
+  }
+  
+  .formSection {
+    padding: 80px 60px;
+  }
+}
+
+/* Mobile Optimizations */
+@media (max-width: 480px) {
+  .bookingSection {
+    padding: 40px 10px;
+  }
+  
+  .bookingContent {
+    border-radius: 20px;
+    gap: 0;
+    margin: 0 5px;
+  }
+  
+  .imageSection {
+    height: 250px;
+  }
+  
+  .formSection {
+    padding: 25px 15px;
+  }
+  
+  .formHeader {
+    margin-bottom: 25px;
+  }
+  
+  .bookingForm {
+    gap: 15px;
+  }
+  
+  .formInput {
+    padding: 12px 15px;
+    font-size: 0.95rem;
+  }
+  
+  .submitButton {
+    padding: 15px 20px;
+    font-size: 0.95rem;
+  }
+  
+  .overlayTitle {
+    font-size: 1.4rem;
+  }
+  
+  .overlayText {
+    font-size: 0.9rem;
+  }
+  
+  .container {
+    padding: 0 5px;
+  }
+}
+
+/* Animation for form elements */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.formGroup {
+  animation: fadeInUp 0.6s ease-out;
+  animation-fill-mode: both;
+}
+
+.formGroup:nth-child(1) { animation-delay: 0.1s; }
+.formGroup:nth-child(2) { animation-delay: 0.2s; }
+.formGroup:nth-child(3) { animation-delay: 0.3s; }
+.formRow { animation-delay: 0.4s; }
+.submitButton { 
+  animation: fadeInUp 0.6s ease-out;
+  animation-delay: 0.5s;
+  animation-fill-mode: both;
+}

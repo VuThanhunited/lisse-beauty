@@ -1,0 +1,51 @@
+.container {
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+.padding-default {
+  padding: 0 20px;
+}
+
+.padding-small {
+  padding: 0 15px;
+}
+
+.padding-large {
+  padding: 0 30px;
+}
+
+.padding-none {
+  padding: 0;
+}
+
+@media (max-width: 768px) {
+  .padding-default {
+    padding: 0 15px;
+  }
+  
+  .padding-small {
+    padding: 0 10px;
+  }
+  
+  .padding-large {
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .padding-default {
+    padding: 0 10px;
+  }
+  
+  .padding-small {
+    padding: 0 5px;
+  }
+  
+  .padding-large {
+    padding: 0 15px;
+  }
+}

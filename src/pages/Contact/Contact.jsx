@@ -67,7 +67,7 @@ const Contact = () => {
           <div className={styles.contactContent}>
             <ContactInfo 
               phone="0886 357 357"
-              email="kimlyeyebrows@gmail.com"
+              email="lissebeauty@gmail.com"
               workingHours="Từ 9h00 đến 20h00 hằng ngày"
               socialLinks={socialLinks}
             />

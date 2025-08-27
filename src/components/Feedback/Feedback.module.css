@@ -32,7 +32,7 @@
 
 .feedbackTitle {
   font-family: "Playfair Display", serif;
-  font-weight: 700;
+  font-weight: lighter;
   font-size: clamp(32px, 4vw, 48px);
   color: #000000; /* màu đen */
   margin: 0;

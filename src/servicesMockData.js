@@ -22,28 +22,51 @@ export const mockRootProps = {
       id: 1,
       customerName: "Nguyễn Thuỷ Tiên",
       rating: 5,
-      comment: "Dịch vụ tốt , quá trình làm không đau, không bị xưng, màu môi chị Thoa làm cho em rất là ưng ý, tuyệt vờiii ạ",
+      comment: "Dịch vụ tốt, quá trình làm không đau, không bị xưng, màu môi chị Thoa làm cho em rất là ưng ý, tuyệt vờiii ạ",
       date: "4 - Tháng 6",
       service: "Hairstroke",
-      avatar: "https://i.pravatar.cc/150?img=1"
+      avatar: "https://i.pravatar.cc/150?img=1",
+      type: "text"
     },
     {
       id: 2,
       customerName: "Nguyễn Hân Trúc",
       rating: 5,
-      comment: "Dịch vụ tốt , quá trình làm không đau, không bị xưng, màu môi chị Thoa làm cho em rất là ưng ý, tuyệt vờiii ạ",
+      comment: "Dịch vụ tốt, quá trình làm không đau, không bị xưng, màu môi chị Thoa làm cho em rất là ưng ý, tuyệt vờiii ạ",
       date: "4 - Tháng 6", 
-      service: "Hairstroke",
-      avatar: "https://i.pravatar.cc/150?img=2"
+      service: "Glowing Brow",
+      avatar: "https://i.pravatar.cc/150?img=2",
+      type: "text"
     },
     {
       id: 3,
       customerName: "Nguyễn Hà",
       rating: 5,
-      comment: "Dịch vụ tốt , quá trình làm không đau, không bị xưng, màu môi chị Thoa làm cho em rất là ưng ý, tuyệt vờiii ạ",
+      comment: "",
       date: "4 - Tháng 6",
       service: "Hairstroke", 
-      avatar: "https://i.pravatar.cc/150?img=3"
+      avatar: "https://i.pravatar.cc/150?img=3",
+      type: "video"
+    },
+    {
+      id: 4,
+      customerName: "Trần Minh Anh",
+      rating: 5,
+      comment: "Chị em ở đây rất tận tâm, kỹ thuật cao, làm xong mình rất hài lòng. Sẽ quay lại ủng hộ tiếp!",
+      date: "2 - Tháng 6",
+      service: "Glowing Brow",
+      avatar: "https://i.pravatar.cc/150?img=4",
+      type: "text"
+    },
+    {
+      id: 5,
+      customerName: "Lê Thị Mai",
+      rating: 5,
+      comment: "Spa rất sạch sẽ, nhân viên chu đáo. Kết quả vượt ngoài mong đợi của mình. Cảm ơn team rất nhiều!",
+      date: "1 - Tháng 6",
+      service: "Hairstroke",
+      avatar: "https://i.pravatar.cc/150?img=5",
+      type: "text"
     }
   ]
 };
