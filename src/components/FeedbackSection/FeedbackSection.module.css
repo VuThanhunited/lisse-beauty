@@ -1,0 +1,193 @@
+/* Modern Feedback Section with Glassmorphism */
+.feedbackSection {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  padding: 120px 0;
+  background: linear-gradient(135deg, #f0f9f4 0%, #e8f5e8 100%);
+  overflow: hidden;
+}
+
+.feedbackSection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(124, 152, 133, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(232, 102, 126, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+  position: relative;
+  z-index: 1;
+}
+
+.feedbackSlideshow {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-top: 60px;
+}
+
+.feedbackContainer {
+  flex: 1;
+  overflow: hidden;
+  border-radius: 24px;
+  position: relative;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 20px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.feedbackTrack {
+  display: flex;
+  gap: 30px;
+  will-change: transform;
+  padding: 10px 0;
+}
+
+/* Progress Indicators */
+.progressIndicators {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 50px;
+}
+
+.progressDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(124, 152, 133, 0.3);
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+}
+
+.progressDot::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--secondary);
+  border-radius: 50%;
+  transform: scale(0);
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.progressDot:hover {
+  transform: scale(1.2);
+  background: rgba(124, 152, 133, 0.5);
+}
+
+.progressDot.active {
+  transform: scale(1.3);
+  background: var(--secondary);
+  box-shadow: 0 0 20px rgba(124, 152, 133, 0.4);
+}
+
+.progressDot.active::before {
+  transform: scale(1);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .feedbackSection {
+    padding: 100px 0;
+  }
+  
+  .container {
+    padding: 0 30px;
+  }
+  
+  .feedbackSlideshow {
+    gap: 20px;
+  }
+  
+  .feedbackTrack {
+    gap: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .feedbackSection {
+    padding: 80px 0;
+  }
+  
+  .container {
+    padding: 0 20px;
+  }
+  
+  .feedbackSlideshow {
+    gap: 15px;
+    margin-top: 40px;
+  }
+  
+  .feedbackTrack {
+    gap: 20px;
+  }
+  
+  .progressIndicators {
+    margin-top: 40px;
+    gap: 10px;
+  }
+  
+  .progressDot {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .feedbackSection {
+    padding: 60px 0;
+  }
+  
+  .container {
+    padding: 0 15px;
+  }
+  
+  .feedbackContainer {
+    padding: 15px;
+    border-radius: 20px;
+  }
+  
+  .feedbackSlideshow {
+    gap: 10px;
+    margin-top: 30px;
+  }
+  
+  .feedbackTrack {
+    gap: 15px;
+  }
+  
+  .progressIndicators {
+    margin-top: 30px;
+    gap: 8px;
+  }
+  
+  .progressDot {
+    width: 8px;
+    height: 8px;
+  }
+}

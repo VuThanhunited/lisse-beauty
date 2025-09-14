@@ -5,6 +5,7 @@ import facility1 from "../../../data/KimlyIMG/Ban-sao-Lax56484Kim-Ly-scaled-e175
 import Footer from "../../../components/Footer/Footer";
 import Facility from "../../../components/Facility/Facility";
 import FeedbackContent from "../../../components/Feedback/Feedback";
+import Header from "../../../components/Header/Header";
 
 // Before/After Slider Component (kept minimal and self-contained)
 const BeforeAfterSlider = ({
@@ -140,10 +141,11 @@ const BeforeAfterSlider = ({
 const HomeContent = () => {
   // Data state
   const [services, setServices] = useState([]);
+  const [activeStoryIndex, setActiveStoryIndex] = useState(null);
 
   // Services slideshow state (discrete with infinite loop)
   const [visibleCount, setVisibleCount] = useState(
-    typeof window !== "undefined" && window.innerWidth <= 768 ? 1 : 2
+    typeof window !== "undefined" && window.innerWidth <= 768 ? 1 : 3
   );
   const clonesCount = Math.max(1, visibleCount);
   const [svcIndex, setSvcIndex] = useState(clonesCount);
@@ -190,7 +192,7 @@ const HomeContent = () => {
   // Services responsive visible count and step measurement
   useEffect(() => {
     const handleResize = () => {
-      setVisibleCount(window.innerWidth <= 768 ? 1 : 2);
+      setVisibleCount(window.innerWidth <= 768 ? 1 : 3);
     };
 
     const measureStep = () => {
@@ -266,8 +268,22 @@ const HomeContent = () => {
     }
   }, []);
 
+  // Mobile-only toggle for story overlay; desktop will use CSS :hover
+  const handleStoryClick = useCallback((idx) => {
+    if (typeof window === "undefined") return;
+    const isTouchDevice =
+      window.matchMedia && window.matchMedia("(hover: none)").matches;
+    if (!isTouchDevice) return; // ignore clicks on desktop
+    setActiveStoryIndex((cur) => (cur === idx ? null : idx));
+  }, []);
+
   return (
     <div className={styles.homeContent}>
+      {/* Mobile Header */}
+      <div className={styles.mobileHeaderWrapper}>
+        <Header />
+      </div>
+
       {/* Services - Slideshow */}
       <div className={styles.servicesSection} id="services">
         <div className={styles.sectionHeader}>
@@ -295,21 +311,11 @@ const HomeContent = () => {
                 →
               </span>
             </button>
-            <div
-              className={`${styles.sectionUnderline} ${styles.sectionUnderlineFull}`}
-            ></div>
           </div>
         </div>
 
         <div className={styles.carousel}>
           <div className={styles.carouselContainer}>
-            <button
-              className={styles.prevBtn}
-              aria-label="Dịch chuyển dịch vụ trước"
-              onClick={() => setSvcIndex((p) => p - 1)}
-            >
-              &#8249;
-            </button>
             <div
               className={styles.carouselTrack}
               ref={svcTrackRef}
@@ -322,10 +328,15 @@ const HomeContent = () => {
               onTransitionEnd={handleSvcTransitionEnd}
             >
               {extendedServices.map((service, index) => {
+                // Determine the visually centered card index
+                const centerOffset = visibleCount === 3 ? 1 : 0;
+                const isCenter = index === svcIndex + centerOffset;
                 return (
                   <div
                     key={`${service.id}-${index}`}
-                    className={`${styles.slideItem} ${styles.customSlide}`}
+                    className={`${styles.slideItem} ${styles.customSlide} ${
+                      isCenter ? styles.centerActive : ""
+                    }`}
                   >
                     <div
                       className={
@@ -343,7 +354,9 @@ const HomeContent = () => {
                         className={styles.slideImgRounded}
                       />
                       <div
-                        className={`${styles.slideOverlay} ${styles.customSlideOverlay}`}
+                        className={`${styles.slideOverlay} ${
+                          styles.customSlideOverlay
+                        } ${isCenter ? styles.centerTint : ""}`}
                       >
                         <div className={styles.slideTextWrap}>
                           <h3 className={styles.slideTitle}>{service.title}</h3>
@@ -359,12 +372,33 @@ const HomeContent = () => {
                 );
               })}
             </div>
+          </div>
+          <div className={styles.carouselNav}>
+            <button
+              className={styles.prevBtn}
+              aria-label="Dịch chuyển dịch vụ trước"
+              onClick={() => setSvcIndex((p) => p - 1)}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+              </svg>
+            </button>
             <button
               className={styles.nextBtn}
               aria-label="Dịch chuyển dịch vụ tiếp theo"
               onClick={() => setSvcIndex((p) => p + 1)}
             >
-              &#8250;
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+              </svg>
             </button>
           </div>
         </div>
@@ -400,15 +434,22 @@ const HomeContent = () => {
                 →
               </span>
             </button>
+
+            <p className={styles.storiesSubtitle}>
+              Cùng chúng tôi kể lên câu chuyện của chính mình
+            </p>
           </div>
         </div>
-        <p className={styles.storiesSubtitle}>
-          Cùng chúng tôi kể lên câu chuyện của chính mình
-        </p>
 
         <div className={styles.storiesContainer}>
           {[0, 1, 2].map((idx) => (
-            <div className={styles.storyCard} key={idx}>
+            <div
+              className={`${styles.storyCard} ${
+                activeStoryIndex === idx ? styles.isActive : ""
+              }`}
+              key={idx}
+              onClick={() => handleStoryClick(idx)}
+            >
               <div className={styles.storyImageWrapper}>
                 <img
                   src={

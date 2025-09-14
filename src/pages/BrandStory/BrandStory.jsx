@@ -2,19 +2,21 @@ import React, { useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import RightSidebar from "../../components/RightSidebar/RightSidebar";
+import TimelineSection from "../../components/TimelineSection/TimelineSection";
 import styles from "./BrandStory.module.css";
 import Facility from "../../components/Facility/Facility";
 import ExpertSection from "../../components/ExpertSection/ExpertSection";
+import { timelineMockData } from "../../data/timelineMockData";
 // Import images
 import bannerImg from "../../data/banner.jpg";
 import ceoImg from "../../data/518342647_122120769032891459_4219618419434067516_n.jpg";
 import coreValuesImg from "../../data/518375107_122120771042891459_3218480619733617655_n.jpg";
 
 const BrandStory = () => {
-  const [expandedVision, setExpandedVision] = useState(true);
+  const [expandedVision, setExpandedVision] = useState(false);
   const [expandedMission, setExpandedMission] = useState(false);
   const [expandedValues, setExpandedValues] = useState({
-    sutule: true,
+    sutule: false,
     yeucaidep: false,
     tinhthancautien: false,
     phongcachsong: false,
@@ -48,6 +50,7 @@ const BrandStory = () => {
     });
   };
 
+
   return (
     <div className={styles.brandStoryPage}>
       <Navbar />
@@ -57,11 +60,11 @@ const BrandStory = () => {
       <div className={styles.bannerSection}>
         <img
           src={bannerImg}
-          alt="Brand Story Banner"
+          alt="Lisse Beauty"
           className={styles.bannerImage}
         />
         <div className={styles.bannerOverlay}>
-          <h1>Câu chuyện thương hiệu</h1>
+          <h1>Hành trình Lisse Beauty</h1>
         </div>
       </div>
 
@@ -110,7 +113,24 @@ const BrandStory = () => {
                       thế giới.
                     </p>
                     <button className={styles.button} onClick={toggleVision}>
-                      <span>▼</span> Tầm nhìn
+                      <span className={styles.btnIcon} aria-hidden="true">
+                        <svg
+                          width="20"
+                          height="20"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M7 10l5 5 5-5"
+                            stroke="currentColor"
+                            strokeWidth="2.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </span>
+                      Tầm nhìn
                     </button>
                   </>
                 ) : (
@@ -136,7 +156,24 @@ const BrandStory = () => {
                       className={styles.expandedButton}
                       onClick={toggleVision}
                     >
-                      <span>▲</span> Tầm nhìn
+                      <span className={styles.btnIcon} aria-hidden="true">
+                        <svg
+                          width="20"
+                          height="20"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M7 14l5-5 5 5"
+                            stroke="currentColor"
+                            strokeWidth="2.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </span>
+                      Tầm nhìn
                     </button>
                   </div>
                 )}
@@ -157,7 +194,24 @@ const BrandStory = () => {
                       hàng ở mọi giai đoạn cuộc đời.
                     </p>
                     <button className={styles.button} onClick={toggleMission}>
-                      <span>▼</span> Sứ mệnh
+                      <span className={styles.btnIcon} aria-hidden="true">
+                        <svg
+                          width="20"
+                          height="20"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M7 10l5 5 5-5"
+                            stroke="currentColor"
+                            strokeWidth="2.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </span>
+                      Sứ mệnh
                     </button>
                   </>
                 ) : (
@@ -182,7 +236,24 @@ const BrandStory = () => {
                       className={styles.expandedButton}
                       onClick={toggleMission}
                     >
-                      <span>▲</span> Sứ mệnh
+                      <span className={styles.btnIcon} aria-hidden="true">
+                        <svg
+                          width="20"
+                          height="20"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M7 14l5-5 5 5"
+                            stroke="currentColor"
+                            strokeWidth="2.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </span>
+                      Sứ mệnh
                     </button>
                   </div>
                 )}
@@ -203,20 +274,38 @@ const BrandStory = () => {
                     onClick={() => toggleValue("sutule")}
                   >
                     <span className={styles.arrow}>
-                      {expandedValues.sutule ? "▲" : "▼"}
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                        focusable="false"
+                      >
+                        <path
+                          d="M7 10l5 5 5-5"
+                          stroke="#ffffff"
+                          strokeWidth="3"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
                     </span>
                     <h3>Sự tử tế</h3>
                   </button>
-                  {expandedValues.sutule && (
-                    <div className={styles.valueExpanded}>
-                      <p>
-                        Luôn đối xử với khách hàng, đồng nghiệp và đối tác bằng
-                        tinh thần chân thành – trách nhiệm – tôn trọng. Duy trì
-                        một môi trường thân thiện, an toàn, thúc đẩy sự phát
-                        triển của từng cá nhân.
-                      </p>
-                    </div>
-                  )}
+                  <div
+                    className={`${styles.valueExpanded} ${
+                      expandedValues.sutule ? styles.open : ""
+                    }`}
+                  >
+                    <p>
+                      Luôn đối xử với khách hàng, đồng nghiệp và đối tác bằng
+                      tinh thần chân thành – trách nhiệm – tôn trọng. Duy trì
+                      một môi trường thân thiện, an toàn, thúc đẩy sự phát triển
+                      của từng cá nhân.
+                    </p>
+                  </div>
                 </div>
 
                 <div className={styles.valueItem}>
@@ -227,20 +316,38 @@ const BrandStory = () => {
                     onClick={() => toggleValue("yeucaidep")}
                   >
                     <span className={styles.arrow}>
-                      {expandedValues.yeucaidep ? "▲" : "▼"}
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                        focusable="false"
+                      >
+                        <path
+                          d="M7 10l5 5 5-5"
+                          stroke="#ffffff"
+                          strokeWidth="3"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
                     </span>
                     <h3>Yêu cái đẹp</h3>
                   </button>
-                  {expandedValues.yeucaidep && (
-                    <div className={styles.valueExpanded}>
-                      <p>
-                        Đam mê không ngừng trong việc tạo ra và lan tỏa vẻ đẹp.
-                        Chúng tôi tin rằng mỗi người đều có vẻ đẹp riêng và sứ
-                        mệnh của chúng tôi là giúp họ khám phá và tôn vinh điều
-                        đó.
-                      </p>
-                    </div>
-                  )}
+                  <div
+                    className={`${styles.valueExpanded} ${
+                      expandedValues.yeucaidep ? styles.open : ""
+                    }`}
+                  >
+                    <p>
+                      Đam mê không ngừng trong việc tạo ra và lan tỏa vẻ đẹp.
+                      Chúng tôi tin rằng mỗi người đều có vẻ đẹp riêng và sứ
+                      mệnh của chúng tôi là giúp họ khám phá và tôn vinh điều
+                      đó.
+                    </p>
+                  </div>
                 </div>
 
                 <div className={styles.valueItem}>
@@ -251,20 +358,37 @@ const BrandStory = () => {
                     onClick={() => toggleValue("tinhthancautien")}
                   >
                     <span className={styles.arrow}>
-                      {expandedValues.tinhthancautien ? "▲" : "▼"}
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                        focusable="false"
+                      >
+                        <path
+                          d="M7 10l5 5 5-5"
+                          stroke="#ffffff"
+                          strokeWidth="3"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
                     </span>
                     <h3>Tinh thần cầu tiến</h3>
                   </button>
-                  {expandedValues.tinhthancautien && (
-                    <div className={styles.valueExpanded}>
-                      <p>
-                        Không ngừng học hỏi, đổi mới để mang đến những trải
-                        nghiệm tốt nhất. Chúng tôi luôn tìm kiếm những xu hướng
-                        mới, công nghệ tiên tiến và phương pháp làm đẹp an toàn
-                        nhất.
-                      </p>
-                    </div>
-                  )}
+                  <div
+                    className={`${styles.valueExpanded} ${
+                      expandedValues.tinhthancautien ? styles.open : ""
+                    }`}
+                  >
+                    <p>
+                      Không ngừng học hỏi, đổi mới để mang đến những trải nghiệm
+                      tốt nhất. Chúng tôi luôn tìm kiếm những xu hướng mới, công
+                      nghệ tiên tiến và phương pháp làm đẹp an toàn nhất.
+                    </p>
+                  </div>
                 </div>
 
                 <div className={styles.valueItem}>
@@ -275,20 +399,45 @@ const BrandStory = () => {
                     onClick={() => toggleValue("phongcachsong")}
                   >
                     <span className={styles.arrow}>
-                      {expandedValues.phongcachsong ? "▲" : "▼"}
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                        focusable="false"
+                      >
+                        <path
+                          d="M7 10l5 5 5-5"
+                          stroke="#ffffff"
+                          strokeWidth="3"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
                     </span>
                     <h3>Phong cách sống</h3>
                   </button>
-                  {expandedValues.phongcachsong && (
-                    <div className={styles.valueExpanded}>
-                      <p>
-                        Làm đẹp không chỉ là dịch vụ, mà là cách sống tích cực
-                        và lành mạnh. Chúng tôi khuyến khích khách hàng xây dựng
-                        thói quen chăm sóc bản thân một cách bền vững và khoa
-                        học.
-                      </p>
-                    </div>
-                  )}
+                  <div
+                    className={`${styles.valueExpanded} ${
+                      expandedValues.phongcachsong ? styles.open : ""
+                    }`}
+                  >
+                    <p>
+                      Làm đẹp không chỉ là dịch vụ, mà là cách sống tích cực và
+                      lành mạnh. Chúng tôi khuyến khích khách hàng xây dựng thói
+                      quen chăm sóc bản thân một cách bền vững và khoa học.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Mobile image under the Core Values tags (matches mock) */}
+                <div className={styles.valuesMobileImage}>
+                  <img
+                    src={coreValuesImg}
+                    alt="Hình ảnh minh họa giá trị cốt lõi"
+                  />
                 </div>
               </div>
 
@@ -298,143 +447,19 @@ const BrandStory = () => {
             </div>
           </div>
 
-          {/* History Timeline Section */}
-          <div className={styles.historySection}>
-            <h2>Lịch sử hình thành</h2>
-
-            <div className={styles.timelineContainer}>
-              {/* Timeline Item 1 - Left Side */}
-              <div className={`${styles.timelineItem} ${styles.left}`}>
-                <div className={styles.timelineContent}>
-                  <div className={styles.timelineImage}>
-                    <img src={coreValuesImg} alt="Năm 2021" />
-                  </div>
-                  <div className={styles.timelineText}>
-                    <div className={styles.timelineTitle}>
-                      <h4>Khởi nguồn đam mê</h4>
-                    </div>
-                    <p>
-                      Thành lập KIMLY Beauty tại Hà Nội, bắt đầu từ một studio
-                      nhỏ chuyên phun xăm thẩm mỹ với 3 chuyên viên. Đặt nền
-                      móng cho triết lý "Nét đẹp tinh tế" – lấy sự tận tâm, kỹ
-                      thuật và tinh thần thủ công làm gốc.
-                    </p>
-                  </div>
-                </div>
-                <div className={styles.timelineDot}></div>
-                <div className={styles.timelineYear}>
-                  <h3>Năm 2021</h3>
-                </div>
-              </div>
-
-              {/* Timeline Item 2 - Right Side */}
-              <div className={`${styles.timelineItem} ${styles.right}`}>
-                <div className={styles.timelineYear}>
-                  <h3>Năm 2022</h3>
-                </div>
-                <div className={styles.timelineDot}></div>
-                <div className={styles.timelineContent}>
-                  <div className={styles.timelineImage}>
-                    <img src={bannerImg} alt="Năm 2022" />
-                  </div>
-                  <div className={styles.timelineText}>
-                    <div className={styles.timelineTitle}>
-                      <h4>Mở rộng thị trường & hệ thống</h4>
-                    </div>
-                    <p>
-                      Khai trương chi nhánh KIMLY tại TP. Hồ Chí Minh, đánh dấu
-                      bước tiến mới trong việc mở rộng thị trường miền Nam. Nâng
-                      cấp dịch vụ và đầu tư thiết bị hiện đại.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Timeline Item 3 - Left Side */}
-              <div className={`${styles.timelineItem} ${styles.left}`}>
-                <div className={styles.timelineContent}>
-                  <div className={styles.timelineImage}>
-                    <img src={ceoImg} alt="Năm 2023" />
-                  </div>
-                  <div className={styles.timelineText}>
-                    <div className={styles.timelineTitle}>
-                      <h4>Chuẩn hóa vận hành - nâng tầm chất lượng</h4>
-                    </div>
-                    <p>
-                      Xây dựng hệ thống đào tạo nội bộ, chuẩn hóa quy trình kỹ
-                      thuật theo tiêu chí: Tận tâm – Tinh tế – Chuyên nghiệp.
-                      Tái định vị thương hiệu hướng đến phân khúc cao cấp, đồng
-                      bộ trải nghiệm khách hàng trên toàn hệ thống.
-                    </p>
-                  </div>
-                </div>
-                <div className={styles.timelineDot}></div>
-                <div className={styles.timelineYear}>
-                  <h3>Năm 2023</h3>
-                </div>
-              </div>
-
-              {/* Timeline Item 4 - Right Side */}
-              <div className={`${styles.timelineItem} ${styles.right}`}>
-                <div className={styles.timelineYear}>
-                  <h3>Năm 2024</h3>
-                </div>
-                <div className={styles.timelineDot}></div>
-                <div className={styles.timelineContent}>
-                  <div className={styles.timelineImage}>
-                    <img src={bannerImg} alt="Năm 2024" />
-                  </div>
-                  <div className={styles.timelineText}>
-                    <div className={styles.timelineTitle}>
-                      <h4>Chuyển đổi số & mở rộng hiện diện</h4>
-                    </div>
-                    <p>
-                      Chính thức triển khai website đặt lịch & tư vấn trực
-                      tuyến, phát triển nền tảng blog làm đẹp, chatbot. Ra mắt
-                      chi nhánh mới tại khu đô thị Vạn Phúc (Hà Đông, Hà Nội) –
-                      mở rộng tệp khách hàng trung lưu – cao cấp. Đồng thời nâng
-                      cấp nhân diện thương hiệu mới: Hoa Ly & Hồ Ly – thanh cao,
-                      thông minh và tràn đầy sức sống.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Timeline Item 5 - Left Side */}
-              <div className={`${styles.timelineItem} ${styles.left}`}>
-                <div className={styles.timelineContent}>
-                  <div className={styles.timelineImage}>
-                    <img src={coreValuesImg} alt="Năm 2025" />
-                  </div>
-                  <div className={styles.timelineText}>
-                    <div className={styles.timelineTitle}>
-                      <h4>Mở rộng hệ thống</h4>
-                    </div>
-                    <p>
-                      Mở thêm 2 chi nhánh mới tại TP. Hồ Chí Minh và Hà Nội,
-                      nâng tổng số cơ sở hoạt động lên 5. Từng bước chuẩn bị nền
-                      tảng thương hiệu, nhân sự và vận hành.
-                    </p>
-                  </div>
-                </div>
-                <div className={styles.timelineDot}></div>
-                <div className={styles.timelineYear}>
-                  <h3>Năm 2025 - nay</h3>
-                </div>
-              </div>
-            </div>
-          </div>
+          {/* Modern Timeline Section */}
+          <TimelineSection timelineData={timelineMockData} />
         </div>
 
         {/* Hero Banner */}
-      <div className={styles.heroSection}>
-        <div className={styles.heroOverlay}>
-          <h1 className={styles.heroTitle}>
-            Mỗi khách hàng đều là{" "}
-            <span className={styles.scriptText}>đại sứ thương hiệu</span>
-          </h1>
+        <div className={styles.heroSection}>
+          <div className={styles.heroOverlay}>
+            <h1 className={styles.heroTitle}>
+              Mỗi khách hàng đều là{" "}
+              <span className={styles.scriptText}>đại sứ thương hiệu</span>
+            </h1>
+          </div>
         </div>
-      </div>
         {/* Expert Team Section */}
         <ExpertSection />
       </div>

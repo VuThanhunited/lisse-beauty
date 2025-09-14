@@ -16,6 +16,224 @@
   margin: 0 auto;
 }
 
+/* Mobile-only banner + two sections (form and rating) */
+.mobileHeaderWrapper {
+  display: none;
+}
+
+.mobileHeroWrapper {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobileHeaderWrapper {
+    display: block;
+  }
+
+  .mobileHeroWrapper {
+    display: block;
+    background: #f6d9d6; /* soft pink like laptop */
+  }
+  .mobileHero {
+    position: relative;
+    width: 100%;
+    height: 520px;
+    overflow: hidden;
+    /* soft two-tone background like the desktop banner */
+    background: radial-gradient(
+        120% 80% at 50% 10%,
+        rgba(255, 255, 255, 0.45) 0%,
+        rgba(255, 255, 255, 0) 55%
+      ),
+      linear-gradient(180deg, #fbe1de 0%, #f6d9d6 40%, #f3cfcb 100%);
+    box-shadow: inset 0 -30px 60px rgba(0, 0, 0, 0.04),
+      inset 0 20px 40px rgba(255, 255, 255, 0.4);
+  }
+  .mobileHeroImg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  /* Decorative accent: single centered divider line */
+  .mobileHero::before {
+    content: "";
+    position: absolute;
+    background: rgba(0, 0, 0, 0.04);
+    width: 2px;
+    height: 115%;
+    top: -7%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* floating squares */
+  .sq {
+    position: absolute;
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 193, 180, 0.55);
+    border-radius: 6px;
+    animation: floaty 6s ease-in-out infinite;
+  }
+  .sq1 {
+    top: 22%;
+    left: 8%;
+    animation-delay: 0s;
+  }
+  .sq2 {
+    top: 28%;
+    right: 8%;
+    width: 34px;
+    height: 34px;
+    animation-delay: 1s;
+  }
+  .sq3 {
+    bottom: 22%;
+    left: 58%;
+    transform: translateX(-50%);
+    width: 26px;
+    height: 26px;
+    animation-delay: 2s;
+  }
+
+  @keyframes floaty {
+    0%,
+    100% {
+      transform: translateY(0) scale(1);
+    }
+    50% {
+      transform: translateY(-6px) scale(1.02);
+    }
+  }
+
+  /* center ribbon title */
+  .mobileTitleWrap {
+    position: absolute;
+    left: 50%;
+    top: 38%;
+    transform: translate(-50%, -50%);
+    background: rgba(234, 174, 166, 0.9);
+    color: #2b2b2b;
+    padding: 12px 22px;
+    border-radius: 14px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(2px);
+  }
+  .mobileTitleWrap h1 {
+    margin: 0;
+    font-family: "Playfair Display", serif;
+    font-weight: 600;
+    font-size: 27px;
+    letter-spacing: 0.3px;
+    color: #2b2b2b;
+  }
+
+  /* Responsive fine-tuning for small phones */
+  @media (max-width: 420px) {
+    .mobileHero {
+      height: 470px;
+    }
+    .mobileTitleWrap {
+      top: 40%;
+      padding: 10px 18px;
+      border-radius: 12px;
+    }
+    .mobileTitleWrap h1 {
+      font-size: 24px;
+    }
+  }
+
+  .mobileHero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  @media (max-width: 420px) {
+    .sq {
+      opacity: 0.6;
+    }
+  }
+  .mobileCardsArea {
+    margin-top: 12px; /* place clearly below banner */
+    padding: 0 16px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    overflow: visible;
+  }
+  .mobileCardsArea::-webkit-scrollbar {
+    display: none;
+  }
+  .mobileFormCard,
+  .mobileRatingCard {
+    background: #ffffff;
+    border-radius: 22px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    padding: 16px;
+    text-align: center;
+    scroll-snap-align: none;
+  }
+  .mobileFormCard h3,
+  .mobileRatingCard h3 {
+    font-family: "Playfair Display", serif;
+    font-weight: 500;
+    font-size: 22px;
+    margin: 6px 0 10px;
+    color: #2b2b2b;
+  }
+  .mobileFormFields {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .mobileFormFields input {
+    padding: 12px 16px;
+    border-radius: 24px;
+    border: 1px solid #e0e0e0;
+    background: #fff;
+    font-size: 14px;
+  }
+  .mobilePrimaryBtn {
+    margin-top: 4px;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 22px;
+    background: #6f8f7d;
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+  .mobileFeatureCard {
+    display: none;
+  }
+  .mobileRatingCard p {
+    color: #596252;
+    font-size: 14px;
+    margin: 4px 0 10px;
+  }
+  .ratingActions {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+  }
+  .ratingBtn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid #6f8f7d;
+    background: #f2f6f3;
+    color: #6f8f7d;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
 /* Hero Section */
 .heroSection {
   position: relative;
@@ -118,10 +336,7 @@
 
 @media (max-width: 768px) {
   .heroSection {
-    height: 240px;
-  }
-  .heroTitle {
-    font-size: clamp(28px, 6vw, 44px);
+    display: none;
   }
   .ambassadorGrid {
     grid-template-columns: 1fr;
@@ -190,23 +405,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(1.15) contrast(1.25) saturate(1.2)
-    drop-shadow(0 2px 8px rgba(0, 0, 0, 0.12));
   image-rendering: crisp-edges;
   transition: all 0.3s ease;
-}
-
-.afterImage img {
-  filter: brightness(1.15) contrast(1.2) saturate(1.3) hue-rotate(2deg);
-}
-
-.beforeAfterContainer:hover .beforeImage img,
-.beforeAfterContainer:hover .afterImage img {
-  filter: brightness(1.1) contrast(1.15) saturate(1.2);
-}
-
-.beforeAfterContainer:hover .afterImage img {
-  filter: brightness(1.2) contrast(1.25) saturate(1.35) hue-rotate(2deg);
 }
 
 .imageLabel {
@@ -426,6 +626,7 @@
   display: flex;
   justify-content: center; /* center the title block */
   margin-bottom: 28px;
+  border-bottom: 1px solid black;
 }
 
 /* Flex row to split title (left) and arrow (right) */
@@ -435,7 +636,8 @@
   align-items: end;
   width: 100%;
   column-gap: 16px;
-  row-gap: 8px;
+
+  height: 100px;
 }
 
 /* Wrap only the title text and underline so underline width == title width */
@@ -491,6 +693,7 @@
   position: static;
   transform: none;
   grid-column: 3;
+  margin-bottom: 5px;
 }
 
 /* Full underline spans from title (col 1) through spacer (col 2), stopping before arrow (col 3) */
@@ -594,6 +797,7 @@
   /* spacing config */
   --slide-gap: 20px;
   padding: 0 var(--slide-gap); /* add edge spacing to avoid blank at ends */
+  margin-top: 10px;
 }
 
 /* Edge fades like reference video */
@@ -621,6 +825,19 @@
   position: relative;
   flex-shrink: 0;
   transition: opacity 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .slideItem {
+    /* On mobile, show 1 card at a time */
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .carouselContainer {
+    /* Remove horizontal padding to allow full-width slide */
+    padding: 0;
+  }
 }
 /* (duplicate selector cleaned) */
 
@@ -749,10 +966,10 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: #ffffff;
-  border: 2px solid #ffffff;
-  width: 44px;
-  height: 44px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
   font-size: 1.3rem;
   color: #6a7361;
@@ -761,6 +978,8 @@
   z-index: 3;
   box-shadow: none;
 }
+
+/* Arrows visible on all breakpoints like reference */
 
 .prevBtn {
   left: 16px;
@@ -858,7 +1077,7 @@
   font-weight: 300;
   text-align: left;
   padding-bottom: 12px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+
   margin-top: 0px;
 }
 
@@ -940,7 +1159,8 @@
   pointer-events: none;
 }
 
-.storyCard:hover .storyOverlay {
+/* Show overlay only when activated (clicked) */
+.isActive .storyOverlay {
   opacity: 1;
   pointer-events: auto;
 }
@@ -948,28 +1168,48 @@
 .storyContent {
   color: #ffffff;
   width: auto;
-  max-width: 60%;
+  max-width: 62%;
   text-align: left;
-  transform: translateY(24px);
-  transition: transform 0.5s ease;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  opacity: 0;
+  transform: translateY(10px);
 }
 
-.storyCard:hover .storyContent {
+/* Reveal text when active */
+.isActive .storyContent {
+  opacity: 1;
   transform: translateY(0);
+}
+
+/* Desktop/hover devices: reveal on hover without click */
+@media (hover: hover) and (pointer: fine) {
+  .storyCard:hover .storyOverlay {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .storyCard:hover .storyContent {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .storyCard:hover .viewMoreButton {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .storyContent h3 {
   font-family: "Playfair Display", serif;
-  font-size: 1.6rem;
+  font-size: clamp(22px, 2.4vw, 32px);
   font-weight: 500;
-  margin-bottom: 12px;
-  line-height: 1.3;
+  margin-bottom: 10px;
+  line-height: 1.25;
+  letter-spacing: -0.2px;
   text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
   color: #ffffff;
 }
 
 .storyContent p {
-  font-size: 1rem;
+  font-size: clamp(13px, 1.2vw, 16px);
   line-height: 1.5;
   margin-bottom: 20px;
   opacity: 0.95;
@@ -981,19 +1221,19 @@
   color: #2c3e50;
   border: none;
   padding: 10px 20px;
-  border-radius: 24px;
-  font-size: 0.9rem;
+  border-radius: 26px;
+  font-size: 0.95rem;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.25s ease;
   opacity: 0;
   transform: translateY(10px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
-.storyCard:hover .viewMoreButton {
+.isActive .viewMoreButton {
   opacity: 1;
   transform: translateY(0);
-  transition-delay: 0.2s;
 }
 
 .viewMoreButton:hover {
@@ -1200,7 +1440,7 @@
   color: #2c2c2c;
   margin-bottom: 25px;
   text-align: center;
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
   letter-spacing: 0.3px;
   line-height: 1.2;
 }
@@ -1575,9 +1815,7 @@
 
 /* ==== Kimly-like Services Slider Overrides ==== */
 /* Section heading and underline */
-.sectionHeader {
-  margin: 0 0 0;
-}
+
 .sectionHeading {
   font-family: "Playfair Display", serif;
   font-weight: 400;
@@ -1585,11 +1823,6 @@
   letter-spacing: -0.5px;
   color: #2b2b2b;
   margin: 0 0 10px 0;
-}
-.sectionUnderline {
-  height: 1px;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.18);
 }
 
 /* Card overlay text bottom-left */

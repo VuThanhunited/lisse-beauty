@@ -1,7 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
 /* Import new component styles */
+@import './components/FeedbackSection/FeedbackSection.module.css';
+@import './components/FeedbackCard/FeedbackCard.module.css';
 @import './components/NavigationArrows/NavigationArrows.module.css';
+@import './components/FeedbackHeader/FeedbackHeader.module.css';
+@import './components/StarRating/StarRating.module.css';
+@import './components/TimelineSection/TimelineSection.module.css';
+@import './components/TimelineItem/TimelineItem.module.css';
 
 :root {
   /* Kimly-like palette */

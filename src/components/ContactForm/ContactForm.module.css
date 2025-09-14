@@ -6,7 +6,7 @@
 
 .formTitle {
   font-size: 1.8rem;
-  color: var(--heading);
+  color: #5a6b5d;
   margin-bottom: 10px;
   font-weight: 400;
   font-family: "Playfair Display", serif;
@@ -14,7 +14,7 @@
 }
 
 .formSubtitle {
-  color: #666;
+  color: #5a6b5d;
   margin-bottom: 40px;
   text-align: center;
   font-size: 1rem;
@@ -33,12 +33,12 @@
 .formTextarea {
   width: 100%;
   padding: 15px 20px;
-  border: 2px solid #e8e8e8;
+  border: 1px solid #ddd;
   border-radius: 25px;
   font-size: 1rem;
   transition: all 0.3s ease;
   box-sizing: border-box;
-  background: #f9f9f9;
+  background: white;
   outline: none;
   font-family: inherit;
 }
@@ -59,7 +59,7 @@
 .submitButton {
   width: 100%;
   padding: 18px 30px;
-  background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+  background: #5a6b5d;
   color: white;
   border: none;
   border-radius: 25px;
