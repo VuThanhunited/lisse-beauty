@@ -1,0 +1,146 @@
+/* Timeline Section - Zigzag Layout */
+.timelineSection {
+  position: relative;
+  padding: 80px 0;
+  background: #f0f4f0;
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.timelineHeader {
+  text-align: left;
+  margin-bottom: 80px;
+  padding: 0;
+}
+
+.timelineTitle {
+  font-family: "Playfair Display", serif;
+  font-weight: 400;
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  color: #2c2c2c;
+  margin: 0 0 20px 0;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  position: relative;
+  text-align: left;
+}
+
+.titleUnderline {
+  width: 100%;
+  max-width: 400px;
+  height: 1px;
+  background: #2c2c2c;
+  margin: 0;
+  border-radius: 0;
+  position: relative;
+}
+
+.timelineContainer {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Timeline Line - Vertical center line connecting dots */
+.timelineLine {
+  position: absolute;
+  left: 50%;
+  top: 125px;
+  bottom: 240px;
+  width: 3px;
+  background: rgba(124, 152, 133, 0.3);
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+/* Timeline Progress Line */
+.timelineProgress {
+  position: absolute;
+  left: 50%;
+  top: 125px;
+  width: 4px;
+  background: rgba(124, 152, 133, 0.8);
+  transform: translateX(-50%);
+  z-index: 2;
+  height: 0;
+  transition: height 0.6s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .timelineSection {
+    padding: 60px 0;
+  }
+  
+  .container {
+    padding: 0 15px;
+  }
+  
+  .timelineHeader {
+    margin-bottom: 60px;
+  }
+  
+  .titleUnderline {
+    max-width: 300px;
+  }
+  
+  .timelineLine,
+  .timelineProgress {
+    top: 80px;
+    bottom: 80px;
+  }
+}
+
+@media (max-width: 768px) {
+  .timelineSection {
+    padding: 50px 0;
+  }
+  
+  .timelineHeader {
+    margin-bottom: 50px;
+  }
+  
+  .titleUnderline {
+    max-width: 250px;
+  }
+  
+  .timelineContainer {
+    max-width: 100%;
+  }
+  
+  .timelineLine,
+  .timelineProgress {
+    left: 30px;
+    transform: none;
+    top: 60px;
+    bottom: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .timelineSection {
+    padding: 40px 0;
+  }
+  
+  .timelineHeader {
+    margin-bottom: 40px;
+  }
+  
+  .titleUnderline {
+    max-width: 200px;
+  }
+  
+  .timelineLine,
+  .timelineProgress {
+    left: 25px;
+    top: 50px;
+    bottom: 50px;
+  }
+}

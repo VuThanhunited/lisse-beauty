@@ -1,0 +1,487 @@
+/* Facilities Section */
+.facilitiesSection {
+  margin-top: 80px;
+  text-align: center;
+  font-family: "Dancing Script", cursive;
+}
+
+.facilitiesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+  padding: 0 20px;
+}
+
+.facilityCard {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(232, 102, 126, 0.1);
+  transition: all 0.3s ease;
+  border: 2px solid #f0f0f0;
+}
+
+.facilityCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(232, 102, 126, 0.2);
+  border-color: #e8667e;
+}
+
+.facilityImage {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+  border-radius: 15px 15px 0 0;
+}
+
+.facilityImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: contrast(1.05) saturate(1);
+}
+
+.facilityCard:hover .facilityImage img {
+  transform: scale(1.08);
+  filter: contrast(1.1) saturate(1.1);
+}
+
+.facilityOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(
+    transparent 0%,
+    rgba(0, 0, 0, 0.4) 50%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  color: white;
+  padding: 20px;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.facilityCard:hover .facilityOverlay {
+  transform: translateY(0);
+}
+
+.facilityTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 10px 0;
+  font-family: "Playfair Display", "Georgia", serif;
+}
+
+.facilityDescription {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.4;
+  opacity: 0.9;
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  background: #ddd;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.activeDot {
+  background: #e8667e;
+  transform: scale(1.2);
+  box-shadow: 0 0 10px rgba(232, 102, 126, 0.4);
+}
+
+.dot:hover {
+  background: #e8667e;
+  transform: scale(1.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .homeContent {
+    padding: 0;
+  }
+
+  /* Hero Section Mobile */
+  .heroSection {
+    height: 100vh;
+    min-height: 500px;
+  }
+
+  .heroOverlay {
+    padding-top: 20%;
+  }
+
+  .slideTitle {
+    font-size: clamp(28px, 3.2vw, 42px);
+    font-weight: 700;
+    margin: 0;
+    font-family: "Playfair Display", "Georgia", serif;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    text-align: left;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+  }
+
+  .sliderButton {
+    width: 30px;
+    height: 30px;
+    font-size: 12px;
+  }
+
+  .beforeAfterTitle h3 {
+    font-size: 1.2rem;
+  }
+
+  .heroSlideImage {
+    height: 150px;
+  }
+
+  .heroPrevBtn,
+  .heroNextBtn {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+
+  .heroPrevBtn {
+    left: -20px;
+  }
+
+  .heroNextBtn {
+    right: -20px;
+  }
+
+  .servicesSection {
+    padding: 60px 15px;
+  }
+
+  .sectionTitle {
+    font-size: 2rem;
+    margin-bottom: 30px;
+  }
+
+  .carouselTrack {
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .slideItem {
+    min-width: calc(100% - 0px);
+  }
+
+  .slideImage {
+    height: 280px;
+    border-width: 2px;
+  }
+
+  .slideTitle {
+    font-size: 1.5rem;
+  }
+
+  .slideDescription {
+    font-size: 0.9rem;
+  }
+
+  .prevBtn,
+  .nextBtn {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+
+  .prevBtn {
+    left: -20px;
+  }
+
+  .nextBtn {
+    right: -20px;
+  }
+
+  /* Show overlay by default on mobile */
+  .slideOverlay {
+    opacity: 1;
+    transform: translateY(0);
+    background: linear-gradient(
+      transparent 0%,
+      rgba(0, 0, 0, 0.4) 50%,
+      rgba(0, 0, 0, 0.8) 100%
+    );
+    justify-content: flex-end;
+    padding-bottom: 30px;
+  }
+
+  .slideTitle,
+  .slideDescription {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  /* Facilities responsive */
+  .facilitiesGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0 10px;
+  }
+
+  .facilityImage {
+    height: 200px;
+  }
+
+  .facilityOverlay {
+    transform: translateY(0);
+    position: static;
+    background: linear-gradient(
+      transparent 0%,
+      rgba(0, 0, 0, 0.4) 50%,
+      rgba(0, 0, 0, 0.8) 100%
+    );
+    padding: 15px;
+  }
+
+  .facilityTitle {
+    font-size: 1.3rem;
+  }
+
+  .slideDescription {
+    margin-top: 8px;
+    font-size: 1rem;
+    color: #ffffff;
+    line-height: 1.5;
+    text-align: left;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    opacity: 0; /* hidden by default */
+    transition: opacity 0.25s ease;
+  }
+
+  .slideImage:hover .slideDescription {
+    opacity: 1; /* appear on hover */
+  }
+
+  .prevBtn,
+  .nextBtn {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+  }
+
+  .prevBtn {
+    left: -15px;
+  }
+
+  .nextBtn {
+    right: -15px;
+  }
+
+  /* Facilities responsive for small screens */
+  .facilitiesSection {
+    margin-top: 60px;
+  }
+
+  .facilityImage {
+    height: 180px;
+  }
+
+  .facilityTitle {
+    font-size: 1.2rem;
+  }
+
+  .facilityDescription {
+    font-size: 0.85rem;
+  }
+
+  .kimlyFacilitiesContainer {
+    padding: 0 10px;
+  }
+
+  .mainFacilityImage {
+    margin: 0;
+    width: 100%;
+  }
+}
+
+/* Lisse Beauty Facilities Section */
+.lisseBeautyFacilitiesSection {
+  margin-top: 80px;
+  text-align: center;
+  /* Background like sample: water-drop pattern */
+  background-image: url("../../data/Anh-nen.png");
+  background-size: cover; /* fill section */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #e9efe9; /* subtle fallback tone */
+  padding-bottom: 40px; /* give space so bg is visible under thumbnails */
+}
+
+.facilitiesHeader {
+  max-width: 1200px;
+  margin: 0 auto 16px auto;
+  text-align: center;
+}
+.facilitiesHeading {
+  font-family: "Playfair Display", serif;
+  font-weight: 400;
+  font-size: clamp(32px, 4.2vw, 56px);
+  letter-spacing: -0.5px;
+  color: #2b2b2b;
+  margin: 0 0 8px 0;
+}
+.facilitiesHeadingBar {
+  height: 1px;
+  width: 340px; /* underline ngắn như mẫu */
+  background: black;
+  margin: 10px auto 18px auto; /* canh giữa dưới tiêu đề */
+}
+.facilityTabs {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.facilityTab {
+  background: transparent;
+  color: #2b2b2b;
+  border: 1px solid transparent; /* chỉ hiện khung khi hover */
+  padding: 8px 16px;
+  border-radius: 28px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.facilityTab:hover,
+.facilityTab:focus-visible {
+  background: #ffffff; /* nền trắng khi hover */
+  border-color: rgba(0, 0, 0, 0.2); /* hiện khung khi hover */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+.activeFacilityTab {
+  background: #6f8f7d;
+  color: #ffffff;
+  border-color: transparent; /* nền xanh khi click chọn */
+  box-shadow: 0 6px 16px rgba(111, 143, 125, 0.25);
+}
+
+.kimlyFacilitiesContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.mainFacilityImage {
+  width: 100%;
+  height: 580px; /* lớn hơn để giống mẫu */
+  overflow: hidden;
+  border-radius: 28px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12);
+}
+.mainFacilityPhoto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 300ms ease;
+  opacity: 1;
+}
+
+.mainFacilityImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.mainFacilityImage:hover img {
+  transform: scale(1.05);
+}
+
+.facilityThumbnails {
+  display: none;
+}
+
+/* Marquee carousel for facility thumbs */
+.facilityThumbsMarquee {
+  width: 100%;
+  overflow: hidden;
+  margin-top: 22px;
+  position: relative;
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    black 60px,
+    black calc(100% - 60px),
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    black 60px,
+    black calc(100% - 60px),
+    transparent 100%
+  );
+}
+
+.facilityThumbsTrack {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  animation: facility-marquee 28s linear infinite;
+  will-change: transform;
+}
+
+.facilityThumbsMarquee:hover .facilityThumbsTrack {
+  animation-play-state: paused;
+}
+
+.facilityThumbItem {
+  flex: 0 0 260px;
+  height: 140px;
+  overflow: hidden;
+  border-radius: 22px;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.facilityThumbItem img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.facilityThumbItem:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
+}
+
+@keyframes facility-marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+/* Active thumbnail highlight */
+.activeThumbnail {
+  border: 3px solid #6f8f7d;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.16);
+}

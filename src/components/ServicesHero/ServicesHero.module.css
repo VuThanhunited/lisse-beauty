@@ -1,0 +1,46 @@
+.heroSection {
+  height: 60vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("https://images.unsplash.com/photo-1649446326998-a16524cfa667?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTAwNDR8MHwxfHNlYXJjaHwyfHxzcGElMjBiZWF1dHklMjBlbGVnYW50JTIwbmF0dXJhbHxlbnwwfDB8fHwxNzU2MjIxMTc3fDA&ixlib=rb-4.1.0&q=85") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-top: 80px;
+}
+
+.heroOverlay {
+  text-align: center;
+  color: white;
+  z-index: 2;
+}
+
+.heroTitle {
+  font-size: 4rem;
+  font-weight: 300;
+  margin: 0;
+  font-family: "Playfair Display", serif;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+  .heroSection {
+    height: 40vh;
+    margin-top: 70px;
+  }
+  
+  .heroTitle {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroSection {
+    height: 35vh;
+  }
+  
+  .heroTitle {
+    font-size: 2.5rem;
+  }
+}

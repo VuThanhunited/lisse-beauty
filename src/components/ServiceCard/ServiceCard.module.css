@@ -1,0 +1,117 @@
+.serviceCard {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  max-width: 400px;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.serviceCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.15);
+}
+
+.cardImage {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  position: relative;
+}
+
+.cardImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.serviceCard:hover .cardImage img {
+  transform: scale(1.05);
+}
+
+.cardContent {
+  padding: 30px;
+}
+
+.cardContent h3 {
+  font-size: 1.5rem;
+  color: var(--heading);
+  font-weight: 600;
+  margin: 0 0 15px 0;
+  line-height: 1.3;
+  font-family: "Playfair Display", serif;
+}
+
+.cardContent p {
+  color: #6b7280;
+  line-height: 1.6;
+  font-size: 1rem;
+  margin: 0 0 25px 0;
+}
+
+.detailButton {
+  background: white;
+  color: var(--heading);
+  border: 2px solid var(--secondary);
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  font-family: inherit;
+}
+
+.detailButton:hover {
+  background: var(--secondary);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.arrow {
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.detailButton:hover .arrow {
+  transform: translateX(3px);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .serviceCard {
+    max-width: 100%;
+  }
+  
+  .cardImage {
+    height: 250px;
+  }
+  
+  .cardContent {
+    padding: 25px;
+  }
+  
+  .cardContent h3 {
+    font-size: 1.3rem;
+  }
+  
+  .cardContent p {
+    font-size: 0.95rem;
+  }
+}

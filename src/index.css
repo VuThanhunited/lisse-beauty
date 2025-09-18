@@ -1,0 +1,241 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap");
+
+/* Import new component styles */
+@import "./components/FeedbackSection/FeedbackSection.module.css";
+@import "./components/FeedbackCard/FeedbackCard.module.css";
+@import "./components/NavigationArrows/NavigationArrows.module.css";
+@import "./components/FeedbackHeader/FeedbackHeader.module.css";
+@import "./components/StarRating/StarRating.module.css";
+@import "./components/TimelineSection/TimelineSection.module.css";
+@import "./components/TimelineItem/TimelineItem.module.css";
+
+:root {
+  /* Kimly-like palette */
+  --primary: #e8667e; /* pink accent */
+  --primary-dark: #d94570;
+  --secondary: #7c9885; /* sage green */
+  --secondary-dark: #6a8573;
+  --heading: #2c5530; /* deep green for titles */
+  --text: #333333;
+  --bg: #ffffff;
+  --muted: #f7f8f9;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+
+  /* Additional theme tokens for services page */
+  --hero-overlay: rgba(0, 0, 0, 0.4);
+  --card-bg: #ffffff;
+  --card-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+  --card-radius: 20px;
+  --feedback-overlay: rgba(124, 152, 133, 0.9);
+  --star-color: #ffd700;
+  --transition-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  margin: auto;
+}
+
+/* Global reset to prevent horizontal scrolling */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  /* Tối ưu scroll performance nhẹ */
+  scroll-padding-top: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Playfair Display", "Georgia", serif;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+  width: 100%;
+  max-width: 100vw;
+  /* Tối ưu scroll nhẹ không ảnh hưởng positioning */
+  overflow-x: hidden;
+}
+
+/* Prevent any element from causing horizontal scroll */
+#root {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+.App {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* Mobile-first responsive typography */
+@media (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--heading);
+  font-family: "Playfair Display", "Georgia", serif;
+  margin: 0 0 1rem 0;
+  line-height: 1.2;
+}
+
+/* Improved mobile touch targets */
+button,
+input,
+select,
+textarea {
+  min-height: 44px;
+  min-width: 44px;
+  border: none;
+  outline: none;
+}
+
+/* Better mobile form styling */
+input,
+select,
+textarea {
+  font-size: 16px; /* Prevents zoom on iOS */
+  font-family: "Playfair Display", "Georgia", serif;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 480px) {
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+    font-family: "Playfair Display", "Georgia", serif;
+  }
+}
+
+.btn-primary {
+  background: var(--secondary);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 20px;
+  font-family: "Playfair Display", "Georgia", serif;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  box-shadow: 0 2px 12px rgba(124, 152, 133, 0.3);
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: var(--secondary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(124, 152, 133, 0.4);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+/* Utility classes for mobile-first responsive design */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 10px;
+  }
+}
+
+/* Prevent images from overflowing */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Ensure all flex containers don't overflow */
+.flex-container {
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Grid containers */
+.grid-container {
+  display: grid;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Smooth scroll optimizations - không ảnh hưởng fixed positioning */
+@media (prefers-reduced-motion: no-preference) {
+  /* Chỉ tối ưu scroll cho những người không disable motion */
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Tắt smooth scroll cho những người muốn giảm motion */
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Tối ưu nhẹ cho scroll performance mà không ảnh hưởng layout */
+.scroll-content {
+  /* Chỉ áp dụng cho content, không cho sidebar */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Đảm bảo fixed elements không bị ảnh hưởng */
+[style*="position: fixed"],
+.fixed-element {
+  /* Giữ nguyên positioning cho fixed elements */
+  will-change: auto;
+  transform: translateZ(0);
+}
+
+/* Tối ưu scroll cho main content areas */
+main,
+.main-content,
+.content-area {
+  /* Smooth scrolling chỉ cho content chính */
+  scroll-behavior: inherit;
+  -webkit-overflow-scrolling: touch;
+}
