@@ -6,6 +6,23 @@ import Footer from "../../../components/Footer/Footer";
 import Facility from "../../../components/Facility/Facility";
 import FeedbackContent from "../../../components/Feedback/Feedback";
 import Header from "../../../components/Header/Header";
+import {
+  optimizeScrollPerformance,
+  preloadCriticalImages,
+  throttle,
+} from "../../../utils/performanceUtils";
+
+// Inline scroll optimization utilities
+const optimizeElementForScroll = (element) => {
+  if (!element) return;
+  const style = element.style;
+  style.transform = style.transform || "translateZ(0)";
+  style.willChange = "transform, scroll-position";
+  style.backfaceVisibility = "hidden";
+  style.scrollBehavior = "smooth";
+  style.contain = "layout style paint";
+  return element;
+};
 
 // Before/After Slider Component (kept minimal and self-contained)
 const BeforeAfterSlider = ({
@@ -25,15 +42,23 @@ const BeforeAfterSlider = ({
     e.preventDefault();
   };
 
+  const throttledMouseMove = useMemo(
+    () =>
+      throttle((e) => {
+        if (!isDragging || !containerRef.current) return;
+        const rect = containerRef.current.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const percentage = (x / rect.width) * 100;
+        setSliderPosition(Math.max(0, Math.min(100, percentage)));
+      }, 16), // ~60fps throttling
+    [isDragging]
+  );
+
   const handleMouseMove = useCallback(
     (e) => {
-      if (!isDragging || !containerRef.current) return;
-      const rect = containerRef.current.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const percentage = (x / rect.width) * 100;
-      setSliderPosition(Math.max(0, Math.min(100, percentage)));
+      throttledMouseMove(e);
     },
-    [isDragging]
+    [throttledMouseMove]
   );
 
   const handleMouseUp = useCallback(() => setIsDragging(false), []);
@@ -96,14 +121,36 @@ const BeforeAfterSlider = ({
         onMouseDown={handleMouseDown}
       >
         <div className={styles.beforeImage}>
-          <img src={beforeImage} alt={`${title} - Trước`} />
+          <img
+            src={beforeImage}
+            alt={`${title} - Trước`}
+            loading="eager"
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              transform: "translateZ(0)",
+              backfaceVisibility: "hidden",
+            }}
+          />
           <div className={styles.imageLabel}>TRƯỚC</div>
         </div>
         <div
           className={styles.afterImage}
           style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
         >
-          <img src={afterImage} alt={`${title} - Sau`} />
+          <img
+            src={afterImage}
+            alt={`${title} - Sau`}
+            loading="eager"
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              transform: "translateZ(0)",
+              backfaceVisibility: "hidden",
+            }}
+          />
           <div className={styles.imageLabel}>SAU</div>
         </div>
         <div
@@ -139,6 +186,52 @@ const BeforeAfterSlider = ({
 };
 
 const HomeContent = () => {
+  // Refs for scroll optimization
+  const containerRef = useRef(null);
+
+  // Initialize performance optimizations
+  useEffect(() => {
+    optimizeScrollPerformance();
+
+    // Initialize scroll optimizations
+    if (containerRef.current) {
+      optimizeElementForScroll(containerRef.current);
+
+      // Add momentum scrolling for touch devices
+      const style = containerRef.current.style;
+      style.webkitOverflowScrolling = "touch";
+      style.overflowScrolling = "touch";
+    }
+
+    // Add global CSS for smooth scrolling
+    const style = document.createElement("style");
+    style.textContent = `
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 80px;
+      }
+      
+      .${styles.homeContent} {
+        will-change: transform;
+        transform: translateZ(0);
+        backface-visibility: hidden;
+      }
+      
+      .${styles.servicesCarousel} {
+        will-change: transform;
+        transform: translateZ(0);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+    `;
+    document.head.appendChild(style);
+
+    return () => {
+      if (style.parentNode) {
+        style.parentNode.removeChild(style);
+      }
+    };
+  }, []);
+
   // Data state
   const [services, setServices] = useState([]);
   const [activeStoryIndex, setActiveStoryIndex] = useState(null);
@@ -169,6 +262,17 @@ const HomeContent = () => {
           { headers }
         );
         setServices(response.data.results || []);
+
+        // Preload critical images for better performance
+        const criticalImages =
+          response.data.results
+            ?.slice(0, 2)
+            .map((service) => service.serviceImage?.[0]?.url)
+            .filter(Boolean) || [];
+
+        if (criticalImages.length > 0) {
+          preloadCriticalImages(criticalImages);
+        }
       } catch (error) {
         console.error("Error fetching service data:", error);
       }
@@ -261,10 +365,33 @@ const HomeContent = () => {
     clonesCount,
   ]);
 
-  // Scroll to top when clicking the header arrow button
+  // Optimized scroll to top with smooth animation
   const scrollToTop = useCallback(() => {
     if (typeof window !== "undefined") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      // Use our optimized smooth scroll
+      const startY = window.pageYOffset;
+      const targetY = 0;
+      const duration = 1000;
+      const startTime = performance.now();
+
+      const animateScroll = (currentTime) => {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+
+        // Easing function for smooth animation
+        const easeInOutCubic = (t) =>
+          t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+        const easedProgress = easeInOutCubic(progress);
+
+        const currentY = startY + (targetY - startY) * easedProgress;
+        window.scrollTo(0, currentY);
+
+        if (progress < 1) {
+          requestAnimationFrame(animateScroll);
+        }
+      };
+
+      requestAnimationFrame(animateScroll);
     }
   }, []);
 
@@ -278,14 +405,17 @@ const HomeContent = () => {
   }, []);
 
   return (
-    <div className={styles.homeContent}>
+    <div
+      className={`${styles.homeContent} scroll-container`}
+      ref={containerRef}
+    >
       {/* Mobile Header */}
       <div className={styles.mobileHeaderWrapper}>
         <Header />
       </div>
 
       {/* Services - Slideshow */}
-      <div className={styles.servicesSection} id="services">
+      <div className={`${styles.servicesSection} animate`} id="services">
         <div className={styles.sectionHeader}>
           <div className={styles.headerRowSpaceBetween}>
             <div className={styles.sectionTitleWrap}>
@@ -317,13 +447,15 @@ const HomeContent = () => {
         <div className={styles.carousel}>
           <div className={styles.carouselContainer}>
             <div
-              className={styles.carouselTrack}
+              className={`${styles.carouselTrack} carousel-track`}
               ref={svcTrackRef}
               style={{
                 transform: `translate3d(-${svcIndex * svcStepPx}px, 0, 0)`,
                 transition: svcIsTransitioning
-                  ? "transform 500ms ease"
+                  ? "transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
                   : "none",
+                willChange: "transform",
+                backfaceVisibility: "hidden",
               }}
               onTransitionEnd={handleSvcTransitionEnd}
             >
@@ -352,6 +484,14 @@ const HomeContent = () => {
                         }
                         alt={service.title}
                         className={styles.slideImgRounded}
+                        loading="auto"
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                          transform: "translateZ(0)",
+                          backfaceVisibility: "hidden",
+                        }}
                       />
                       <div
                         className={`${styles.slideOverlay} ${
@@ -460,6 +600,14 @@ const HomeContent = () => {
                       : ""
                   }
                   alt={`Câu chuyện khách hàng ${idx + 1}`}
+                  loading={idx < 2 ? "eager" : "auto"}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    transform: "translateZ(0)",
+                    backfaceVisibility: "hidden",
+                  }}
                 />
                 <div className={styles.storyOverlay}>
                   <div className={styles.storyContent}>
@@ -537,6 +685,14 @@ const HomeContent = () => {
               src={facility1}
               alt="Chuyên gia tư vấn"
               className={styles.bookingImage}
+              loading="auto"
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                transform: "translateZ(0)",
+                backfaceVisibility: "hidden",
+              }}
             />
           </div>
           <div className={styles.bookingFormSection}>

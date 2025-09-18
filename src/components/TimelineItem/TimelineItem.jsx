@@ -1,12 +1,12 @@
-import React from 'react';
-import styles from './TimelineItem.module.css';
+import React from "react";
+import styles from "./TimelineItem.module.css";
 
 const TimelineItem = ({ item, index, isVisible, isLeft }) => {
   return (
-    <div 
-      className={`${styles.timelineItem} ${isLeft ? styles.left : styles.right} ${
-        isVisible ? styles.visible : ''
-      }`}
+    <div
+      className={`${styles.timelineItem} ${
+        isLeft ? styles.left : styles.right
+      } ${isVisible ? styles.visible : ""}`}
       data-timeline-item
     >
       {/* Timeline Dot */}
@@ -25,8 +25,13 @@ const TimelineItem = ({ item, index, isVisible, isLeft }) => {
         <div className={styles.imageContainer}>
           <img
             src={item.image}
-            alt={`${item.title} - ${item.photographer || 'Timeline image'}`}
+            alt={`${item.title} - ${item.photographer || "Timeline image"}`}
             className={styles.timelineImage}
+            loading="lazy"
+            style={{
+              transform: "translateZ(0)",
+              backfaceVisibility: "hidden",
+            }}
           />
         </div>
 

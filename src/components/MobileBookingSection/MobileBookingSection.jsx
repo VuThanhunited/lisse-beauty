@@ -1,27 +1,27 @@
-import React, { useState } from 'react';
-import styles from './MobileBookingSection.module.css';
-import facility1 from '../../data/cơ sở vật chất-1.jpg';
+import React, { useState } from "react";
+import styles from "./MobileBookingSection.module.css";
+import facility1 from "../../data/cơ sở vật chất-1.jpg";
 
 const MobileBookingSection = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    email: '',
-    service: '',
-    location: ''
+    name: "",
+    phone: "",
+    email: "",
+    service: "",
+    location: "",
   });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Booking form submitted:', formData);
+    console.log("Booking form submitted:", formData);
     // Handle form submission logic here
   };
 
@@ -35,6 +35,11 @@ const MobileBookingSection = () => {
               src={facility1}
               alt="Chuyên gia tư vấn - KIMLY Beauty"
               className={styles.bookingImage}
+              loading="lazy"
+              style={{
+                transform: "translateZ(0)",
+                backfaceVisibility: "hidden",
+              }}
             />
             <div className={styles.imageOverlay}>
               <div className={styles.overlayContent}>

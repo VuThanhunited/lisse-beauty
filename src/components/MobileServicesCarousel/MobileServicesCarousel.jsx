@@ -1,6 +1,13 @@
-import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react';
-import axios from 'axios';
-import styles from './MobileServicesCarousel.module.css';
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  useRef,
+  useMemo,
+} from "react";
+import axios from "axios";
+import styles from "./MobileServicesCarousel.module.css";
+import { batchPreloadImages } from "../../utils/imageOptimization";
 
 const MobileServicesCarousel = () => {
   const [services, setServices] = useState([]);
@@ -14,15 +21,30 @@ const MobileServicesCarousel = () => {
     []
   );
 
-  // Fetch services
+  // Fetch services with optimized image loading
   useEffect(() => {
     const fetchServiceData = async () => {
       try {
         const response = await axios.get(
           "https://api.baserow.io/api/database/rows/table/639961/?user_field_names=true",
-          { headers }
+          { headers, timeout: 5000 }
         );
-        setServices(response.data.results || []);
+
+        const serviceData = response.data.results || [];
+        setServices(serviceData);
+
+        // Batch preload service images for faster display
+        const imageUrls = serviceData
+          .map((service) => service.serviceImage?.[0]?.url)
+          .filter(Boolean);
+
+        if (imageUrls.length > 0) {
+          batchPreloadImages(imageUrls, 2) // Load 2 images at a time
+            .then(() => console.log("Service images preloaded"))
+            .catch((error) =>
+              console.warn("Some service images failed to preload:", error)
+            );
+        }
       } catch (error) {
         console.error("Error fetching service data:", error);
       }
@@ -45,8 +67,8 @@ const MobileServicesCarousel = () => {
     };
 
     updateVisibleCount();
-    window.addEventListener('resize', updateVisibleCount);
-    return () => window.removeEventListener('resize', updateVisibleCount);
+    window.addEventListener("resize", updateVisibleCount);
+    return () => window.removeEventListener("resize", updateVisibleCount);
   }, []);
 
   const displayedServices = useMemo(() => services.slice(0, 6), [services]);
@@ -57,12 +79,12 @@ const MobileServicesCarousel = () => {
 
   const nextSlide = useCallback(() => {
     if (!isTransitioning) return;
-    setCurrentIndex(prev => prev + 1);
+    setCurrentIndex((prev) => prev + 1);
   }, [isTransitioning]);
 
   const prevSlide = useCallback(() => {
     if (!isTransitioning) return;
-    setCurrentIndex(prev => prev - 1);
+    setCurrentIndex((prev) => prev - 1);
   }, [isTransitioning]);
 
   const handleTransitionEnd = useCallback(() => {
@@ -125,10 +147,16 @@ const MobileServicesCarousel = () => {
           <div className={styles.carouselContainer}>
             <div
               ref={trackRef}
-              className={styles.carouselTrack}
+              className={`${styles.carouselTrack} carousel-track`}
               style={{
-                transform: `translateX(-${currentIndex * (100 / visibleCount)}%)`,
-                transition: isTransitioning ? 'transform 0.5s ease' : 'none',
+                transform: `translateX(-${
+                  currentIndex * (100 / visibleCount)
+                }%)`,
+                transition: isTransitioning
+                  ? "transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
+                  : "none",
+                willChange: "transform",
+                backfaceVisibility: "hidden",
               }}
               onTransitionEnd={handleTransitionEnd}
             >
@@ -140,9 +168,17 @@ const MobileServicesCarousel = () => {
                 >
                   <div className={styles.slideImage}>
                     <img
-                      src={service.serviceImage?.[0]?.url || ''}
+                      src={service.serviceImage?.[0]?.url || ""}
                       alt={service.title}
                       className={styles.serviceImg}
+                      loading="lazy"
+                      decoding="async"
+                      fetchPriority="auto"
+                      style={{
+                        transform: "translateZ(0)",
+                        backfaceVisibility: "hidden",
+                        imageRendering: "high-quality",
+                      }}
                     />
                     <div className={styles.slideOverlay}>
                       <div className={styles.slideContent}>
@@ -175,7 +211,9 @@ const MobileServicesCarousel = () => {
             <button
               key={index}
               className={`${styles.dot} ${
-                index === (currentIndex % displayedServices.length) ? styles.activeDot : ''
+                index === currentIndex % displayedServices.length
+                  ? styles.activeDot
+                  : ""
               }`}
               onClick={() => setCurrentIndex(index)}
               aria-label={`Đến slide ${index + 1}`}

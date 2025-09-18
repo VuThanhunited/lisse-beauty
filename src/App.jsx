@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import "./styles/scrollOptimization.css";
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/Home/Home";
 import BeautyKnowledge from "./pages/BeautyKnowledge/BeautyKnowledge";

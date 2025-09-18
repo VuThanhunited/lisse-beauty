@@ -76,8 +76,8 @@
   box-shadow: 0 3px 20px rgba(124, 152, 133, 0.15);
   transition: all 0.3s ease;
   text-decoration: none;
-  min-height: 45px;
-  min-width: 45px;
+  min-height: 35px;
+  min-width: 35px;
   border: 2px solid transparent;
   position: relative;
   overflow: hidden;
@@ -105,8 +105,8 @@
 
 .logo img {
   width: auto;
-  height: 50px;
-  max-width: 100px;
+  height: 40px;
+  max-width: 80px;
   object-fit: contain;
   border-radius: 8px;
   z-index: 2;
@@ -247,13 +247,13 @@
 
   .logo {
     padding: 8px 12px;
-    min-height: 45px;
-    min-width: 100px;
+    min-height: 35px;
+    min-width: 80px;
   }
 
   .logo img {
-    height: 35px;
-    max-width: 80px;
+    height: 30px;
+    max-width: 65px;
   }
 }
 

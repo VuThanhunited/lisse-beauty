@@ -76,6 +76,7 @@
   position: relative;
   transition: all 0.3s ease;
   margin-right: 50px;
+  text-transform: uppercase;
 }
 
 .navLink:hover {
@@ -170,7 +171,7 @@
   justify-content: center;
   width: 40px;
   height: 40px;
-  background: #d9457085;
+  background: black;
   border-radius: 50%;
   text-decoration: none;
   transition: all 0.3s ease;
@@ -187,6 +188,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  color: white;
 }
 
 /* Contact Button */
@@ -299,7 +301,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #333;
+    background: black;
     border-radius: 50%;
     font-size: 16px;
     color: white;

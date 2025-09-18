@@ -1,6 +1,6 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import styles from './ServiceCard.module.css';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import styles from "./ServiceCard.module.css";
 
 const ServiceCard = ({ service }) => {
   const navigate = useNavigate();
@@ -11,20 +11,24 @@ const ServiceCard = ({ service }) => {
 
   return (
     <div className={styles.serviceCard}>
-      <div className={styles.cardImage}>
-        <img 
-          src={service.image} 
-          alt={`${service.name} - Reece van der Merwe on Unsplash`}
-          style={{ width: '100%', height: '100%' }}
+      <div className={styles.serviceImage}>
+        <img
+          src={service.image}
+          alt={service.name}
+          loading="lazy"
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            transform: "translateZ(0)",
+            backfaceVisibility: "hidden",
+          }}
         />
       </div>
       <div className={styles.cardContent}>
         <h3>{service.name}</h3>
         <p>{service.description}</p>
-        <button
-          className={styles.detailButton}
-          onClick={handleDetailClick}
-        >
+        <button className={styles.detailButton} onClick={handleDetailClick}>
           Xem chi tiết
           <span className={styles.arrow}>→</span>
         </button>

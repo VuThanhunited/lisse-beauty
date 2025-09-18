@@ -9,6 +9,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
+import { fetchImageWithCache } from "../../utils/imageOptimization";
 
 const Footer = () => {
   const [logoUrl, setLogoUrl] = useState("");
@@ -18,27 +19,60 @@ const Footer = () => {
     }),
     []
   );
-  // Lấy banner
+
+  // Optimized logo fetching
   useEffect(() => {
-    const fetchBannerData = async () => {
+    const loadLogo = async () => {
       try {
-        const response = await axios.get(
+        const logoUrl = await fetchImageWithCache(
           "https://api.baserow.io/api/database/rows/table/639961/?user_field_names=true",
-          { headers }
+          "footer_logo",
+          {
+            timeout: 5000,
+            priority: "low", // Footer logo is less critical
+            expiry: 15 * 60 * 1000, // 15 minutes
+            fetchOptions: { headers },
+          }
         );
-        setLogoUrl(response.data.results[0]?.logo[0]?.url || "");
-        console.log("Logo data fetched:", response.data.results);
+
+        setLogoUrl(logoUrl);
       } catch (error) {
-        console.error("Error fetching logo data:", error);
+        console.error("Error loading footer logo:", error);
+        // Fallback to direct axios call
+        try {
+          const response = await axios.get(
+            "https://api.baserow.io/api/database/rows/table/639961/?user_field_names=true",
+            { headers, timeout: 3000 }
+          );
+          const fallbackUrl = response.data.results[0]?.logo[0]?.url || "";
+          if (fallbackUrl) {
+            setLogoUrl(fallbackUrl);
+          }
+        } catch (fallbackError) {
+          console.error("Footer logo fallback also failed:", fallbackError);
+        }
       }
     };
-    fetchBannerData();
+
+    loadLogo();
   }, [headers]);
+
   return (
     <footer className={styles.footer}>
       <div className={styles.footerContainer}>
         <div className={styles.footerColumn}>
-          <img src={logoUrl} alt="logo" />
+          <img
+            src={logoUrl}
+            alt="logo"
+            loading="eager"
+            style={{
+              width: "80px",
+              height: "80px",
+              objectFit: "contain",
+              transform: "translateZ(0)",
+              backfaceVisibility: "hidden",
+            }}
+          />
           <p>
             Tại KIMLY, chúng tôi cam kết tạo nên sự khác biệt không chỉ qua từng
             dịch vụ phun xăm môi cao cấp chính hãng mà còn qua cách chúng tôi

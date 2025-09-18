@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
-import BookingModal from "../../components/BookingModal/BookingModal";
 import styles from "./Navbar.module.css";
+import BookingModal from "../BookingModal/BookingModal";
 import axios from "axios";
+import { fetchImageWithCache } from "../../utils/imageOptimization";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -15,21 +16,45 @@ const Navbar = () => {
     }),
     []
   );
-  // Lấy banner
+  // Optimized logo fetching with caching
   useEffect(() => {
-    const fetchBannerData = async () => {
+    const loadLogo = async () => {
       try {
-        const response = await axios.get(
+        const logoUrl = await fetchImageWithCache(
           "https://api.baserow.io/api/database/rows/table/639961/?user_field_names=true",
-          { headers }
+          "navbar_logo",
+          {
+            timeout: 5000,
+            priority: "high",
+            expiry: 10 * 60 * 1000, // 10 minutes
+            fetchOptions: { headers },
+          }
         );
-        setLogoUrl(response.data.results[0]?.logo[0]?.url || "");
-        console.log("Logo data fetched:", response.data.results);
+
+        setLogoUrl(logoUrl);
+        console.log("Logo loaded and cached successfully");
       } catch (error) {
-        console.error("Error fetching logo data:", error);
+        console.error("Error loading logo:", error);
+        // Try one more time with direct axios call as fallback
+        try {
+          const response = await axios.get(
+            "https://api.baserow.io/api/database/rows/table/639961/?user_field_names=true",
+            {
+              headers,
+              timeout: 3000,
+            }
+          );
+          const fallbackUrl = response.data.results[0]?.logo[0]?.url || "";
+          if (fallbackUrl) {
+            setLogoUrl(fallbackUrl);
+          }
+        } catch (fallbackError) {
+          console.error("Fallback logo loading also failed:", fallbackError);
+        }
       }
     };
-    fetchBannerData();
+
+    loadLogo();
   }, [headers]);
 
   const toggleMenu = () => {
@@ -52,7 +77,21 @@ const Navbar = () => {
         {/* Logo Center */}
         <div className={styles.navLogo}>
           <Link to="/" className={styles.logo}>
-            <img src={logoUrl} alt="logo" />
+            <img
+              src={logoUrl}
+              alt="logo"
+              loading="eager"
+              decoding="async"
+              fetchPriority="high"
+              style={{
+                width: "auto",
+                height: "40px",
+                maxWidth: "80px",
+                objectFit: "contain",
+                transform: "translateZ(0)",
+                backfaceVisibility: "hidden",
+              }}
+            />
           </Link>
         </div>
 

@@ -47,7 +47,18 @@ const Service = () => {
               {/* Glowing Brow Card */}
               <div className={styles.serviceCard}>
                 <div className={styles.cardImage}>
-                  <img src={glowingBrowImg} alt="Glowing Brow" />
+                  <img
+                    src={glowingBrowImg}
+                    alt="Glowing Brow"
+                    loading="lazy"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      transform: "translateZ(0)",
+                      backfaceVisibility: "hidden",
+                    }}
+                  />
                   <button className={styles.navArrowLeft}>
                     <span>‹</span>
                   </button>
@@ -71,7 +82,18 @@ const Service = () => {
               {/* Hairstroke Card */}
               <div className={styles.serviceCard}>
                 <div className={styles.cardImage}>
-                  <img src={hairstrokeImg} alt="Hairstroke" />
+                  <img
+                    src={hairstrokeImg}
+                    alt="Hairstroke"
+                    loading="lazy"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      transform: "translateZ(0)",
+                      backfaceVisibility: "hidden",
+                    }}
+                  />
                 </div>
                 <div className={styles.cardContent}>
                   <h3>Hairstroke</h3>
