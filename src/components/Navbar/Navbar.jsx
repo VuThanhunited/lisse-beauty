@@ -16,7 +16,7 @@ const Navbar = () => {
     }),
     []
   );
-  // Optimized logo fetching with caching
+  // Ultra-fast logo loading with optimized caching
   useEffect(() => {
     const loadLogo = async () => {
       try {
@@ -24,24 +24,28 @@ const Navbar = () => {
           "https://api.baserow.io/api/database/rows/table/639961/?user_field_names=true",
           "navbar_logo",
           {
-            timeout: 5000,
+            timeout: 3000, // Faster timeout
             priority: "high",
-            expiry: 10 * 60 * 1000, // 10 minutes
+            expiry: 20 * 60 * 1000, // 20 minutes - longer cache
+            retries: 3, // More retries
+            width: 150, // Optimized size
+            height: 50,
+            quality: 90, // High quality for logo
             fetchOptions: { headers },
           }
         );
 
         setLogoUrl(logoUrl);
-        console.log("Logo loaded and cached successfully");
+        console.log("Logo loaded with ultra-fast optimization");
       } catch (error) {
         console.error("Error loading logo:", error);
-        // Try one more time with direct axios call as fallback
+        // Ultra-fast fallback with direct axios call
         try {
           const response = await axios.get(
             "https://api.baserow.io/api/database/rows/table/639961/?user_field_names=true",
             {
               headers,
-              timeout: 3000,
+              timeout: 2000, // Very fast timeout for fallback
             }
           );
           const fallbackUrl = response.data.results[0]?.logo[0]?.url || "";

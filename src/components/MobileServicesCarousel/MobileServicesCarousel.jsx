@@ -7,7 +7,10 @@ import React, {
 } from "react";
 import axios from "axios";
 import styles from "./MobileServicesCarousel.module.css";
-import { batchPreloadImages } from "../../utils/imageOptimization";
+import {
+  batchPreloadImages,
+  fetchImageWithCache,
+} from "../../utils/imageOptimization";
 
 const MobileServicesCarousel = () => {
   const [services, setServices] = useState([]);
@@ -21,26 +24,62 @@ const MobileServicesCarousel = () => {
     []
   );
 
-  // Fetch services with optimized image loading
+  // Ultra-fast services fetch with optimized image loading
   useEffect(() => {
     const fetchServiceData = async () => {
       try {
         const response = await axios.get(
           "https://api.baserow.io/api/database/rows/table/639961/?user_field_names=true",
-          { headers, timeout: 5000 }
+          { headers, timeout: 3000 } // Faster timeout
         );
 
         const serviceData = response.data.results || [];
-        setServices(serviceData);
 
-        // Batch preload service images for faster display
-        const imageUrls = serviceData
-          .map((service) => service.serviceImage?.[0]?.url)
+        // Process services with optimized image URLs
+        const processedServices = await Promise.all(
+          serviceData.map(async (service, index) => {
+            const rawImageUrl = service.serviceImage?.[0]?.url;
+            if (rawImageUrl) {
+              try {
+                // Use cached optimized URL for faster loading
+                const optimizedImageUrl = await fetchImageWithCache(
+                  `data:image/url,${rawImageUrl}`, // Create a data URL for caching
+                  `service_image_${index}`,
+                  {
+                    timeout: 2000,
+                    priority: index < 3 ? "high" : "low", // High priority for first 3 images
+                    width: 300, // Mobile optimized size
+                    height: 200,
+                    quality: 85,
+                    retries: 2,
+                  }
+                );
+                return { ...service, optimizedImageUrl };
+              } catch (error) {
+                console.warn(
+                  `Failed to optimize service image ${index}:`,
+                  error
+                );
+                return { ...service, optimizedImageUrl: rawImageUrl };
+              }
+            }
+            return service;
+          })
+        );
+
+        setServices(processedServices);
+
+        // Ultra-fast batch preload with concurrent loading
+        const imageUrls = processedServices
+          .map(
+            (service) =>
+              service.optimizedImageUrl || service.serviceImage?.[0]?.url
+          )
           .filter(Boolean);
 
         if (imageUrls.length > 0) {
-          batchPreloadImages(imageUrls, 2) // Load 2 images at a time
-            .then(() => console.log("Service images preloaded"))
+          batchPreloadImages(imageUrls, 4) // Load 4 images concurrently for speed
+            .then(() => console.log("Service images ultra-fast preloaded"))
             .catch((error) =>
               console.warn("Some service images failed to preload:", error)
             );
@@ -168,16 +207,21 @@ const MobileServicesCarousel = () => {
                 >
                   <div className={styles.slideImage}>
                     <img
-                      src={service.serviceImage?.[0]?.url || ""}
+                      src={
+                        service.optimizedImageUrl ||
+                        service.serviceImage?.[0]?.url ||
+                        ""
+                      }
                       alt={service.title}
                       className={styles.serviceImg}
-                      loading="lazy"
+                      loading={index < 3 ? "eager" : "lazy"} // Eager loading for first 3 images
                       decoding="async"
-                      fetchPriority="auto"
+                      fetchPriority={index < 3 ? "high" : "auto"} // High priority for visible images
                       style={{
                         transform: "translateZ(0)",
                         backfaceVisibility: "hidden",
-                        imageRendering: "high-quality",
+                        imageRendering: "optimizeSpeed", // Faster rendering
+                        willChange: "transform",
                       }}
                     />
                     <div className={styles.slideOverlay}>

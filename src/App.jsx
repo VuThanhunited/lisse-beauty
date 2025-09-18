@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import "./styles/scrollOptimization.css";
 import { Routes, Route } from "react-router-dom";
@@ -9,8 +9,14 @@ import Contact from "./pages/Contact/Contact";
 import Services from "./pages/Services/Services";
 import GlowingBrowDetail from "./pages/GlowingBrowDetail/GlowingBrowDetail";
 import HairstrokeDetail from "./pages/HairstrokeDetail/HairstrokeDetail";
+import { initProductionOptimizations } from "./utils/productionOptimization";
 
 function App() {
+  // Initialize ultra-fast production optimizations
+  useEffect(() => {
+    initProductionOptimizations();
+  }, []);
+
   return (
     <div className="App">
       <Routes>
