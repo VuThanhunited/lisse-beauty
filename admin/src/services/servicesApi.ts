@@ -185,3 +185,19 @@ export async function uploadServiceImage(file: FormData) {
     requestType: "form",
   });
 }
+
+/** 获取服务列表用于下拉选择 */
+export async function getServicesForDropdown() {
+  try {
+    console.log("Fetching services for dropdown");
+
+    const response = await request(`${API_BASE_URL}/services/dropdown`, {
+      method: "GET",
+    });
+
+    return response;
+  } catch (error) {
+    console.error("Error fetching services for dropdown:", error);
+    throw error;
+  }
+}

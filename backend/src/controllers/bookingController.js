@@ -93,11 +93,15 @@ const getBookingById = asyncHandler(async (req, res) => {
 // @route   POST /api/admin/bookings
 // @access  Private (Admin only)
 const createBooking = asyncHandler(async (req, res) => {
+  console.log("Received booking data:", req.body);
+
   const {
     customerInfo,
     serviceId,
     appointmentDate,
     appointmentTime,
+    duration,
+    price,
     specialRequests,
     status = "pending",
   } = req.body;
@@ -105,14 +109,15 @@ const createBooking = asyncHandler(async (req, res) => {
   // Validate required fields
   if (
     !customerInfo?.name ||
-    !customerInfo?.email ||
     !customerInfo?.phone ||
     !serviceId ||
     !appointmentDate ||
     !appointmentTime
   ) {
     res.status(400);
-    throw new Error("Please provide all required fields");
+    throw new Error(
+      "Please provide all required fields (name, phone, serviceId, appointmentDate, appointmentTime)"
+    );
   }
 
   // Generate booking ID
@@ -137,6 +142,8 @@ const createBooking = asyncHandler(async (req, res) => {
     serviceId,
     appointmentDate: new Date(appointmentDate),
     appointmentTime,
+    duration: duration || 60,
+    price: price || 0,
     specialRequests,
     status,
     createdBy: new (require("mongoose").Types.ObjectId)(), // Default ObjectId for demo
@@ -158,6 +165,8 @@ const createBooking = asyncHandler(async (req, res) => {
 // @route   PUT /api/admin/bookings/:id
 // @access  Private (Admin only)
 const updateBooking = asyncHandler(async (req, res) => {
+  console.log("Updating booking:", req.params.id, req.body);
+
   const booking = await Booking.findById(req.params.id);
 
   if (!booking) {
@@ -170,6 +179,8 @@ const updateBooking = asyncHandler(async (req, res) => {
     serviceId,
     appointmentDate,
     appointmentTime,
+    duration,
+    price,
     specialRequests,
     status,
   } = req.body;
@@ -196,10 +207,12 @@ const updateBooking = asyncHandler(async (req, res) => {
   if (serviceId) booking.serviceId = serviceId;
   if (appointmentDate) booking.appointmentDate = new Date(appointmentDate);
   if (appointmentTime) booking.appointmentTime = appointmentTime;
+  if (duration) booking.duration = duration;
+  if (price) booking.price = price;
   if (specialRequests !== undefined) booking.specialRequests = specialRequests;
   if (status) booking.status = status;
 
-  booking.updatedBy = req.user._id;
+  // Remove dependency on req.user for demo
   booking.updatedAt = new Date();
 
   const updatedBooking = await booking.save();

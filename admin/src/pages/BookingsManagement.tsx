@@ -4,6 +4,7 @@ import {
   getBookings,
   updateBooking,
 } from "@/services/bookingsApi";
+import { getServicesForDropdown } from "@/services/servicesApi";
 import {
   CalendarOutlined,
   DeleteOutlined,
@@ -25,7 +26,7 @@ import {
 import type { ActionType, ProColumns } from "@ant-design/pro-table";
 import { Badge, Button, Descriptions, message, Modal, Tag } from "antd";
 import moment from "dayjs";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 // CSS styles cho responsive
 const styles = `
@@ -78,6 +79,22 @@ const BookingsManagement: React.FC = () => {
   const [selectedBooking, setSelectedBooking] = useState<Booking | null>(null);
   const [modalVisible, setModalVisible] = useState(false);
   const [viewModalVisible, setViewModalVisible] = useState(false);
+  const [serviceOptions, setServiceOptions] = useState<any[]>([]);
+
+  // Load services for dropdown
+  useEffect(() => {
+    const loadServices = async () => {
+      try {
+        const response = await getServicesForDropdown();
+        if (response.success) {
+          setServiceOptions(response.data);
+        }
+      } catch (error) {
+        console.error("Error loading services:", error);
+      }
+    };
+    loadServices();
+  }, []);
 
   // Mock data - sẽ được thay thế bằng API thực
   const mockBookings: Booking[] = [
@@ -322,45 +339,46 @@ const BookingsManagement: React.FC = () => {
     try {
       console.log("Submitting booking:", values);
 
-      // Prepare form data
-      const formData = new FormData();
-      formData.append(
-        "customerInfo",
-        JSON.stringify({
+      // Format datetime
+      const appointmentDateTime = moment(values.appointmentDateTime);
+      const appointmentDate = appointmentDateTime.format("YYYY-MM-DD");
+      const appointmentTime = appointmentDateTime.format("HH:mm");
+
+      // Prepare booking data as JSON
+      const bookingData = {
+        customerInfo: {
           name: values.customerName,
-          email: values.customerEmail,
+          email: values.customerEmail || "",
           phone: values.customerPhone,
           age: values.age || 25,
           gender: values.gender || "other",
-        })
-      );
-      formData.append(
-        "serviceId",
-        values.serviceId || "64b5f123456789abcdef0001"
-      ); // Fake ObjectId for demo
-      formData.append("appointmentDate", values.appointmentDate);
-      formData.append("appointmentTime", values.appointmentTime);
-      formData.append("duration", values.duration || "60");
-      formData.append("price", values.price || "300000");
-      formData.append("specialRequests", values.notes || "");
-      formData.append("status", values.status || "pending");
+        },
+        serviceId: values.serviceId, // Use the selected service ID
+        appointmentDate,
+        appointmentTime,
+        duration: parseInt(values.duration?.replace(/\D/g, "")) || 60,
+        price: parseInt(values.price?.toString().replace(/\D/g, "")) || 300000,
+        specialRequests: values.notes || "",
+        status: values.status || "pending",
+      };
 
       if (selectedBooking) {
         // Update existing booking
-        await updateBooking(selectedBooking._id, formData);
+        await updateBooking(selectedBooking._id, bookingData);
         message.success("Cập nhật đặt lịch thành công!");
       } else {
         // Create new booking
-        await createBooking(formData);
+        await createBooking(bookingData);
         message.success("Thêm đặt lịch thành công!");
       }
 
       setModalVisible(false);
       setSelectedBooking(null);
       actionRef.current?.reload();
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error submitting booking:", error);
-      message.error("Có lỗi xảy ra!");
+      const errorMessage = error?.response?.data?.message || "Có lỗi xảy ra!";
+      message.error(errorMessage);
     }
   };
 
@@ -461,7 +479,24 @@ const BookingsManagement: React.FC = () => {
         onOpenChange={setModalVisible}
         onFinish={handleSubmit}
         width={600}
-        initialValues={selectedBooking || {}}
+        initialValues={
+          selectedBooking
+            ? {
+                customerName: selectedBooking.customerName,
+                customerPhone: selectedBooking.customerPhone,
+                customerEmail: selectedBooking.customerEmail,
+                serviceId: selectedBooking.serviceName, // This will need to be mapped to actual serviceId
+                appointmentDateTime: moment(
+                  `${selectedBooking.appointmentDate} ${selectedBooking.appointmentTime}`,
+                  "YYYY-MM-DD HH:mm"
+                ),
+                duration: selectedBooking.duration,
+                price: selectedBooking.price,
+                status: selectedBooking.status,
+                notes: selectedBooking.notes,
+              }
+            : {}
+        }
         modalProps={{
           destroyOnClose: true,
         }}
@@ -494,12 +529,18 @@ const BookingsManagement: React.FC = () => {
           width="lg"
         />
 
-        <ProFormText
-          name="serviceName"
+        <ProFormSelect
+          name="serviceId"
           label="Dịch vụ"
-          placeholder="Nhập tên dịch vụ"
-          rules={[{ required: true, message: "Vui lòng nhập tên dịch vụ!" }]}
+          placeholder="Chọn dịch vụ"
+          options={serviceOptions}
+          rules={[{ required: true, message: "Vui lòng chọn dịch vụ!" }]}
           width="lg"
+          showSearch
+          fieldProps={{
+            filterOption: (input: string, option: any) =>
+              option?.label?.toLowerCase().includes(input.toLowerCase()),
+          }}
         />
 
         <ProForm.Group>
@@ -521,6 +562,13 @@ const BookingsManagement: React.FC = () => {
         </ProForm.Group>
 
         <ProForm.Group>
+          <ProFormText
+            name="price"
+            label="Giá (VNĐ)"
+            placeholder="VD: 300000"
+            rules={[{ required: true, message: "Vui lòng nhập giá!" }]}
+            width="md"
+          />
           <ProFormSelect
             name="status"
             label="Trạng thái"

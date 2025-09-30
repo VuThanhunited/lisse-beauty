@@ -5,6 +5,7 @@ const {
   createService,
   updateService,
   deleteService,
+  getAllServicesForDropdown,
 } = require("../controllers/serviceController");
 const {
   validatePagination,
@@ -12,6 +13,11 @@ const {
 } = require("../middleware/validation");
 
 const router = express.Router();
+
+// @route   GET /api/services/dropdown
+// @desc    Get all services for dropdown
+// @access  Public
+router.get("/dropdown", getAllServicesForDropdown);
 
 // @route   GET /api/services
 // @desc    Get all services with pagination and filtering

@@ -41,22 +41,24 @@ export async function getBooking(id: string) {
 }
 
 /** 创建预约 */
-export async function createBooking(data: FormData) {
+export async function createBooking(data: Booking) {
   return request(`${API_BASE_URL}/bookings`, {
     method: "POST",
     data,
     headers: {
+      "Content-Type": "application/json",
       Authorization: `Bearer ${localStorage.getItem("admin_token")}`,
     },
   });
 }
 
 /** 更新预约 */
-export async function updateBooking(id: string, data: FormData) {
+export async function updateBooking(id: string, data: Booking) {
   return request(`${API_BASE_URL}/bookings/${id}`, {
     method: "PUT",
     data,
     headers: {
+      "Content-Type": "application/json",
       Authorization: `Bearer ${localStorage.getItem("admin_token")}`,
     },
   });

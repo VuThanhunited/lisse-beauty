@@ -302,10 +302,42 @@ const deleteService = async (req, res) => {
   }
 };
 
+// @desc    Get all services for dropdown (simple)
+// @route   GET /api/services/dropdown
+// @access  Public
+const getAllServicesForDropdown = async (req, res) => {
+  try {
+    console.log("🔄 Getting services for dropdown");
+
+    const services = await Service.find({ isActive: true })
+      .select("_id name price duration category")
+      .sort({ name: 1 });
+
+    res.json({
+      success: true,
+      data: services.map((service) => ({
+        value: service._id,
+        label: service.name,
+        price: service.price,
+        duration: service.duration,
+        category: service.category,
+      })),
+    });
+  } catch (error) {
+    console.error("Error in getAllServicesForDropdown:", error);
+    res.status(500).json({
+      success: false,
+      message: "Lỗi server khi lấy danh sách dịch vụ",
+      error: error.message,
+    });
+  }
+};
+
 module.exports = {
   getServices,
   getServiceById,
   createService,
   updateService,
   deleteService,
+  getAllServicesForDropdown,
 };
