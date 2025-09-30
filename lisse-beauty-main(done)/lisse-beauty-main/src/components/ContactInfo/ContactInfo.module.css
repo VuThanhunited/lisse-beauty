@@ -1,0 +1,122 @@
+.contactInfo {
+  background: #5a6b5d;
+  padding: 60px 40px;
+  color: white;
+  border-radius: 20px 0 0 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.contactInfo::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.05);
+  z-index: 0;
+}
+
+.contactInfo > * {
+  position: relative;
+  z-index: 1;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 300;
+  margin-bottom: 40px;
+  text-align: center;
+  font-family: "Playfair Display", serif;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  padding-bottom: 20px;
+  color: #ffffff;
+}
+
+.infoList {
+  margin-bottom: 50px;
+}
+
+.infoItem {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 30px;
+  gap: 20px;
+}
+
+.iconWrapper {
+  color: rgba(255, 255, 255, 0.9);
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.infoText {
+  font-size: 1.1rem;
+  font-weight: 400;
+  line-height: 1.4;
+  margin: 0;
+  color: #ffffff;
+}
+
+.workingHours {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.workingTitle {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  font-weight: 300;
+}
+
+.socialSection {
+  text-align: center;
+}
+
+.socialTitle {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  font-weight: 300;
+  opacity: 0.9;
+  color: #ffffff;
+}
+
+.socialLinks {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  background: white;
+  border-radius: 50%;
+  color: #5a6b5d;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  font-size: 1.2rem;
+}
+
+.socialLink:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .contactInfo {
+    border-radius: 20px 20px 0 0;
+    padding: 50px 30px;
+  }
+  
+  .title {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+  }
+}

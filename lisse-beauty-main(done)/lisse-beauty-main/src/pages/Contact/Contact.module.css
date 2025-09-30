@@ -1,0 +1,54 @@
+/* Main Contact Section */
+.contactSection {
+  padding: 80px 20px;
+  background: #f8f9fa;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.contactContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+  animation: fadeInUp 0.8s ease-out;
+}
+
+/* Animation effects */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .contactContent {
+    gap: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .contactSection {
+    padding: 60px 15px;
+  }
+
+  .contactContent {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .contactSection {
+    padding: 40px 15px;
+  }
+}

@@ -1,0 +1,13 @@
+.homepage {
+  position: relative;
+}
+
+.desktop-header {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .desktop-header {
+    display: none;
+  }
+}

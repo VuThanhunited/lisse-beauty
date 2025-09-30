@@ -1,0 +1,171 @@
+.rightSidebar {
+  position: fixed;
+  top: 50%;
+  right: -80px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px; /* bigger spacing like sample */
+  background: #eef4ee; /* softer light green */
+  border: 1px solid #d8e5d8;
+  border-radius: 28px; /* more rounded corners */
+  box-shadow: -6px 10px 28px rgba(44, 85, 48, 0.12);
+  padding: 24px 14px;
+  transition: right 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 1000;
+}
+
+.rightSidebar.visible {
+  right: -5px;
+}
+
+.iconItem {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iconButton {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.iconButton:hover {
+  transform: translateY(-1px) scale(1.05);
+}
+
+.icon {
+  width: 28px;
+  height: 28px;
+  color: #5a6f5c;
+  stroke-width: 2.25;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.iconButton:hover .icon {
+  color: #2c5530;
+}
+
+.tooltip {
+  position: absolute;
+  right: 65px;
+  background: rgba(44, 85, 48, 0.9);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(10px);
+  transition: all 0.3s ease;
+  pointer-events: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.tooltip::after {
+  content: "";
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 6px solid transparent;
+  border-left-color: rgba(44, 85, 48, 0.9);
+}
+
+.iconItem:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+/* Remove per-icon gradients; unified style to match sample */
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .rightSidebar {
+    /* Chuyển xuống bottom */
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    right: auto;
+    top: auto;
+    transform: translateX(-50%);
+
+    /* Layout ngang như hình mẫu */
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+    /* Styling cho mobile bottom bar */
+    background: #6f7f6d;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    padding: 12px 24px;
+
+    /* Đảm bảo hiển thị */
+    right: auto !important;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .rightSidebar.visible {
+    /* Override visible state cho mobile */
+    bottom: 20px;
+    transform: translateX(-50%);
+  }
+
+  .iconButton {
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .iconButton:hover {
+    background: rgba(255, 255, 255, 1);
+    transform: translateY(-2px);
+  }
+
+  .icon {
+    width: 24px;
+    height: 24px;
+    color: #6f7f6d;
+  }
+
+  .tooltip {
+    /* Ẩn tooltip trên mobile */
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .rightSidebar {
+    /* Giữ layout bottom nhưng nhỏ hơn */
+    gap: 16px;
+    padding: 10px 20px;
+    bottom: 15px;
+  }
+
+  .iconButton {
+    width: 44px;
+    height: 44px;
+  }
+
+  .icon {
+    width: 22px;
+    height: 22px;
+  }
+}

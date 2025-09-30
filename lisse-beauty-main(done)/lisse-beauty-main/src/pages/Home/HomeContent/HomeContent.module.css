@@ -1,0 +1,1984 @@
+.afterServiceName {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  text-align: right;
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  pointer-events: none;
+}
+.homeContent {
+  padding: 0;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* Mobile-only banner + two sections (form and rating) */
+.mobileHeaderWrapper {
+  display: none;
+}
+
+.mobileHeroWrapper {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobileHeaderWrapper {
+    display: block;
+  }
+
+  .mobileHeroWrapper {
+    display: block;
+    background: #f6d9d6; /* soft pink like laptop */
+  }
+  .mobileHero {
+    position: relative;
+    width: 100%;
+    height: 520px;
+    overflow: hidden;
+    /* soft two-tone background like the desktop banner */
+    background: radial-gradient(
+        120% 80% at 50% 10%,
+        rgba(255, 255, 255, 0.45) 0%,
+        rgba(255, 255, 255, 0) 55%
+      ),
+      linear-gradient(180deg, #fbe1de 0%, #f6d9d6 40%, #f3cfcb 100%);
+    box-shadow: inset 0 -30px 60px rgba(0, 0, 0, 0.04),
+      inset 0 20px 40px rgba(255, 255, 255, 0.4);
+  }
+  .mobileHeroImg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  /* Decorative accent: single centered divider line */
+  .mobileHero::before {
+    content: "";
+    position: absolute;
+    background: rgba(0, 0, 0, 0.04);
+    width: 2px;
+    height: 115%;
+    top: -7%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* floating squares */
+  .sq {
+    position: absolute;
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 193, 180, 0.55);
+    border-radius: 6px;
+    animation: floaty 6s ease-in-out infinite;
+  }
+  .sq1 {
+    top: 22%;
+    left: 8%;
+    animation-delay: 0s;
+  }
+  .sq2 {
+    top: 28%;
+    right: 8%;
+    width: 34px;
+    height: 34px;
+    animation-delay: 1s;
+  }
+  .sq3 {
+    bottom: 22%;
+    left: 58%;
+    transform: translateX(-50%);
+    width: 26px;
+    height: 26px;
+    animation-delay: 2s;
+  }
+
+  @keyframes floaty {
+    0%,
+    100% {
+      transform: translateY(0) scale(1);
+    }
+    50% {
+      transform: translateY(-6px) scale(1.02);
+    }
+  }
+
+  /* center ribbon title */
+  .mobileTitleWrap {
+    position: absolute;
+    left: 50%;
+    top: 38%;
+    transform: translate(-50%, -50%);
+    background: rgba(234, 174, 166, 0.9);
+    color: #2b2b2b;
+    padding: 12px 22px;
+    border-radius: 14px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(2px);
+  }
+  .mobileTitleWrap h1 {
+    margin: 0;
+    font-family: "Playfair Display", serif;
+    font-weight: 600;
+    font-size: 27px;
+    letter-spacing: 0.3px;
+    color: #2b2b2b;
+  }
+
+  /* Responsive fine-tuning for small phones */
+  @media (max-width: 420px) {
+    .mobileHero {
+      height: 470px;
+    }
+    .mobileTitleWrap {
+      top: 40%;
+      padding: 10px 18px;
+      border-radius: 12px;
+    }
+    .mobileTitleWrap h1 {
+      font-size: 24px;
+    }
+  }
+
+  .mobileHero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  @media (max-width: 420px) {
+    .sq {
+      opacity: 0.6;
+    }
+  }
+  .mobileCardsArea {
+    margin-top: 12px; /* place clearly below banner */
+    padding: 0 16px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    overflow: visible;
+  }
+  .mobileCardsArea::-webkit-scrollbar {
+    display: none;
+  }
+  .mobileFormCard,
+  .mobileRatingCard {
+    background: #ffffff;
+    border-radius: 22px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    padding: 16px;
+    text-align: center;
+    scroll-snap-align: none;
+  }
+  .mobileFormCard h3,
+  .mobileRatingCard h3 {
+    font-family: "Playfair Display", serif;
+    font-weight: 500;
+    font-size: 22px;
+    margin: 6px 0 10px;
+    color: #2b2b2b;
+  }
+  .mobileFormFields {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .mobileFormFields input {
+    padding: 12px 16px;
+    border-radius: 24px;
+    border: 1px solid #e0e0e0;
+    background: #fff;
+    font-size: 14px;
+  }
+  .mobilePrimaryBtn {
+    margin-top: 4px;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 22px;
+    background: #6f8f7d;
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+  .mobileFeatureCard {
+    display: none;
+  }
+  .mobileRatingCard p {
+    color: #596252;
+    font-size: 14px;
+    margin: 4px 0 10px;
+  }
+  .ratingActions {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+  }
+  .ratingBtn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid #6f8f7d;
+    background: #f2f6f3;
+    color: #6f8f7d;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Hero Section */
+.heroSection {
+  position: relative;
+  height: 320px; /* match sample banner height */
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #6f7f6d; /* solid green similar to sample */
+  overflow: hidden;
+}
+
+.heroOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: transparent; /* no dark overlay in sample */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  z-index: 2;
+}
+
+.heroTitle {
+  font-size: clamp(38px, 5vw, 64px);
+  color: white;
+  text-align: center;
+  margin: 0;
+  font-weight: 300;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+  line-height: 1.2;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.scriptText {
+  font-family: "Dancing Script", cursive;
+  font-style: italic;
+  font-weight: 500;
+  color: #f0f8f0;
+}
+
+/* Ambassador three-up section under the banner */
+.ambassadorSection {
+  background: #ffffff;
+  padding: 26px 20px 10px;
+}
+.ambassadorGrid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+}
+.ambassadorSection .beforeAfterContainer {
+  height: 360px; /* taller like sample */
+  border-radius: 18px;
+}
+.ambassadorSection .imageLabel {
+  display: none; /* sample does not show TRƯỚC/SAU labels */
+}
+
+/* Make the split handle thinner and button green */
+.ambassadorSection .sliderHandle {
+  width: 2px;
+}
+.ambassadorSection .sliderLine {
+  width: 2px;
+  background: linear-gradient(to bottom, transparent, #ffffff, transparent);
+}
+.ambassadorSection .sliderButton {
+  width: 44px;
+  height: 44px;
+  background: #7c9885; /* Kimly green */
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  color: #ffffff;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+.ambassadorSection .sliderButton span {
+  color: #ffffff;
+  font-size: 18px;
+}
+
+@media (max-width: 1024px) {
+  .heroSection {
+    height: 280px;
+  }
+  .ambassadorSection .beforeAfterContainer {
+    height: 300px;
+  }
+  .ambassadorGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .heroSection {
+    height: 200px;
+    min-height: 180px;
+  }
+
+  .heroTitle {
+    font-size: clamp(24px, 6vw, 32px);
+    padding: 0 20px;
+  }
+
+  .scriptText {
+    display: block;
+    margin-top: 8px;
+  }
+
+  .ambassadorGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .ambassadorSection .beforeAfterContainer {
+    height: 240px;
+  }
+}
+
+.heroCarouselContainer {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.heroCarouselContainer:hover {
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
+  transform: translateY(-3px);
+}
+
+.heroCarouselTrack {
+  display: flex;
+  will-change: transform;
+  gap: 15px;
+  padding: 0;
+}
+
+/* Before/After Slider Component */
+.beforeAfterContainer {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  cursor: ew-resize;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.beforeAfterContainer:hover {
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+  transform: translateY(-2px);
+}
+
+.beforeAfterSlider {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.beforeImage,
+.afterImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.beforeImage img,
+.afterImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  image-rendering: crisp-edges;
+  transition: all 0.3s ease;
+}
+
+.imageLabel {
+  position: absolute;
+  top: 15px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.beforeImage .imageLabel {
+  left: 15px;
+}
+
+.afterImage .imageLabel {
+  right: 15px;
+}
+
+.sliderHandle {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  background: white;
+  cursor: ew-resize;
+  z-index: 10;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sliderLine {
+  position: absolute;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, white, transparent);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.sliderButton {
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  font-size: 36px;
+  font-weight: bold;
+  color: #333;
+  gap: 2px;
+}
+
+.sliderButton span {
+  font-size: 34px;
+}
+.afterServiceName {
+  position: absolute;
+  bottom: 12px;
+  transform: translateX(4px); /* closer to the divider */
+  white-space: nowrap;
+  color: #ffffff;
+  font-family: "Playfair Display", serif;
+  font-size: 20px; /* exact size requested */
+  font-weight: 400;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+}
+
+.beforeAfterTitle {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  padding: 20px;
+  color: white;
+  text-align: center;
+}
+
+.beforeAfterTitle h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+.heroSlideItem {
+  min-width: calc(33.333% - 10px);
+  box-sizing: border-box;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.heroSlideImage {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.heroSlideImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: brightness(1.05) contrast(1.1) saturate(1.15);
+}
+
+.heroSlideImage:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+}
+
+.heroSlideImage:hover img {
+  transform: scale(1.08);
+  filter: brightness(1.1) contrast(1.15) saturate(1.25);
+}
+
+.heroSlideOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  padding: 20px;
+  color: white;
+}
+
+.heroSlideTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+  text-align: center;
+}
+
+.heroPrevBtn,
+.heroNextBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 4;
+  transition: all 0.3s ease;
+  color: #333;
+  font-weight: bold;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.heroPrevBtn {
+  left: -25px;
+}
+
+.heroNextBtn {
+  right: -25px;
+}
+
+.heroPrevBtn:hover,
+.heroNextBtn:hover {
+  background: white;
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Dots */
+.dotsContainer {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.activeDot {
+  background: white;
+  transform: scale(1.2);
+}
+
+.dot:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.servicesSection {
+  text-align: center;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: center; /* center the title block */
+  margin-bottom: 28px;
+  border-bottom: 1px solid black;
+}
+
+/* Flex row to split title (left) and arrow (right) */
+.headerRowSpaceBetween {
+  display: grid;
+  grid-template-columns: auto 1fr auto; /* title | spacer | arrow */
+  align-items: end;
+  width: 100%;
+  column-gap: 16px;
+
+  height: 100px;
+}
+
+/* Wrap only the title text and underline so underline width == title width */
+.sectionTitleWrap {
+  display: inline-block;
+  text-align: left;
+}
+
+.titleRow {
+  position: relative; /* for placing the outside arrow */
+  display: inline-block;
+}
+
+.sectionHeading {
+  font-family: "Playfair Display", serif;
+  font-weight: 500;
+  font-size: clamp(28px, 4vw, 44px);
+  letter-spacing: -0.3px;
+  color: #2b2b2b;
+  margin: 0;
+}
+
+/* underline matches the width of the title text (because of sectionTitleWrap) */
+.sectionUnderline {
+  height: 2px;
+  width: 100%;
+  background: #000;
+  margin-top: 8px;
+}
+
+/* Arrow-in-circle placed outside to the right of the title */
+.titleArrowBtn {
+  position: absolute;
+  left: calc(100% + 12px); /* sit just outside the title */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  background: #fff;
+  color: #000;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* hide moving arrows */
+  border: 1px solid #000;
+}
+
+/* When used on the far-right of the header row, reset absolute positioning */
+.titleArrowBtnRight {
+  position: static;
+  transform: none;
+  grid-column: 3;
+  margin-bottom: 5px;
+}
+
+/* Full underline spans from title (col 1) through spacer (col 2), stopping before arrow (col 3) */
+.sectionUnderlineFull {
+  grid-column: 1 / 3;
+  height: 2px;
+  background: #000;
+}
+
+.arrowIcon {
+  position: absolute;
+  font-size: 30px;
+  line-height: 1;
+  transition: transform 280ms ease, opacity 240ms ease;
+  will-change: transform, opacity;
+}
+
+/* default state: slanted arrow visible, right arrow hidden to the left */
+.arrowSlanted {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.arrowRight {
+  opacity: 0;
+  transform: translateX(-8px);
+}
+
+/* Hover sequence: slanted arrow goes down and fades out, right arrow appears then slides to the right and fades */
+.titleArrowBtn:hover .arrowSlanted {
+  animation: slanted-seq 700ms ease forwards;
+}
+
+.titleArrowBtn:hover .arrowRight {
+  animation: right-seq 700ms ease forwards;
+}
+
+@keyframes slanted-seq {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  40% {
+    transform: translateY(6px);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(6px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  } /* return to original */
+}
+
+@keyframes right-seq {
+  0% {
+    transform: translateX(-8px);
+    opacity: 0;
+  }
+  30% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  60% {
+    transform: translateX(10px);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateX(16px);
+    opacity: 0;
+  } /* move out and disappear */
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  color: #2c5530;
+  margin-bottom: 40px;
+  font-weight: 600;
+  font-family: "Playfair Display", "Georgia", serif;
+}
+
+.carousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.carouselContainer {
+  width: 100%;
+  max-width: 1270px; /* 3 cards ~407px + 2 gaps 24px */
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: none;
+  background: transparent;
+  position: relative;
+  /* spacing config */
+  --slide-gap: 20px;
+  padding: 0 var(--slide-gap); /* add edge spacing to avoid blank at ends */
+  margin-top: 10px;
+}
+
+/* Edge fades like reference video */
+.carouselContainer::before,
+.carouselContainer::after {
+  content: none;
+  display: none;
+}
+
+.carouselTrack {
+  display: flex;
+  will-change: transform;
+  padding: 0;
+  gap: var(--slide-gap);
+  align-items: stretch;
+}
+
+/* Services marquee variant removed (using discrete slideshow) */
+
+.slideItem {
+  /* 3 items per row exactly accounting for gaps */
+  flex: 0 0 calc((100% - (2 * var(--slide-gap))) / 3);
+  max-width: calc((100% - (2 * var(--slide-gap))) / 3);
+  box-sizing: border-box;
+  position: relative;
+  flex-shrink: 0;
+  transition: opacity 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .slideItem {
+    /* On mobile, show 1 card at a time */
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .carouselContainer {
+    /* Remove horizontal padding to allow full-width slide */
+    padding: 0;
+  }
+}
+/* (duplicate selector cleaned) */
+
+.slideImage {
+  position: relative;
+  width: 100%;
+  height: 349px; /* khớp mẫu */
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  border-radius: 24px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .carouselTrack:hover .slideItem {
+    opacity: 0.9;
+  }
+  .carouselTrack .slideItem:hover {
+    opacity: 1;
+  }
+
+  .slideImage:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.18);
+  }
+}
+
+.slideImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, filter;
+  transform-origin: center center;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .slideImage:hover img {
+    transform: scale(1.08);
+    filter: brightness(1.03) contrast(1.08) saturate(1.05);
+  }
+  .carouselTrack:hover .slideItem:not(:hover) .slideImage img {
+    filter: brightness(0.96) saturate(0.95);
+  }
+}
+
+.slideOverlay {
+  position: absolute;
+  inset: 0;
+  /* Default: subtle bottom gradient for readability */
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.35) 0%,
+    rgba(0, 0, 0, 0) 60%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* text at bottom */
+  align-items: flex-start; /* left aligned */
+  padding: 24px;
+  color: #fff;
+  opacity: 1;
+  transform: translateY(0);
+  transition: background 0.35s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .slideImage:hover .slideOverlay {
+    /* On hover: combine green tint + bottom gradient for readability */
+    background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 25%,
+        rgba(0, 0, 0, 0.45) 85%
+      ),
+      rgba(44, 85, 48, 0.45);
+  }
+}
+
+.slideOverlay {
+  position: absolute;
+  inset: 0;
+  /* Default: just a subtle bottom gradient for readability */
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.35) 0%,
+    rgba(0, 0, 0, 0) 60%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding: 24px;
+  color: #fff;
+  opacity: 1;
+  transform: none;
+  transition: background 0.3s ease;
+}
+
+/* Green tint for center card like the reference */
+.centerTint {
+  background: rgba(124, 152, 133, 0.45);
+}
+
+.slideImage:hover .centerTint {
+  /* Keep stronger green tint when class present */
+  background: rgba(124, 152, 133, 0.65);
+}
+.slideDescription {
+  margin-top: 8px;
+  font-size: 1rem;
+  color: #ffffff;
+  line-height: 1.5;
+  text-align: left;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.slideImage:hover .slideDescription {
+  opacity: 1;
+}
+
+.prevBtn,
+.nextBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  font-size: 1.3rem;
+  color: #6a7361;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  z-index: 3;
+  box-shadow: none;
+}
+
+/* Arrows visible on all breakpoints like reference */
+
+.prevBtn {
+  left: 16px;
+}
+
+.nextBtn {
+  right: 16px;
+}
+
+.prevBtn:hover,
+.nextBtn:hover {
+  background: #ffffff;
+  color: #596252;
+  transform: translateY(-50%) scale(1.05);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* Custom classes referenced in JSX (service carousel) */
+.customSlide {
+  /* marker class for potential overrides */
+  isolation: isolate;
+}
+
+.customSlideImage {
+  /* strengthen green border for custom variants */
+  border-color: #6f8f7d !important;
+  border-radius: 24px !important;
+}
+
+.slideImgRounded {
+  border-radius: 24px;
+}
+
+.customSlideOverlay {
+  background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.05) 0%,
+      rgba(0, 0, 0, 0.25) 50%,
+      rgba(0, 0, 0, 0.6) 100%
+    ),
+    rgba(124, 152, 133, 0.25) !important;
+}
+
+/* Center card emphasis like video reference */
+.centerActive {
+  transform: scale(1.03);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+.centerActive .customSlideImage {
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.22);
+}
+.centerActive .customSlideOverlay {
+  background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 30%,
+      rgba(0, 0, 0, 0.5) 95%
+    ),
+    rgba(124, 152, 133, 0.38) !important;
+}
+
+/* Subtle title motion on hover for service cards */
+@media (hover: hover) and (pointer: fine) {
+  .customSlideOverlay .slideTitle {
+    transition: transform 0.25s ease;
+  }
+  .slideImage:hover .customSlideOverlay .slideTitle {
+    transform: translateY(-2px);
+  }
+}
+
+/* Facilities Section */
+
+/* Customer Stories Section */
+.customerStoriesSection {
+  padding: 60px 20px;
+  background: #ffffff;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.storiesTitle {
+  font-size: 2.8rem;
+  font-weight: 300;
+  color: #2c3e50;
+  margin-bottom: 8px;
+  text-align: left;
+  font-family: "Playfair Display", serif;
+  letter-spacing: -0.5px;
+}
+
+.storiesSubtitle {
+  font-size: 1rem;
+  color: #7f8c8d;
+  margin-bottom: 20px;
+  font-weight: 300;
+  text-align: left;
+  padding-bottom: 12px;
+
+  margin-top: 0px;
+}
+
+.storiesContainer {
+  display: flex;
+  gap: 14px;
+  height: 420px;
+  border-radius: 28px;
+}
+
+.storyCard {
+  position: relative;
+  flex: 1 1 0;
+  transition: flex 0.45s ease, box-shadow 0.35s ease, transform 0.35s ease;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 28px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+}
+
+/* Keep the card static on hover – only image zooms and overlay/text appear */
+.storyCard:hover {
+  transform: none;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+}
+
+/* Expand hovered item; slightly shrink siblings */
+.storiesContainer:hover .storyCard {
+  flex: 0.9 1 0;
+}
+.storiesContainer .storyCard:hover {
+  flex: 1.6 1 0;
+}
+
+.storyImageWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 28px;
+}
+
+.storyImageWrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: brightness(1.05) contrast(1.1) saturate(1.15);
+  will-change: transform;
+  transform-origin: center center;
+}
+
+.storyCard:hover .storyImageWrapper img {
+  transform: scale(1.1);
+  filter: brightness(1.1) contrast(1.2) saturate(1.25);
+}
+
+.storyOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  /* Combined: uniform soft tint + stronger bottom gradient for readability */
+  background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.02) 0%,
+      rgba(0, 0, 0, 0.28) 45%,
+      rgba(0, 0, 0, 0.74) 100%
+    ),
+    rgba(0, 0, 0, 0.32);
+  display: flex;
+  align-items: flex-end;
+  padding: 28px;
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(2px);
+  pointer-events: none;
+}
+
+/* Show overlay only when activated (clicked) */
+.isActive .storyOverlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.storyContent {
+  color: #ffffff;
+  width: auto;
+  max-width: 62%;
+  text-align: left;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+/* Reveal text when active */
+.isActive .storyContent {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Desktop/hover devices: reveal on hover without click */
+@media (hover: hover) and (pointer: fine) {
+  .storyCard:hover .storyOverlay {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .storyCard:hover .storyContent {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .storyCard:hover .viewMoreButton {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.storyContent h3 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(22px, 2.4vw, 32px);
+  font-weight: 500;
+  margin-bottom: 10px;
+  line-height: 1.25;
+  letter-spacing: -0.2px;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  color: #ffffff;
+}
+
+.storyContent p {
+  font-size: clamp(13px, 1.2vw, 16px);
+  line-height: 1.5;
+  margin-bottom: 20px;
+  opacity: 0.95;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+}
+
+.viewMoreButton {
+  background: #ffffff;
+  color: #2c3e50;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 26px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  opacity: 0;
+  transform: translateY(10px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.isActive .viewMoreButton {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.viewMoreButton:hover {
+  background: #f5f6f7;
+}
+
+/* Customer Stories Responsive */
+@media (max-width: 1024px) {
+  .storiesContainer {
+    height: 400px;
+  }
+
+  .storyContent h3 {
+    font-size: 1.4rem;
+  }
+
+  .storyContent p {
+    font-size: 0.9rem;
+  }
+
+  .storyOverlay {
+    padding: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .customerStoriesSection {
+    padding: 50px 15px;
+  }
+
+  .storiesTitle {
+    font-size: 2.2rem;
+  }
+
+  .storiesContainer {
+    flex-direction: column;
+    height: 600px;
+    gap: 6px;
+  }
+
+  .storyContent h3 {
+    font-size: 1.2rem;
+  }
+
+  .storyContent p {
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+  }
+
+  .storyOverlay {
+    padding: 20px;
+  }
+
+  .viewMoreButton {
+    padding: 8px 20px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .storiesTitle {
+    font-size: 1.8rem;
+  }
+
+  .storiesSubtitle {
+    font-size: 0.9rem;
+    margin-bottom: 30px;
+  }
+
+  .storiesContainer {
+    flex-direction: column;
+    height: 500px;
+    gap: 4px;
+  }
+
+  .storyContent h3 {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+  }
+
+  .storyContent p {
+    font-size: 0.8rem;
+    margin-bottom: 12px;
+  }
+
+  .storyOverlay {
+    padding: 15px;
+  }
+
+  .viewMoreButton {
+    padding: 6px 16px;
+    font-size: 0.75rem;
+  }
+}
+/* Responsive Design for new sections */
+@media (max-width: 768px) {
+  .lisseBeautyFacilitiesSection,
+  .customerStoriesSection {
+    margin-top: 60px;
+  }
+
+  .mainFacilityImage {
+    height: 320px; /* tăng theo mẫu mobile */
+  }
+
+  .facilityThumbnails {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .thumbnailItem {
+    height: 120px;
+    border-radius: 16px;
+  }
+
+  .storiesGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .storyImage {
+    height: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .lisseBeautyFacilitiesSection,
+  .customerStoriesSection {
+    margin-top: 40px;
+  }
+
+  .mainFacilityImage {
+    height: 220px;
+    border-radius: 15px;
+  }
+
+  .facilityThumbnails {
+    gap: 10px;
+  }
+
+  .thumbnailItem {
+    height: 80px;
+    border-radius: 10px;
+  }
+
+  .storyImage {
+    height: 200px;
+  }
+}
+
+/* Booking Section */
+.bookingSection {
+  margin-top: 80px;
+  background: #f8f9fa;
+  padding: 0;
+  border-radius: 0;
+}
+
+.bookingContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  align-items: stretch;
+  min-height: 500px;
+}
+
+.bookingImageSection {
+  background: #e8f4f8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.bookingImage {
+  width: 100%;
+  max-width: 450px;
+  height: 500px;
+  border-radius: 25px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.bookingFormSection {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 3px solid #333;
+  border-radius: 35px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  max-width: 550px;
+  width: 100%;
+  margin: 0 auto;
+  backdrop-filter: blur(10px);
+}
+
+.bookingTitle {
+  font-size: 2.1rem;
+  font-weight: 400;
+  color: #2c2c2c;
+  margin-bottom: 25px;
+  text-align: center;
+  font-family: "Playfair Display", serif;
+  letter-spacing: 0.3px;
+  line-height: 1.2;
+}
+
+.bookingForm {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.formInput {
+  padding: 12px 20px;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  font-size: 0.85rem;
+  background: rgba(255, 255, 255, 0.9);
+  color: #555;
+  transition: all 0.3s ease;
+  box-shadow: none;
+  font-family: inherit;
+  width: 100%;
+}
+
+.formInput:focus {
+  outline: none;
+  border-color: #6f8f7d;
+  background: white;
+  box-shadow: 0 0 0 2px rgba(111, 143, 125, 0.15);
+}
+
+.formInput::placeholder {
+  color: #999;
+}
+
+.bookingSubmitBtn {
+  padding: 14px 28px;
+  background: #6f8f7d;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 15px rgba(111, 143, 125, 0.3);
+  font-family: inherit;
+}
+
+.bookingSubmitBtn:hover {
+  background: #5d7a6a;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(111, 143, 125, 0.4);
+}
+
+/* Footer Section */
+.footerSection {
+  background: #2c3e50;
+  color: white;
+  padding: 60px 20px 20px;
+  margin-top: 80px;
+}
+
+.footerContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2.5fr 1fr 1fr 2fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.footerColumn h3 {
+  color: #e8667e;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.footerColumn h4 {
+  color: white;
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.footerColumn p {
+  line-height: 1.6;
+  color: #bdc3c7;
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+.footerColumn ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.footerColumn ul li {
+  color: #bdc3c7;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.footerColumn ul li:hover {
+  color: #e8667e;
+}
+
+.contactSection {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contactRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #34495e;
+  min-height: 50px;
+}
+
+.contactRow:last-child {
+  border-bottom: none;
+}
+
+.contactLabel {
+  flex: 1;
+  color: #bdc3c7;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+}
+
+.contactLabel strong {
+  color: white;
+}
+
+.contactValue {
+  flex: 1;
+  text-align: right;
+  color: #bdc3c7;
+  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.contactValue strong {
+  color: white;
+  display: block;
+  margin-bottom: 3px;
+}
+
+.socialLinks {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.socialLinks a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: #000000;
+  border-radius: 50%;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.socialLinks a:hover {
+  background: #333333;
+  transform: translateY(-3px);
+}
+
+.socialIcon {
+  font-size: 1.2rem;
+  color: white;
+  font-weight: bold;
+}
+
+.contactInfo p {
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+}
+
+.contactInfo strong {
+  color: white;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.contactBtn {
+  background: transparent;
+  color: white;
+  border: 1px solid #666;
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.contactBtn:hover {
+  background: #e8667e;
+  border-color: #e8667e;
+  transform: translateY(-1px);
+}
+
+.footerBottom {
+  max-width: 1200px;
+  margin: 40px auto 0;
+  padding-top: 30px;
+  border-top: 1px solid #34495e;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #95a5a6;
+}
+
+.footerLinks {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.footerLinks a {
+  color: #95a5a6;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footerLinks a:hover {
+  color: #e8667e;
+}
+
+/* Responsive Design for new sections */
+@media (max-width: 768px) {
+  .feedbackGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .feedbackCard {
+    padding: 20px;
+  }
+
+  .bookingContainer {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: 0 10px;
+  }
+
+  .bookingImageSection {
+    order: 1;
+    padding: 20px 10px 20px 10px;
+    background: none;
+  }
+
+  .bookingImage {
+    width: 100%;
+    max-width: none;
+    height: 550px;
+    border-radius: 20px;
+  }
+
+  .bookingFormSection {
+    order: 2;
+    padding: 20px;
+    margin: 0;
+    border-radius: 25px;
+    border: 2px solid #000;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: none;
+  }
+
+  .bookingTitle {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .contactItem {
+    padding: 15px;
+  }
+
+  .contactIcon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+  }
+
+  .footerContainer {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+
+  .footerBottom {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .feedbackSection,
+  .bookingSection {
+    margin-top: 40px;
+  }
+
+  .feedbackSection {
+    padding: 40px 15px;
+  }
+
+  .customerInfo {
+    gap: 10px;
+  }
+
+  .customerAvatar {
+    width: 50px;
+    height: 50px;
+  }
+
+  .bookingFormSection {
+    padding: 30px 15px;
+  }
+
+  .bookingTitle {
+    font-size: 1.8rem;
+  }
+
+  .bookingSubmitBtn {
+    padding: 15px 20px;
+    font-size: 0.9rem;
+  }
+
+  .footerSection {
+    padding: 40px 15px 15px;
+  }
+
+  .footerContainer {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .footerColumn h4 {
+    text-align: left;
+  }
+
+  .footerColumn ul {
+    text-align: left;
+  }
+
+  .contactRow {
+    flex-direction: column;
+    gap: 5px;
+    text-align: left;
+  }
+
+  .contactValue {
+    text-align: left;
+  }
+
+  .contactRow:last-child {
+    justify-content: flex-start;
+  }
+
+  .socialLinks {
+    justify-content: center;
+  }
+}
+
+/* ==== Kimly-like Services Slider Overrides ==== */
+/* Section heading and underline */
+
+.sectionHeading {
+  font-family: "Playfair Display", serif;
+  font-weight: 400;
+  font-size: clamp(28px, 4.2vw, 56px);
+  letter-spacing: -0.5px;
+  color: #2b2b2b;
+  margin: 0 0 10px 0;
+}
+
+/* Card overlay text bottom-left */
+.slideTextWrap {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 22px;
+  display: flex;
+  flex-direction: column; /* title first, description under it */
+  align-items: flex-start;
+  gap: 8px;
+}
+.slideSubtitle {
+  color: rgba(255, 255, 255, 0.98);
+  font-size: clamp(12px, 1.4vw, 15px);
+  margin: 6px 0 0 0; /* below title */
+  line-height: 1.4;
+  text-align: left;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: transform 0.35s ease 0.12s, opacity 0.3s ease 0.12s;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+  align-self: flex-start;
+}
+.slideImage:hover .slideSubtitle {
+  opacity: 1;
+  transform: translateY(0);
+}
+.customSlideOverlay {
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0) 35%,
+    rgba(0, 0, 0, 0.5) 100%
+  ) !important;
+  /* Hidden until hover on desktop; mobile overrides below */
+  display: block !important;
+  /* Always visible overlay so the title is always readable */
+  opacity: 1 !important;
+  transform: none !important;
+  pointer-events: none;
+}
+/* Force strong green tint on hover regardless of previous gradients */
+.slideImage:hover .customSlideOverlay {
+  background: rgba(44, 85, 48, 0.45) !important; /* #2c5530 with alpha */
+}
+.customSlideOverlay .slideTitle {
+  text-align: left;
+  font-weight: 500;
+  font-size: clamp(26px, 3.8vw, 40px);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+  letter-spacing: -0.2px;
+  margin: 0; /* reset margin to align titles evenly */
+  /* Title always visible */
+  opacity: 1 !important;
+  transform: none !important;
+  color: #ffffff !important; /* keep white as requested */
+}
+
+/* Card shape like reference */
+.customSlideImage {
+  border: none !important;
+  border-radius: 24px !important;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+}
+
+/* Hide description on all breakpoints to match reference (only title) */
+.slideSubtitle {
+  color: rgba(255, 255, 255, 0.95);
+  font-size: clamp(13px, 1.4vw, 16px);
+  margin: 6px 0 0 0;
+  line-height: 1.45;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.slideImage:hover .slideSubtitle {
+  opacity: 1;
+}
+.slideImgRounded {
+  border-radius: 24px;
+}
+
+/* Inset circular arrows overlaying the container */
+.carouselArrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: transparent;
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: none;
+  z-index: 2;
+  font-size: 20px;
+  opacity: 1;
+  transition: transform 0.2s ease;
+}
+.prevArrow {
+  left: 24px;
+}
+.nextArrow {
+  right: 24px;
+}
+.carouselArrow:hover {
+  transform: translateY(-50%) scale(1.06);
+}
+
+/* Show arrows on hover */
+/* arrows always visible to match reference */
+
+/* Services section left-aligned */
+.servicesSection {
+  text-align: left;
+}
+
+@media (max-width: 768px) {
+  .sectionHeading {
+    font-size: clamp(24px, 6vw, 36px);
+  }
+  .prevArrow {
+    left: 10px;
+  }
+  .nextArrow {
+    right: 10px;
+  }
+}

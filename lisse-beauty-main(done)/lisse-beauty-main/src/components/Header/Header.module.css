@@ -1,0 +1,413 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap");
+
+.header {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding-top: 80px;
+  height: 800px;
+}
+
+/* Mobile navbar - hidden by default */
+.mobileNavbar {
+  display: none;
+}
+
+/* Background Image */
+.backgroundImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+
+/* Desktop Banner - show on desktop, hide on mobile */
+.desktopBanner {
+  display: block;
+  margin-top: 28px;
+}
+
+/* Mobile Banner - hide on desktop, show on mobile */
+.mobileBanner {
+  display: none;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(240, 248, 240, 0.3) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(240, 248, 240, 0.4) 100%
+  );
+  z-index: 2;
+}
+
+/* Bottom Section (desktop) */
+.bottomSection {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  z-index: 4;
+  display: flex;
+  justify-content: center;
+  height: 250px;
+}
+
+.cardsContainer {
+  display: flex;
+  gap: 25px;
+  max-width: 1200px;
+  padding: 0 50px;
+}
+
+.bookingCard {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 10px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  width: 400px;
+}
+
+.cardTitle {
+  font-size: 25px;
+  color: black;
+  font-weight: lighter;
+  margin-bottom: 10px;
+  text-align: center;
+  font-family: "Playfair Display", serif;
+}
+
+.formGroup {
+  margin-bottom: 23px;
+}
+
+.formInput {
+  width: 100%;
+  padding: 10px 12px 10px;
+  border: 1px solid black;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.formInput:focus {
+  outline: none;
+  border-color: #e8667e;
+  background: white;
+  box-shadow: 0 0 0 2px rgba(124, 152, 133, 0.1);
+}
+
+.submitBtn {
+  width: 100%;
+  background: rgb(87, 114, 87);
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.submitBtn:hover {
+  background: #e8667e;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px #e8667e;
+}
+
+.serviceCard {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  width: 400px;
+}
+
+.serviceTitle {
+  font-size: 25px;
+  color: black;
+  font-weight: lighter;
+  margin-top: 15px;
+}
+
+.serviceDesc {
+  font-size: 17px;
+  color: black;
+  margin-bottom: 40px;
+  font-weight: sans-serif;
+}
+
+.serviceIcons {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  color: #5a6b5d;
+  font-size: 25px;
+}
+
+.gentleCard {
+  background: #5a6b5d;
+  padding: 25px 20px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 8px 25px #5a6b5d;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gentleText {
+  color: white;
+  font-size: 40px;
+  font-family: "Playfair Display", serif;
+  letter-spacing: 0.5px;
+  text-align: center;
+  position: relative;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.animatedText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  opacity: 0;
+  animation-fill-mode: both;
+  will-change: transform, opacity;
+  font-weight: 500;
+}
+
+.animatedText:nth-child(1) {
+  animation: modernSlide1 9s infinite cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  color: #ffffff;
+  text-shadow: 0 2px 8px rgba(255, 255, 255, 0.3);
+}
+
+.animatedText:nth-child(2) {
+  animation: modernSlide2 9s infinite cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  color: #ffe6f0;
+  text-shadow: 0 2px 8px rgba(255, 230, 240, 0.4);
+}
+
+.animatedText:nth-child(3) {
+  animation: modernSlide3 9s infinite cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  color: #fff0f5;
+  text-shadow: 0 2px 8px rgba(255, 240, 245, 0.4);
+}
+
+/* Animations */
+@keyframes modernSlide1 {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  30% {
+    opacity: 0;
+    transform: translate(-50%, -150%) scale(0.8);
+  }
+}
+@keyframes modernSlide2 {
+  0%,
+  30% {
+    opacity: 0;
+  }
+  35%,
+  58% {
+    opacity: 1;
+  }
+  63%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes modernSlide3 {
+  0%,
+  63% {
+    opacity: 0;
+  }
+  68%,
+  91% {
+    opacity: 1;
+  }
+  96%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .cardsContainer {
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+  }
+  .bookingCard,
+  .serviceCard,
+  .gentleCard {
+    width: 300px;
+  }
+}
+
+/* ✅ Mobile layout chỉnh sửa */
+@media (max-width: 768px) {
+  /* Banner switching for mobile */
+  .desktopBanner {
+    display: none !important;
+  }
+
+  .mobileBanner {
+    display: block !important;
+  }
+
+  .header {
+    padding-top: 0;
+    min-height: 100vh;
+    justify-content: flex-start;
+    align-items: stretch;
+    background-color: #e0ebd9;
+  }
+
+  .backgroundImage {
+    background-position: center top;
+    background-size: cover;
+    width: 100%;
+    height: 385px;
+    margin-top: 96px;
+  }
+
+  .bottomSection {
+    position: relative;
+    bottom: 0;
+    height: auto;
+    width: 100%;
+    padding: 20px 16px;
+    display: flex;
+    justify-content: center;
+    z-index: 4;
+  }
+
+  .cardsContainer {
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .bookingCard,
+  .serviceCard {
+    width: 100%;
+    border-radius: 20px;
+    padding: 18px;
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+    backdrop-filter: blur(8px);
+    position: relative;
+    top: 415px;
+  }
+
+  .gentleCard {
+    display: none;
+  }
+
+  .cardTitle,
+  .serviceTitle {
+    font-size: 18px;
+    margin-bottom: 12px;
+    color: #333;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .formGroup {
+    margin-bottom: 14px;
+  }
+
+  .formInput {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 22px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+  }
+
+  .submitBtn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 22px;
+    font-size: 14px;
+    background: #5a7a5a;
+    color: white;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .submitBtn:hover {
+    background: #e8667e;
+  }
+
+  .serviceDesc {
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    margin-bottom: 14px;
+    line-height: 1.4;
+  }
+
+  .serviceIcons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    font-size: 18px;
+    color: #5a7a5a;
+  }
+}
+
+@media (max-width: 480px) {
+  .cardsContainer {
+    padding: 0 10px;
+    gap: 14px;
+  }
+
+  .bookingCard {
+    border-radius: 24px;
+    padding: 15px;
+  }
+
+  .formInput,
+  .submitBtn {
+    padding: 10px 12px;
+  }
+}

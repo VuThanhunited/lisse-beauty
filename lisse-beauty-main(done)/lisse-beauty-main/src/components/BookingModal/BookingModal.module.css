@@ -1,0 +1,241 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999999;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.modal {
+  background: white !important;
+  border-radius: 20px;
+  max-width: 800px;
+  width: 100%;
+  max-height: 90vh;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+  animation: modalFadeIn 0.3s ease-out;
+  z-index: 1000000;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.closeButton {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #666;
+  cursor: pointer;
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.closeButton:hover {
+  background: rgba(0, 0, 0, 0.1);
+  color: #333;
+}
+
+.modalContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 460px;
+}
+
+.leftSection {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 25px;
+}
+
+.consultantImage {
+  width: 100%;
+  max-width: 600px;
+  height: 290px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 15px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.rightSection {
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.title {
+  font-size: 2rem;
+  color: #2c5530;
+  margin: 0 0 25px 0;
+  font-weight: 600;
+  font-family: "Playfair Display", "Georgia", serif;
+  text-align: left;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.formGroup {
+  width: 100%;
+}
+
+.input,
+.select {
+  width: 100%;
+  padding: 15px 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 25px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  background: white;
+}
+
+.input:focus,
+.select:focus {
+  outline: none;
+  border-color: #e8667e;
+  box-shadow: 0 0 0 3px rgba(232, 102, 126, 0.1);
+}
+
+.input::placeholder {
+  color: #999;
+}
+
+.select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 12px center;
+  background-repeat: no-repeat;
+  background-size: 16px;
+  padding-right: 40px;
+}
+
+.submitButton {
+  background: linear-gradient(135deg, #2c5530, #1e3a21);
+  color: white;
+  border: none;
+  padding: 18px 25px;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(44, 85, 48, 0.3);
+}
+
+.submitButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(44, 85, 48, 0.4);
+  background: linear-gradient(135deg, #1e3a21, #0d1a0f);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .overlay {
+    padding: 10px;
+  }
+
+  .modal {
+    max-width: 100%;
+    max-height: 95vh;
+    border-radius: 15px;
+  }
+
+  .modalContent {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .leftSection {
+    padding: 30px 20px 20px;
+  }
+
+  .consultantImage {
+    max-width: 200px;
+    height: 280px;
+  }
+
+  .rightSection {
+    padding: 20px 25px 35px;
+  }
+
+  .title {
+    font-size: 1.6rem;
+    margin-bottom: 25px;
+    text-align: center;
+  }
+
+  .form {
+    gap: 15px;
+  }
+
+  .input,
+  .select {
+    padding: 12px 18px;
+    font-size: 0.95rem;
+  }
+
+  .submitButton {
+    padding: 15px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .rightSection {
+    padding: 15px 20px 30px;
+  }
+
+  .title {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+  }
+
+  .input,
+  .select {
+    padding: 10px 15px;
+    border-radius: 20px;
+  }
+
+  .submitButton {
+    padding: 12px 18px;
+    border-radius: 20px;
+  }
+}
