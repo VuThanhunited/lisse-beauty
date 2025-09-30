@@ -1,0 +1,90 @@
+.contactForm {
+  padding: 60px 40px;
+  background: white;
+  border-radius: 0 20px 20px 0;
+}
+
+.formTitle {
+  font-size: 1.8rem;
+  color: #5a6b5d;
+  margin-bottom: 10px;
+  font-weight: 400;
+  font-family: "Playfair Display", serif;
+  text-align: center;
+}
+
+.formSubtitle {
+  color: #5a6b5d;
+  margin-bottom: 40px;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.form {
+  width: 100%;
+}
+
+.formGroup {
+  margin-bottom: 25px;
+}
+
+.formInput,
+.formTextarea {
+  width: 100%;
+  padding: 15px 20px;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  background: white;
+  outline: none;
+  font-family: inherit;
+}
+
+.formInput:focus,
+.formTextarea:focus {
+  border-color: var(--secondary);
+  background: white;
+  box-shadow: 0 0 0 3px rgba(124, 152, 133, 0.1);
+}
+
+.formTextarea {
+  resize: vertical;
+  min-height: 120px;
+  border-radius: 20px;
+}
+
+.submitButton {
+  width: 100%;
+  padding: 18px 30px;
+  background: #5a6b5d;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 20px;
+}
+
+.submitButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(124, 152, 133, 0.3);
+  background: linear-gradient(135deg, var(--secondary-dark), #5a7361);
+}
+
+@media (max-width: 768px) {
+  .contactForm {
+    border-radius: 0 0 20px 20px;
+    padding: 50px 30px;
+  }
+  
+  .formTitle {
+    font-size: 1.6rem;
+  }
+}

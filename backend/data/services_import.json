@@ -1,0 +1,430 @@
+[
+  {
+    "_id": "672d1234567890abcdef0001",
+    "name": "Glowing Brow",
+    "slug": "glowing-brow",
+    "description": "Glowing Brow là gì? Giải pháp chân mày tự nhiên, nhẹ nhàng, sắc nét không lộ dấu phun xăm",
+    "fullDescription": "Glowing Brow là kỹ thuật làm đẹp chân mày tiên tiến nhất hiện nay, tạo ra những đường nét tự nhiên và sắc nét mà không để lại dấu vết của phun xăm truyền thống. Công nghệ này giúp tạo ra chân mày hoàn hảo với độ bền cao và màu sắc tự nhiên.",
+    "image": "/uploads/services/glowing-brow-cover.jpg",
+    "images": [
+      {
+        "url": "/uploads/services/glowing-truoc.jpg",
+        "alt": "Glowing Brow - Trước khi thực hiện",
+        "isPrimary": false,
+        "type": "before"
+      },
+      {
+        "url": "/uploads/services/glowing-sau-scaled.jpg",
+        "alt": "Glowing Brow - Sau khi thực hiện",
+        "isPrimary": false,
+        "type": "after"
+      },
+      {
+        "url": "/uploads/services/closeup-soft-glossy-lips-highlighting-natural-beauty-skincare-techniques-2.jpg",
+        "alt": "Chi tiết kỹ thuật Glowing Brow",
+        "isPrimary": false,
+        "type": "detail"
+      }
+    ],
+    "price": 2500000,
+    "originalPrice": 3000000,
+    "duration": 120,
+    "category": "eyebrow",
+    "features": [
+      "Tự nhiên như thật",
+      "Không đau đớn",
+      "Bền màu lâu dài",
+      "Không để lại scar",
+      "Phù hợp mọi độ tuổi"
+    ],
+    "benefits": [
+      "Tiết kiệm thời gian makeup hàng ngày",
+      "Tự tin hơn với diện mạo",
+      "Chân mày đều và đẹp tự nhiên",
+      "Không lo phai màu khi gặp nước"
+    ],
+    "process": [
+      {
+        "step": 1,
+        "title": "Tư vấn và thiết kế",
+        "description": "Chuyên gia sẽ tư vấn và thiết kế hình dáng chân mày phù hợp với khuôn mặt",
+        "duration": 30
+      },
+      {
+        "step": 2,
+        "title": "Chuẩn bị và vệ sinh",
+        "description": "Làm sạch và chuẩn bị vùng da cần thực hiện",
+        "duration": 15
+      },
+      {
+        "step": 3,
+        "title": "Thực hiện Glowing Brow",
+        "description": "Sử dụng công nghệ tiên tiến để tạo ra chân mày Glowing Brow",
+        "duration": 60
+      },
+      {
+        "step": 4,
+        "title": "Chăm sóc và hoàn thiện",
+        "description": "Chăm sóc và hướng dẫn cách bảo quản sau thực hiện",
+        "duration": 15
+      }
+    ],
+    "requirements": [
+      "Không đang mang thai hoặc cho con bú",
+      "Không bị dị ứng với mực phun",
+      "Da không bị viêm nhiễm tại vùng cần thực hiện",
+      "Đã ngừng sử dụng thuốc chống đông máu ít nhất 1 tuần"
+    ],
+    "aftercare": [
+      "Không được chạm nước vào vùng vừa thực hiện trong 7 ngày",
+      "Sử dụng thuốc mỡ kháng sinh theo chỉ dẫn",
+      "Không cào, gãi vùng vừa thực hiện",
+      "Tránh ánh nắng trực tiếp trong 2 tuần đầu",
+      "Tái khám theo lịch hẹn"
+    ],
+    "facilityImg": [
+      {
+        "url": "/uploads/facility/modern-luxury-beauty-salon-interior-with-marble-gold-accents-3d-rendering-3-scaled.webp",
+        "alt": "Cơ sở vật chất hiện đại - Glowing Brow"
+      },
+      {
+        "url": "/uploads/spa/pristine-elegant-spa-massage-room-with-neatly-arranged-towels-bed-soft-lighting-she.jpg",
+        "alt": "Phòng điều trị sang trọng - Glowing Brow"
+      },
+      {
+        "url": "/uploads/spa/exquisite-display-beauty-treatment-spa-salon-accessories-quiescent-2048x1366.webp",
+        "alt": "Thiết bị chuyên nghiệp - Glowing Brow"
+      }
+    ],
+    "customerImg": [
+      {
+        "url": "/uploads/customer-stories/customer-story-1.jpg",
+        "alt": "Khách hàng hài lòng với dịch vụ Glowing Brow",
+        "title": "Mỗi sáng thức dậy không lo tìm thời gian",
+        "story": "Chúng ta mất 15 phút mỗi sáng để kẻ lông mày, thật là lãng phí"
+      },
+      {
+        "url": "/uploads/customer-stories/customer-story-2.jpg",
+        "alt": "Khách hàng tự tin với chân mày đẹp",
+        "title": "Tự tin hơn mỗi ngày",
+        "story": "Lông mày đẹp tự nhiên giúp tôi tự tin hơn trong cuộc sống"
+      },
+      {
+        "url": "/uploads/customer-stories/customer-story-3.jpg",
+        "alt": "Kết quả hoàn hảo vượt mong đợi",
+        "title": "Không còn lo lắng",
+        "story": "Kết quả hoàn hảo vượt ngoài mong đợi của tôi"
+      }
+    ],
+    "isActive": true,
+    "isPopular": true,
+    "isFeatured": true,
+    "rating": {
+      "average": 4.8,
+      "count": 127
+    },
+    "bookingCount": 234,
+    "tags": ["chân mày", "glowing", "tự nhiên", "không đau", "bền đẹp"],
+    "metaData": {
+      "title": "Glowing Brow - Chân mày tự nhiên không lộ dấu phun xăm",
+      "description": "Glowing Brow công nghệ tiên tiến tạo chân mày tự nhiên, sắc nét. Đặt lịch ngay!",
+      "keywords": [
+        "glowing brow",
+        "chân mày đẹp",
+        "phun xăm chân mày",
+        "làm đẹp"
+      ]
+    },
+    "detailUrl": "/beauty-knowledge/glowing-brow",
+    "createdBy": "672d1234567890abcdef0000",
+    "createdAt": "2024-09-20T07:00:00.000Z",
+    "updatedAt": "2024-09-20T07:00:00.000Z"
+  },
+  {
+    "_id": "672d1234567890abcdef0002",
+    "name": "Hairstroke",
+    "slug": "hairstroke",
+    "description": "Tạo sợi Hairstroke – Công nghệ chân mày tự nhiên như thật",
+    "fullDescription": "Tạo sợi Hairstroke là kỹ thuật làm đẹp chân mày tiên tiến nhất hiện nay, tạo ra từng sợi chân mày tự nhiên như thật. Công nghệ này sử dụng các đường nét mỏng và chính xác để mô phỏng hoàn hảo sợi chân mày thật.",
+    "image": "/uploads/services/hairstroke-cover.png",
+    "images": [
+      {
+        "url": "/uploads/services/Truoca.jpg",
+        "alt": "Hairstroke - Trước khi thực hiện",
+        "isPrimary": false,
+        "type": "before"
+      },
+      {
+        "url": "/uploads/services/Saua.jpg",
+        "alt": "Hairstroke - Sau khi thực hiện",
+        "isPrimary": false,
+        "type": "after"
+      },
+      {
+        "url": "/uploads/services/fox-truoc.jpg",
+        "alt": "Hairstroke Fox style - Trước",
+        "isPrimary": false,
+        "type": "before_variant"
+      },
+      {
+        "url": "/uploads/services/fox-sau.jpg",
+        "alt": "Hairstroke Fox style - Sau",
+        "isPrimary": false,
+        "type": "after_variant"
+      }
+    ],
+    "price": 2800000,
+    "originalPrice": 3200000,
+    "duration": 150,
+    "category": "eyebrow",
+    "features": [
+      "Sợi chân mày sắc nét như thật",
+      "Công nghệ tiên tiến nhất",
+      "Phục hồi nhanh chóng",
+      "Màu sắc tự nhiên",
+      "Độ bền cao"
+    ],
+    "benefits": [
+      "Che khuyết điểm chân mày",
+      "Tăng thẩm mỹ khuôn mặt",
+      "Bền đẹp lâu dài",
+      "Tiết kiệm thời gian trang điểm",
+      "Tự tin trong mọi hoàn cảnh"
+    ],
+    "process": [
+      {
+        "step": 1,
+        "title": "Tư vấn chuyên sâu",
+        "description": "Phân tích khuôn mặt và thiết kế hình dáng chân mày theo tỷ lệ vàng",
+        "duration": 40
+      },
+      {
+        "step": 2,
+        "title": "Chuẩn bị chuyên nghiệp",
+        "description": "Vệ sinh và chuẩn bị dụng cụ, vật liệu chuyên dụng",
+        "duration": 20
+      },
+      {
+        "step": 3,
+        "title": "Thực hiện Hairstroke",
+        "description": "Tạo từng sợi chân mày với độ chính xác cao",
+        "duration": 75
+      },
+      {
+        "step": 4,
+        "title": "Hoàn thiện và chăm sóc",
+        "description": "Kiểm tra và chăm sóc ban đầu, hướng dẫn aftercare",
+        "duration": 15
+      }
+    ],
+    "requirements": [
+      "Không đang mang thai hoặc cho con bú",
+      "Không có tiền sử dị ứng mực phun",
+      "Da vùng chân mày không bị tổn thương",
+      "Ngừng sử dụng retinol ít nhất 1 tuần",
+      "Không dùng thuốc chống đông máu"
+    ],
+    "aftercare": [
+      "Giữ vùng thực hiện khô ráo trong 10 ngày",
+      "Thoa kem dưỡng ẩm chuyên dụng",
+      "Không tẩy tế bào chết vùng chân mày",
+      "Tránh tiếp xúc trực tiếp với ánh nắng mặt trời",
+      "Không swimming trong 2 tuần đầu",
+      "Tái khám sau 4-6 tuần"
+    ],
+    "isActive": true,
+    "isPopular": true,
+    "isFeatured": true,
+    "rating": {
+      "average": 4.9,
+      "count": 89
+    },
+    "bookingCount": 156,
+    "tags": [
+      "hairstroke",
+      "chân mày",
+      "sợi tự nhiên",
+      "tiên tiến",
+      "chuyên nghiệp"
+    ],
+    "metaData": {
+      "title": "Hairstroke - Tạo sợi chân mày tự nhiên như thật",
+      "description": "Hairstroke công nghệ tạo từng sợi chân mày tự nhiên, sắc nét. Đặt lịch ngay!",
+      "keywords": [
+        "hairstroke",
+        "tạo sợi chân mày",
+        "chân mày tự nhiên",
+        "phun xăm"
+      ]
+    },
+    "detailUrl": "/beauty-knowledge/hairstroke",
+    "facilityImg": [
+      {
+        "url": "/uploads/facility/modern-luxury-beauty-salon-interior-with-marble-gold-accents-3d-rendering-3-scaled.webp",
+        "alt": "Cơ sở vật chất hiện đại - Hairstroke"
+      },
+      {
+        "url": "/uploads/spa/pristine-elegant-spa-massage-room-with-neatly-arranged-towels-bed-soft-lighting-she.jpg",
+        "alt": "Phòng điều trị sang trọng - Hairstroke"
+      },
+      {
+        "url": "/uploads/spa/exquisite-display-beauty-treatment-spa-salon-accessories-quiescent-2048x1366.webp",
+        "alt": "Thiết bị chuyên nghiệp - Hairstroke"
+      }
+    ],
+    "customerImg": [
+      {
+        "url": "/uploads/customer-stories/customer-story-1.jpg",
+        "alt": "Khách hàng hài lòng với dịch vụ Hairstroke",
+        "title": "Mỗi sáng thức dậy không lo tìm thời gian",
+        "story": "Chúng ta mất 15 phút mỗi sáng để kẻ lông mày, thật là lãng phí"
+      },
+      {
+        "url": "/uploads/customer-stories/customer-story-2.jpg",
+        "alt": "Khách hàng tự tin với chân mày đẹp",
+        "title": "Tự tin hơn mỗi ngày",
+        "story": "Lông mày đẹp tự nhiên giúp tôi tự tin hơn trong cuộc sống"
+      },
+      {
+        "url": "/uploads/customer-stories/customer-story-3.jpg",
+        "alt": "Kết quả hoàn hảo vượt mong đợi",
+        "title": "Không còn lo lắng",
+        "story": "Kết quả hoàn hảo vượt ngoài mong đợi của tôi"
+      }
+    ],
+    "createdBy": "672d1234567890abcdef0000",
+    "createdAt": "2024-09-20T07:00:00.000Z",
+    "updatedAt": "2024-09-20T07:00:00.000Z"
+  },
+  {
+    "_id": "672d1234567890abcdef0003",
+    "name": "Sketch Lips",
+    "slug": "sketch-lips",
+    "description": "Kỹ thuật tạo môi tự nhiên với hiệu ứng sketch độc đáo",
+    "fullDescription": "Sketch Lips là công nghệ làm đẹp môi tiên tiến, tạo ra hiệu ứng môi tự nhiên với đường viền mềm mại như được vẽ bằng bút chì. Kỹ thuật này giúp định hình và tôn lên vẻ đẹp tự nhiên của đôi môi.",
+    "image": "/uploads/services/closeup-soft-glossy-lips-highlighting-natural-beauty-skincare-techniques-2.jpg",
+    "images": [
+      {
+        "url": "/uploads/services/Skechlips01-Truoc-scaled.png",
+        "alt": "Sketch Lips - Trước khi thực hiện",
+        "isPrimary": false,
+        "type": "before"
+      },
+      {
+        "url": "/uploads/services/Skechlips01-Sau-scaled.png",
+        "alt": "Sketch Lips - Sau khi thực hiện",
+        "isPrimary": false,
+        "type": "after"
+      }
+    ],
+    "price": 3200000,
+    "originalPrice": 3800000,
+    "duration": 180,
+    "category": "lips",
+    "features": [
+      "Hiệu ứng sketch tự nhiên",
+      "Đường viền mềm mại",
+      "Màu sắc harmonize với da",
+      "Độ bền cao",
+      "An toàn tuyệt đối"
+    ],
+    "benefits": [
+      "Đôi môi căng mọng tự nhiên",
+      "Che khuyết điểm môi",
+      "Tạo điểm nhấn cho khuôn mặt",
+      "Tiết kiệm thời gian trang điểm môi",
+      "Tự tin với nụ cười"
+    ],
+    "process": [
+      {
+        "step": 1,
+        "title": "Tư vấn màu sắc",
+        "description": "Lựa chọn màu sắc phù hợp với tông da và sở thích cá nhân",
+        "duration": 30
+      },
+      {
+        "step": 2,
+        "title": "Thiết kế hình dáng môi",
+        "description": "Thiết kế hình dáng môi cân đối và tự nhiên",
+        "duration": 30
+      },
+      {
+        "step": 3,
+        "title": "Thực hiện Sketch Lips",
+        "description": "Sử dụng kỹ thuật sketch để tạo môi tự nhiên",
+        "duration": 100
+      },
+      {
+        "step": 4,
+        "title": "Hoàn thiện",
+        "description": "Kiểm tra và chỉnh sửa chi tiết cuối cùng",
+        "duration": 20
+      }
+    ],
+    "requirements": [
+      "Không đang mang thai hoặc cho con bú",
+      "Không bị herpes ở vùng môi",
+      "Không dùng thuốc chống đông máu",
+      "Môi không bị tổn thương hoặc viêm nhiễm"
+    ],
+    "aftercare": [
+      "Không ăn đồ cay nóng trong 3 ngày",
+      "Thoa kem dưỡng môi chuyên dụng",
+      "Không hôn trong 7 ngày",
+      "Tránh tiếp xúc với nước nóng",
+      "Không tẩy tế bào chết vùng môi"
+    ],
+    "isActive": true,
+    "isPopular": false,
+    "isFeatured": true,
+    "rating": {
+      "average": 4.7,
+      "count": 45
+    },
+    "bookingCount": 78,
+    "tags": ["sketch lips", "môi đẹp", "tự nhiên", "độc đáo"],
+    "metaData": {
+      "title": "Sketch Lips - Kỹ thuật tạo môi tự nhiên đẹp",
+      "description": "Sketch Lips công nghệ tạo môi tự nhiên với hiệu ứng sketch độc đáo",
+      "keywords": ["sketch lips", "làm đẹp môi", "môi tự nhiên"]
+    },
+    "detailUrl": "/services/sketch-lips",
+    "facilityImg": [
+      {
+        "url": "/uploads/facility/modern-luxury-beauty-salon-interior-with-marble-gold-accents-3d-rendering-3-scaled.webp",
+        "alt": "Cơ sở vật chất hiện đại - Sketch Lips"
+      },
+      {
+        "url": "/uploads/spa/pristine-elegant-spa-massage-room-with-neatly-arranged-towels-bed-soft-lighting-she.jpg",
+        "alt": "Phòng điều trị sang trọng - Sketch Lips"
+      },
+      {
+        "url": "/uploads/spa/exquisite-display-beauty-treatment-spa-salon-accessories-quiescent-2048x1366.webp",
+        "alt": "Thiết bị chuyên nghiệp - Sketch Lips"
+      }
+    ],
+    "customerImg": [
+      {
+        "url": "/uploads/customer-stories/customer-story-1.jpg",
+        "alt": "Khách hàng hài lòng với dịch vụ Sketch Lips",
+        "title": "Mỗi sáng thức dậy không lo tìm thời gian",
+        "story": "Chúng ta mất 15 phút mỗi sáng để kẻ lông mày, thật là lãng phí"
+      },
+      {
+        "url": "/uploads/customer-stories/customer-story-2.jpg",
+        "alt": "Khách hàng tự tin với dịch vụ Sketch Lips",
+        "title": "Tự tin hơn mỗi ngày",
+        "story": "Lông mày đẹp tự nhiên giúp tôi tự tin hơn trong cuộc sống"
+      },
+      {
+        "url": "/uploads/customer-stories/customer-story-3.jpg",
+        "alt": "Kết quả hoàn hảo với Sketch Lips",
+        "title": "Không còn lo lắng",
+        "story": "Kết quả hoàn hảo vượt ngoài mong đợi của tôi"
+      }
+    ],
+    "createdBy": "672d1234567890abcdef0000",
+    "createdAt": "2024-09-20T07:00:00.000Z",
+    "updatedAt": "2024-09-20T07:00:00.000Z"
+  }
+]

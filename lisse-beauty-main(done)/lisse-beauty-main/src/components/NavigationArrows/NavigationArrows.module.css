@@ -1,0 +1,120 @@
+/* Modern Navigation Arrows with Glassmorphism */
+.navArrow {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: var(--secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  z-index: 10;
+}
+
+.navArrow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(124, 152, 133, 0.1), rgba(124, 152, 133, 0.2));
+  border-radius: 50%;
+  transform: scale(0);
+  transition: transform 0.4s ease;
+}
+
+.navArrow:hover {
+  transform: translateY(-2px) scale(1.05);
+  background: rgba(124, 152, 133, 0.9);
+  color: white;
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.15),
+    0 0 30px rgba(124, 152, 133, 0.3);
+}
+
+.navArrow:hover::before {
+  transform: scale(1);
+}
+
+.navArrow:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.arrowIcon {
+  position: relative;
+  z-index: 2;
+  transition: transform 0.3s ease;
+}
+
+.navArrow:hover .arrowIcon {
+  transform: scale(1.1);
+}
+
+.navArrowLeft .arrowIcon {
+  margin-right: 2px;
+}
+
+.navArrowRight .arrowIcon {
+  margin-left: 2px;
+}
+
+/* Ripple Effect */
+.ripple {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(0);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.6s ease;
+}
+
+.navArrow:active .ripple {
+  transform: scale(1);
+  opacity: 1;
+  transition: all 0.2s ease;
+}
+
+/* Positioning */
+.navArrowLeft {
+  margin-right: auto;
+}
+
+.navArrowRight {
+  margin-left: auto;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navArrow {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .arrowIcon svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navArrow {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .arrowIcon svg {
+    width: 18px;
+    height: 18px;
+  }
+}
